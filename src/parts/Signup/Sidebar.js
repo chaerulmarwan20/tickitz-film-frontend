@@ -32,7 +32,7 @@ export default function Sidebar() {
         />
         <div className="d-flex checkbox mt-0">
           <input type="checkbox" className="ml-1" name="agree" id="agree" />
-          <label for="agree" className="ml-3">
+          <label htmlFor="agree" className="ml-3">
             I agree to terms & conditions
           </label>
           <br />

@@ -19,13 +19,14 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mulish:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mulish:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
       rel="stylesheet"
     />
 
     <title>Tickitz Film</title>
   </head>
   <body>
+    <div className="overlay d-none d-lg-none" id="overlay"></div>
     <div id="root"></div>
 
     <script
@@ -43,5 +44,12 @@
       integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
       crossorigin="anonymous"
     ></script>
+    <!-- <script>
+      const hamburgerMenu = document.getElementById("navbar-toggler");
+      const overlay = document.getElementById("overlay");
+      hamburgerMenu.addEventListener("click", function () {
+        overlay.classList.toggle("d-block");
+      });
+    </script> -->
   </body>
 </html>

@@ -36,7 +36,7 @@ export default function Sidebar() {
           Sign In
         </Button>
       </form>
-      <p class="forgot-password">
+      <p className="forgot-password">
         Forgot your password? <Link to="/forgot-password">Reset now</Link>
       </p>
       <p className="or">Or</p>

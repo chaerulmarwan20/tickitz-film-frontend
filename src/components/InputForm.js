@@ -6,7 +6,7 @@ export default function InputForm(props) {
   className.push(props.className);
   return (
     <Fragment>
-      <label for={props.for}>{props.textLabel}</label>
+      <label htmlFor={props.for}>{props.textLabel}</label>
       <br />
       <input
         type={props.type}
