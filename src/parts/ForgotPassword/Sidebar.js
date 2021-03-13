@@ -14,10 +14,8 @@ export default function Sidebar() {
       <p>we'll send a link to your email shortly</p>
       <form>
         <InputForm
-          for="email"
-          textLabel="Email"
+          label="Email"
           type="email"
-          id="email"
           name="email"
           placeholder="Write your email"
         />

@@ -2,20 +2,17 @@ import React from "react";
 
 import Section from "../../components/Section";
 import Button from "../../components/Button";
+import InputForm from "../../components/InputForm";
 
 export default function JoinMember() {
   return (
     <Section className="join-member">
       <div className="container">
-        <div className="jumbotron">
+        <div className="jumbotron py-5">
           <p>Be the vanguard of the</p>
           <h1>Moviegoers</h1>
           <form className="form-inline join-now">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Type your email"
-            />
+            <InputForm type="text" placeholder="Type your email" />
             <Button className="btn btn-join-now" type="submit">
               Join now
             </Button>

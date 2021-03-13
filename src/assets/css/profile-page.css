@@ -1,64 +1,3 @@
-body {
-  font-family: "Mulish", sans-serif;
-  background-color: #f5f6f8;
-  position: relative;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.24);
-  z-index: 1;
-  transition: 0.5s ease-in-out;
-}
-
-/* Nav */
-.navbar-light .navbar-toggler {
-  border: 0;
-}
-
-.navbar-light .navbar-toggler-icon {
-  background-image: url(../img/hamburger-menu.png);
-}
-
-nav.navbar {
-  box-shadow: 0px 8px 24px rgba(186, 186, 186, 0.16);
-}
-
-.navbar-nav {
-  margin-left: 70px;
-  text-align: center;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-}
-
-.navbar-brand img {
-  width: 130px;
-  height: 51px;
-}
-
-.navbar-nav .nav-item .nav-link {
-  font-weight: 600;
-  color: #414141;
-  margin-right: 46px;
-}
-
-.navbar-nav .nav-item .nav-link:hover,
-nav .nav-link:hover,
-.dropdown a.dropdown-toggle:hover {
-  color: #757474;
-}
-
-nav .nav-link {
-  font-weight: 600;
-  color: #414141;
-  white-space: nowrap;
-}
-
 .navbar-nav .form-search.profile img {
   width: 20px;
   height: 20px;
@@ -92,25 +31,8 @@ nav .nav-link {
   color: #a0a3bd;
 }
 
-.dropdown a.dropdown-toggle {
-  font-weight: 600;
-  color: #414141;
-  text-decoration: none;
-}
-
-.ic-search {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-}
-
-.img-user {
-  width: 56px;
-  height: 56px;
-}
-
 nav.details-order {
-  margin-top: 85px;
+  margin-top: 77px;
   background-color: #fff;
 }
 
@@ -132,21 +54,25 @@ nav.details-order a.active::after {
   transform: translateY(15px);
 }
 
-nav.details-order a:last-of-type {
+nav.details-order a {
   color: #aaaaaa;
 }
 
-nav.details-order a:first-of-type:hover {
+nav.details-order a.active {
+  color: #14142b;
+}
+
+nav.details-order a.active:hover {
   color: #aaaaaa;
 }
 
-nav.details-order a:last-of-type:hover {
+nav.details-order a:hover {
   color: #14142b;
 }
 
 /* Profile */
 .profile {
-  margin-top: 130px;
+  margin-top: 125px;
 }
 
 .profile .info {
@@ -418,122 +344,6 @@ nav.details-order a:last-of-type:hover {
   color: #14142b;
 }
 
-/* Footer */
-footer {
-  background-color: #fff;
-}
-
-footer .logo {
-  width: 183px;
-  height: 71px;
-  margin-bottom: 16px;
-}
-
-footer p {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 32px;
-  letter-spacing: 0.75px;
-  color: #6e7191;
-  white-space: nowrap;
-}
-
-footer .copyright {
-  font-weight: 400;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  color: #4e4b66;
-}
-
-footer ul {
-  list-style: none;
-}
-
-footer nav p.nav-link {
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  color: #000;
-  margin-bottom: 30px;
-}
-
-footer p.explore,
-footer p.our-sponsor,
-footer p.follow-us {
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  line-height: 20px;
-  color: #000;
-  margin-bottom: 30px;
-}
-
-footer nav a.nav-link {
-  margin-bottom: 14px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0.5px;
-  color: #4e4b66;
-  transition: 0.5s ease;
-}
-
-footer nav a.nav-link:hover {
-  color: black;
-}
-
-footer nav.explore a.nav-link {
-  margin-top: -10px;
-}
-
-footer nav.sponsor {
-  transform: translateY(-2px);
-}
-
-footer nav.sponsor a:first-of-type img {
-  width: 122px;
-  height: 45px;
-}
-
-footer nav.sponsor a:nth-of-type(2) img {
-  width: 174px;
-  height: 28px;
-}
-
-footer nav.sponsor a:last-of-type img {
-  width: 80px;
-  height: 26px;
-}
-
-footer nav.follow-us a {
-  white-space: nowrap;
-}
-
-footer nav.follow-us .facebook,
-footer nav.follow-us .instagram,
-footer nav.follow-us .twitter,
-footer nav.follow-us .youtube {
-  width: 24px;
-  height: 24px;
-  margin-right: 16px;
-}
-
-footer nav.follow-us span {
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0.5px;
-  color: #6e7191;
-  transition: 0.5s ease;
-}
-
-footer nav.follow-us span:hover {
-  color: #000;
-}
-
-@media screen and (max-width: 1200px) {
-}
-
 @media screen and (max-width: 991px) {
   nav.navbar {
     box-shadow: inherit;
@@ -603,75 +413,15 @@ footer nav.follow-us span:hover {
   }
 
   .form-search.profile {
-    margin-top: 125px !important;
+    margin-top: 92px !important;
   }
 
   .profile {
-    margin-top: 190px;
+    margin-top: 185px;
   }
 
   .profile .account-privacy form input {
     background-position-x: 96%;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  footer .logo {
-    width: 153px;
-    height: 60px;
-  }
-
-  footer p {
-    font-size: 14px;
-    line-height: 24px;
-  }
-
-  footer nav a.nav-link {
-    margin-bottom: 0px;
-    line-height: 26px;
-    letter-spacing: 0.75px;
-    color: #6e7191;
-  }
-
-  footer nav.explore a:nth-of-type(3) {
-    order: 4;
-  }
-
-  footer nav.sponsor a:first-of-type img {
-    width: 81px;
-    height: 30px;
-  }
-
-  footer nav.sponsor a:nth-of-type(2) img {
-    width: 106px;
-    height: 17px;
-  }
-
-  footer nav.sponsor a:last-of-type img {
-    width: 77px;
-    height: 25px;
-  }
-
-  footer p.explore,
-  footer p.our-sponsor,
-  footer p.follow-us {
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: 0.75px;
-    margin-bottom: 0px;
-  }
-
-  footer nav.follow-us .facebook,
-  footer nav.follow-us .instagram,
-  footer nav.follow-us .twitter,
-  footer nav.follow-us .youtube {
-    width: 24px;
-    height: 24px;
-    margin-right: 0px;
-  }
-
-  footer nav.follow-us span {
-    display: none;
   }
 }
 
@@ -684,11 +434,5 @@ footer nav.follow-us span:hover {
   .profile .details-information form input,
   .profile .account-privacy form input {
     height: 60px;
-  }
-}
-
-@media screen and (max-width: 435px) {
-  footer nav.explore a.nav-link {
-    margin-top: 0px;
   }
 }

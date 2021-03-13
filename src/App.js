@@ -9,6 +9,7 @@ import MovieDetail from "./pages/MovieDetail";
 import OrderPage from "./pages/OrderPage";
 import PaymentPage from "./pages/PaymentPage";
 import ProfilePage from "./pages/ProfilePage";
+import OrderHistory from "./pages/OrderHistory";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/order-page" component={OrderPage} />
         <Route path="/payment-page" component={PaymentPage} />
         <Route path="/profile-page" component={ProfilePage} />
+        <Route path="/order-history" component={OrderHistory} />
       </Switch>
     </Router>
   );

@@ -1,6 +1,6 @@
 body {
   font-family: "Mulish", sans-serif;
-  background-color: #fff;
+  background-color: #f5f6f8;
   position: relative;
 }
 
@@ -124,6 +124,11 @@ nav .nav-link {
   background-color: #f7f7fc;
   color: #5f2eea;
   border: 1px solid #5f2eea;
+}
+
+.img-user {
+  width: 56px;
+  height: 56px;
 }
 
 /* Header */
@@ -368,11 +373,11 @@ section.upcoming-movies .container-upcoming-movie .card .btn-details:hover {
 
 /* Join Member */
 section.join-member {
+  margin-top: -40px;
   padding-bottom: 96px;
 }
 
 section.join-member .jumbotron {
-  height: 372px;
   background-color: #fff;
   box-shadow: 0px 16px 32px rgba(186, 186, 186, 0.3);
   border-radius: 8px;
@@ -462,13 +467,17 @@ section.join-member .jumbotron p.text-join-now br:last-of-type {
 }
 
 /* Footer */
-footer.homepage .logo {
+footer {
+  background-color: #fff;
+}
+
+footer .logo {
   width: 183px;
   height: 71px;
   margin-bottom: 16px;
 }
 
-footer.homepage p {
+footer p {
   font-weight: 400;
   font-size: 16px;
   line-height: 32px;
@@ -477,18 +486,18 @@ footer.homepage p {
   white-space: nowrap;
 }
 
-footer.homepage .copyright {
+footer .copyright {
   font-weight: 400;
   font-size: 14px;
   letter-spacing: 0.5px;
   color: #4e4b66;
 }
 
-footer.homepage ul {
+footer ul {
   list-style: none;
 }
 
-footer.homepage nav p.nav-link {
+footer nav p.nav-link {
   font-weight: 700;
   font-size: 16px;
   letter-spacing: 0.5px;
@@ -496,9 +505,9 @@ footer.homepage nav p.nav-link {
   margin-bottom: 30px;
 }
 
-footer.homepage p.explore,
-footer.homepage p.our-sponsor,
-footer.homepage p.follow-us {
+footer p.explore,
+footer p.our-sponsor,
+footer p.follow-us {
   font-weight: 700;
   font-size: 16px;
   letter-spacing: 0.5px;
@@ -507,7 +516,7 @@ footer.homepage p.follow-us {
   margin-bottom: 30px;
 }
 
-footer.homepage nav a.nav-link {
+footer nav a.nav-link {
   margin-bottom: 14px;
   font-weight: 400;
   font-size: 14px;
@@ -517,47 +526,47 @@ footer.homepage nav a.nav-link {
   transition: 0.5s ease;
 }
 
-footer.homepage nav a.nav-link:hover {
+footer nav a.nav-link:hover {
   color: black;
 }
 
-footer.homepage nav.explore a.nav-link {
+footer nav.explore a.nav-link {
   margin-top: -10px;
 }
 
-footer.homepage nav.sponsor {
+footer nav.sponsor {
   transform: translateY(-2px);
 }
 
-footer.homepage nav.sponsor a:first-of-type img {
+footer nav.sponsor a:first-of-type img {
   width: 122px;
   height: 45px;
 }
 
-footer.homepage nav.sponsor a:nth-of-type(2) img {
+footer nav.sponsor a:nth-of-type(2) img {
   width: 174px;
   height: 28px;
 }
 
-footer.homepage nav.sponsor a:last-of-type img {
+footer nav.sponsor a:last-of-type img {
   width: 80px;
   height: 26px;
 }
 
-footer.homepage nav.follow-us a {
+footer nav.follow-us a {
   white-space: nowrap;
 }
 
-footer.homepage nav.follow-us .facebook,
-footer.homepage nav.follow-us .instagram,
-footer.homepage nav.follow-us .twitter,
-footer.homepage nav.follow-us .youtube {
+footer nav.follow-us .facebook,
+footer nav.follow-us .instagram,
+footer nav.follow-us .twitter,
+footer nav.follow-us .youtube {
   width: 24px;
   height: 24px;
   margin-right: 16px;
 }
 
-footer.homepage nav.follow-us span {
+footer nav.follow-us span {
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
@@ -566,7 +575,7 @@ footer.homepage nav.follow-us span {
   transition: 0.5s ease;
 }
 
-footer.homepage nav.follow-us span:hover {
+footer nav.follow-us span:hover {
   color: #000;
 }
 
@@ -749,7 +758,6 @@ footer.homepage nav.follow-us span:hover {
 
   section.join-member .jumbotron {
     box-shadow: 0px 8px 16px rgba(186, 186, 186, 0.15);
-    height: 401px;
   }
 
   section.join-member .jumbotron p {
@@ -793,61 +801,61 @@ footer.homepage nav.follow-us span:hover {
     display: block;
   }
 
-  footer.homepage .logo {
+  footer .logo {
     width: 153px;
     height: 60px;
   }
 
-  footer.homepage p {
+  footer p {
     font-size: 14px;
     line-height: 24px;
   }
 
-  footer.homepage nav a.nav-link {
+  footer nav a.nav-link {
     margin-bottom: 0px;
     line-height: 26px;
     letter-spacing: 0.75px;
     color: #6e7191;
   }
 
-  footer.homepage nav.explore a:nth-of-type(3) {
+  footer nav.explore a:nth-of-type(3) {
     order: 4;
   }
 
-  footer.homepage nav.sponsor a:first-of-type img {
+  footer nav.sponsor a:first-of-type img {
     width: 81px;
     height: 30px;
   }
 
-  footer.homepage nav.sponsor a:nth-of-type(2) img {
+  footer nav.sponsor a:nth-of-type(2) img {
     width: 106px;
     height: 17px;
   }
 
-  footer.homepage nav.sponsor a:last-of-type img {
+  footer nav.sponsor a:last-of-type img {
     width: 77px;
     height: 25px;
   }
 
-  footer.homepage p.explore,
-  footer.homepage p.our-sponsor,
-  footer.homepage p.follow-us {
+  footer p.explore,
+  footer p.our-sponsor,
+  footer p.follow-us {
     font-weight: 600;
     line-height: 28px;
     letter-spacing: 0.75px;
     margin-bottom: 0px;
   }
 
-  footer.homepage nav.follow-us .facebook,
-  footer.homepage nav.follow-us .instagram,
-  footer.homepage nav.follow-us .twitter,
-  footer.homepage nav.follow-us .youtube {
+  footer nav.follow-us .facebook,
+  footer nav.follow-us .instagram,
+  footer nav.follow-us .twitter,
+  footer nav.follow-us .youtube {
     width: 24px;
     height: 24px;
     margin-right: 0px;
   }
 
-  footer.homepage nav.follow-us span {
+  footer nav.follow-us span {
     display: none;
   }
 }
@@ -869,7 +877,7 @@ footer.homepage nav.follow-us span:hover {
 }
 
 @media screen and (max-width: 435px) {
-  footer.homepage nav.explore a.nav-link {
+  footer nav.explore a.nav-link {
     margin-top: 0px;
   }
 }

@@ -1,362 +1,362 @@
 body,
 html {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 main {
-  display: grid;
-  grid-template-areas: "section aside";
-  grid-template-columns: 1.5fr 1fr;
-  grid-template-rows: 1fr;
-  height: 1024px;
+	display: grid;
+	grid-template-areas: "section aside";
+	grid-template-columns: 1.5fr 1fr;
+	grid-template-rows: 1fr;
+	height: 1024px;
 }
 
 main section.sign-in {
-  grid-area: section;
-  background-image: url(../img/bg.png);
-  background-size: cover;
-  font-family: "Inter", sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+	grid-area: section;
+	background-image: url(../img/bg.png);
+	background-size: cover;
+	font-family: "Inter", sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
 }
 
 main section.sign-in::after {
-  content: "";
-  display: block;
-  background-color: rgba(43, 21, 107, 0.8);
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
+	content: "";
+	display: block;
+	background-color: rgba(43, 21, 107, 0.8);
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
 }
 
 main section.sign-in img.logo-sign-in {
-  width: 37vmax;
-  height: 14vmax;
-  z-index: 1;
+	width: 37vmax;
+	height: 14vmax;
+	z-index: 1;
 }
 
 main section.sign-in h1 {
-  z-index: 1;
-  font-weight: 400;
-  font-size: 3.5vmax;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 0px;
+	z-index: 1;
+	font-weight: 400;
+	font-size: 3.5vmax;
+	color: rgba(255, 255, 255, 0.8);
+	margin-top: 0px;
 }
 
 main aside.sign-in img {
-  display: none;
+	display: none;
 }
 
 main aside.sign-in {
-  grid-area: aside;
-  background-color: white;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 50px;
-  box-sizing: border-box;
+	grid-area: aside;
+	background-color: #f5f6f8;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 50px;
+	box-sizing: border-box;
 }
 
 main aside.sign-in h1 {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 3.5vmax;
-  color: #121212;
-  margin-bottom: 12px;
-  margin-right: auto;
+	font-family: "Inter", sans-serif;
+	font-weight: 600;
+	font-size: 3.5vmax;
+	color: #121212;
+	margin-bottom: 12px;
+	margin-right: auto;
 }
 
 main aside.sign-in p {
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: #aaaaaa;
-  margin-right: auto;
-  margin-bottom: 49px;
+	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+	color: #aaaaaa;
+	margin-right: auto;
+	margin-bottom: 49px;
 }
 
 main aside.sign-in form label {
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: #4e4b66;
+	font-family: "Mulish", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	color: #4e4b66;
 }
 
 main aside.sign-in form input.form-control {
-  font-family: "Mulish", sans-serif;
-  margin-top: 12px;
-  margin-bottom: 48px;
-  background-color: #fcfdfe;
-  border: 1px solid #dedede;
-  border-radius: 16px;
-  width: 400px;
-  height: 64px;
-  box-sizing: border-box;
-  padding-left: 24px;
-  padding-top: 22px;
-  padding-bottom: 22px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #a0a3bd;
-  transition: 0.5s ease;
+	font-family: "Mulish", sans-serif;
+	margin-top: 12px;
+	margin-bottom: 48px;
+	background-color: #fcfdfe;
+	border: 1px solid #dedede;
+	border-radius: 16px;
+	width: 400px;
+	height: 64px;
+	box-sizing: border-box;
+	padding-left: 24px;
+	padding-top: 22px;
+	padding-bottom: 22px;
+	font-size: 16px;
+	font-weight: 400;
+	color: #a0a3bd;
+	transition: 0.5s ease;
 }
 
 main aside.sign-in form input:focus {
-  border: 1px solid transparent;
+	border: 1px solid transparent;
 }
 
 main aside.sign-in form input::-webkit-input-placeholder {
-  font-size: 16px;
-  font-weight: 400;
-  color: #a0a3bd;
+	font-size: 16px;
+	font-weight: 400;
+	color: #a0a3bd;
 }
 
 main aside.sign-in form input[type="password"] {
-  background-image: url(../img/eye.png);
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position-x: 94%;
-  background-position-y: center;
+	background-image: url(../img/eye.png);
+	background-repeat: no-repeat;
+	background-size: 20px;
+	background-position-x: 94%;
+	background-position-y: center;
 }
 
 main aside.sign-in .btn-sign-in {
-  font-family: "Mulish", sans-serif;
-  width: 400px;
-  height: 64px;
-  box-sizing: border-box;
-  font-weight: 700;
-  font-size: 16px;
-  background-color: #5f2eea;
-  border-radius: 16px;
-  color: #f7f7fc;
-  border: 1px solid transparent;
-  margin-bottom: 32px;
-  transition: 0.5s ease;
+	font-family: "Mulish", sans-serif;
+	width: 400px;
+	height: 64px;
+	box-sizing: border-box;
+	font-weight: 700;
+	font-size: 16px;
+	background-color: #5f2eea;
+	border-radius: 16px;
+	color: #f7f7fc;
+	border: 1px solid transparent;
+	margin-bottom: 32px;
+	transition: 0.5s ease;
 }
 
 main aside.sign-in .btn-sign-in:hover {
-  cursor: pointer;
-  background-color: #f7f7fc;
-  color: #5f2eea;
-  border: 1px solid #5f2eea;
+	cursor: pointer;
+	background-color: #f7f7fc;
+	color: #5f2eea;
+	border: 1px solid #5f2eea;
 }
 
 main aside.sign-in .btn-sign-in:active {
-  border: 1px solid transparent;
+	border: 1px solid transparent;
 }
 
 main aside.sign-in p.forgot-password {
-  font-weight: 500;
-  font-size: 16px;
-  margin: auto;
-  margin-bottom: 40px;
-  color: #8692a6;
+	font-weight: 500;
+	font-size: 16px;
+	margin: auto;
+	margin-bottom: 40px;
+	color: #8692a6;
 }
 
 main aside.sign-in p.forgot-password a {
-  font-weight: 500;
-  font-size: 16px;
-  color: #5f2eea;
+	font-weight: 500;
+	font-size: 16px;
+	color: #5f2eea;
 }
 
 main aside.sign-in p.forgot-password a:hover {
-  color: #8692a6;
+	color: #8692a6;
 }
 
 main aside.sign-in p.or {
-  margin: auto;
-  font-weight: 400;
-  font-size: 12px;
-  margin-bottom: 48px;
+	margin: auto;
+	font-weight: 400;
+	font-size: 12px;
+	margin-bottom: 48px;
 }
 
 main aside.sign-in p.or::before {
-  content: "";
-  display: block;
-  border: 0.5px solid #dedede;
-  width: 155px;
-  float: left;
-  margin-right: 36px;
-  margin-top: 8px;
+	content: "";
+	display: block;
+	border: 0.5px solid #dedede;
+	width: 155px;
+	float: left;
+	margin-right: 36px;
+	margin-top: 8px;
 }
 
 main aside.sign-in p.or::after {
-  content: "";
-  display: block;
-  border: 0.5px solid #dedede;
-  width: 157px;
-  float: right;
-  margin-left: 36px;
-  margin-top: 8px;
+	content: "";
+	display: block;
+	border: 0.5px solid #dedede;
+	width: 157px;
+	float: right;
+	margin-left: 36px;
+	margin-top: 8px;
 }
 
 main aside.sign-in .btn-google,
 main aside.sign-in .btn-facebook {
-  font-family: "Mulish", sans-serif;
-  width: 182px;
-  height: 64px;
-  box-sizing: border-box;
-  background-color: #fff;
-  color: #a0a3bd;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
-  border-radius: 16px;
-  font-weight: 600;
-  font-size: 18px;
-  border: 1px solid transparent;
-  cursor: pointer;
+	font-family: "Mulish", sans-serif;
+	width: 182px;
+	height: 64px;
+	box-sizing: border-box;
+	background-color: #fff;
+	color: #a0a3bd;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+	border-radius: 16px;
+	font-weight: 600;
+	font-size: 18px;
+	border: 1px solid transparent;
+	cursor: pointer;
 }
 
 main aside.sign-in .btn-google {
-  margin-right: 18px;
+	margin-right: 18px;
 }
 
 main aside.sign-in .btn-facebook {
-  margin-left: 18px;
+	margin-left: 18px;
 }
 
 main aside.sign-in .btn-google::before {
-  content: "";
-  display: block;
-  background: url(../img/ic-google.png) no-repeat;
-  background-size: 24px;
-  width: 24px;
-  height: 24px;
-  float: left;
-  margin-left: 24px;
+	content: "";
+	display: block;
+	background: url(../img/ic-google.png) no-repeat;
+	background-size: 24px;
+	width: 24px;
+	height: 24px;
+	float: left;
+	margin-left: 24px;
 }
 
 main aside.sign-in .btn-facebook::before {
-  content: "";
-  display: block;
-  background: url(../img/ic-facebook-sign-in.png) no-repeat;
-  background-size: 24px;
-  width: 24px;
-  height: 24px;
-  float: left;
-  margin-left: 24px;
+	content: "";
+	display: block;
+	background: url(../img/ic-facebook-sign-in.png) no-repeat;
+	background-size: 24px;
+	width: 24px;
+	height: 24px;
+	float: left;
+	margin-left: 24px;
 }
 
 /* Responsive Breakpoints */
 @media screen and (max-width: 1200px) {
-  main {
-    grid-template-columns: 1.1fr 1fr;
-  }
+	main {
+		grid-template-columns: 1.1fr 1fr;
+	}
 }
 
 @media screen and (max-width: 992px) {
-  main {
-    grid-template-areas: "aside";
-    grid-template-columns: 1fr;
-    height: 812px;
-    padding-bottom: 88px;
-  }
+	main {
+		grid-template-areas: "aside";
+		grid-template-columns: 1fr;
+		height: 812px;
+		padding-bottom: 88px;
+	}
 
-  main section.sign-in,
-  main aside.sign-in p {
-    display: none;
-  }
+	main section.sign-in,
+	main aside.sign-in p {
+		display: none;
+	}
 
-  main aside.sign-in img {
-    display: block;
-    width: 85px;
-    height: 33px;
-    margin-top: 48px;
-    margin-bottom: 20px;
-    margin-right: auto;
-  }
+	main aside.sign-in img {
+		display: block;
+		width: 85px;
+		height: 33px;
+		margin-top: 48px;
+		margin-bottom: 20px;
+		margin-right: auto;
+	}
 
-  main aside.sign-in h1 {
-    font-family: "Mulish", sans-serif;
-    font-size: 26px;
-    margin-bottom: 39px;
-  }
+	main aside.sign-in h1 {
+		font-family: "Mulish", sans-serif;
+		font-size: 26px;
+		margin-bottom: 39px;
+	}
 
-  main aside.sign-in p.forgot-password,
-  main aside.sign-in p.forgot-password a {
-    font-family: "Mulish", sans-serif;
-    font-weight: 600;
-  }
+	main aside.sign-in p.forgot-password,
+	main aside.sign-in p.forgot-password a {
+		font-family: "Mulish", sans-serif;
+		font-weight: 600;
+	}
 
-  main aside.sign-in p.forgot-password,
-  main aside.sign-in p.or {
-    display: block;
-  }
+	main aside.sign-in p.forgot-password,
+	main aside.sign-in p.or {
+		display: block;
+	}
 }
 
 @media screen and (max-width: 576px) {
-  main aside.sign-in form input.form-control {
-    margin-bottom: 30px;
-    border-radius: 12px;
-    width: 327px;
-  }
+	main aside.sign-in form input.form-control {
+		margin-bottom: 30px;
+		border-radius: 12px;
+		width: 327px;
+	}
 
-  main aside.sign-in .btn-sign-in {
-    width: 327px;
-    font-size: 16px;
-    border-radius: 12px;
-    color: #f7f7fc;
-    margin-bottom: 32px;
-    margin-top: 10px;
-  }
+	main aside.sign-in .btn-sign-in {
+		width: 327px;
+		font-size: 16px;
+		border-radius: 12px;
+		color: #f7f7fc;
+		margin-bottom: 32px;
+		margin-top: 10px;
+	}
 
-  main aside.sign-in .btn-google,
-  main aside.sign-in .btn-facebook {
-    width: 64px;
-    height: 64px;
-    border-radius: 12px;
-  }
+	main aside.sign-in .btn-google,
+	main aside.sign-in .btn-facebook {
+		width: 64px;
+		height: 64px;
+		border-radius: 12px;
+	}
 
-  main aside.sign-in .btn-google span,
-  main aside.sign-in .btn-facebook span {
-    display: none;
-  }
+	main aside.sign-in .btn-google span,
+	main aside.sign-in .btn-facebook span {
+		display: none;
+	}
 
-  main aside.sign-in .btn-google {
-    margin-right: 16px;
-  }
+	main aside.sign-in .btn-google {
+		margin-right: 16px;
+	}
 
-  main aside.sign-in .btn-facebook {
-    margin-left: 16px;
-  }
+	main aside.sign-in .btn-facebook {
+		margin-left: 16px;
+	}
 
-  main aside.sign-in .btn-google::before,
-  main aside.sign-in .btn-facebook::before {
-    display: none;
-  }
+	main aside.sign-in .btn-google::before,
+	main aside.sign-in .btn-facebook::before {
+		display: none;
+	}
 
-  main aside.sign-in .btn-google::after {
-    content: "";
-    display: block;
-    background: url(../img/ic-google.png) no-repeat;
-    background-size: 24px;
-    width: 24px;
-    height: 24px;
-    margin: auto;
-  }
+	main aside.sign-in .btn-google::after {
+		content: "";
+		display: block;
+		background: url(../img/ic-google.png) no-repeat;
+		background-size: 24px;
+		width: 24px;
+		height: 24px;
+		margin: auto;
+	}
 
-  main aside.sign-in .btn-facebook::after {
-    content: "";
-    display: block;
-    background: url(../img/ic-facebook-sign-in.png) no-repeat;
-    background-size: 24px;
-    width: 24px;
-    height: 24px;
-    margin: auto;
-  }
+	main aside.sign-in .btn-facebook::after {
+		content: "";
+		display: block;
+		background: url(../img/ic-facebook-sign-in.png) no-repeat;
+		background-size: 24px;
+		width: 24px;
+		height: 24px;
+		margin: auto;
+	}
 
-  main aside.sign-in p.or::before {
-    width: 115px;
-  }
+	main aside.sign-in p.or::before {
+		width: 115px;
+	}
 
-  main aside.sign-in p.or::after {
-    width: 117px;
-  }
+	main aside.sign-in p.or::after {
+		width: 117px;
+	}
 }

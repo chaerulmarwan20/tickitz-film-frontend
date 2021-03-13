@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Section from "../../components/Section";
 import Button from "../../components/Button";
+import Card from "../../components/Card";
 
 import Ebv from "../../assets/img/ebv.id-cinema.png";
 import CineOne from "../../assets/img/CineOne21-cinema.png";
@@ -14,7 +15,7 @@ export default function Date() {
       <div className="container">
         <div className="row container-cinema justify-content-center mb-5">
           <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
-            <div className="card cinema-card">
+            <Card className="cinema-card">
               <div className="row flex-column flex-sm-row pt-3">
                 <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={Ebv} alt="Ebv" className="ebv" />
@@ -71,10 +72,10 @@ export default function Date() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
           <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
-            <div className="card cinema-card d-none d-sm-block">
+            <Card className="cinema-card d-none d-sm-block">
               <div className="row flex-column flex-sm-row pt-3">
                 <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={CineOne} alt="Cineone" className="cineone" />
@@ -131,10 +132,10 @@ export default function Date() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
           <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
-            <div className="card cinema-card d-none d-sm-block">
+            <Card className="cinema-card d-none d-sm-block">
               <div className="row flex-column flex-sm-row pt-3">
                 <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={Hiflix} alt="Hiflix" className="hiflix" />
@@ -191,10 +192,10 @@ export default function Date() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
           <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
-            <div className="card cinema-card">
+            <Card className="cinema-card">
               <div className="row flex-column flex-sm-row pt-3">
                 <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={Ebv} alt="Ebv" className="ebv" />
@@ -251,10 +252,10 @@ export default function Date() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
           <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
-            <div className="card cinema-card d-none d-sm-block">
+            <Card className="cinema-card d-none d-sm-block">
               <div className="row flex-column flex-sm-row pt-3">
                 <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={CineOne} alt="Cineone" className="cineone" />
@@ -311,10 +312,10 @@ export default function Date() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
           <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
-            <div className="card cinema-card d-none d-sm-block">
+            <Card className="cinema-card d-none d-sm-block">
               <div className="row flex-column flex-sm-row pt-3">
                 <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={Hiflix} alt="Hiflix" className="hiflix" />
@@ -371,7 +372,7 @@ export default function Date() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
         </div>
         <div className="row">

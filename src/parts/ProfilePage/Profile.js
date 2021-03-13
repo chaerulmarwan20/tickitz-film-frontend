@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Section from "../../components/Section";
 import Button from "../../components/Button";
+import InputForm from "../../components/InputForm";
 
 import User from "../../assets/img/user.png";
 import Star from "../../assets/img/star.png";
@@ -87,37 +88,31 @@ export default function Profile() {
                 <div className="row">
                   <div className="col-xl-6 d-none d-lg-block">
                     <div className="form-group">
-                      <label htmlFor="first-name">First Name</label>
-                      <input
+                      <InputForm
                         type="text"
-                        className="form-control"
                         name="first-name"
-                        id="first-name"
                         placeholder="Jonas"
+                        label="First Name"
                       />
                     </div>
                   </div>
                   <div className="col-xl-6 d-none d-lg-block">
                     <div className="form-group">
-                      <label htmlFor="last-name">Last Name</label>
-                      <input
+                      <InputForm
                         type="text"
-                        className="form-control"
                         name="last-name"
-                        id="last-name"
                         placeholder="El Rodriguez"
+                        label="Last Name"
                       />
                     </div>
                   </div>
                   <div className="col-xl-6 d-block d-lg-none">
                     <div className="form-group">
-                      <label htmlFor="full-name">Full Name</label>
-                      <input
+                      <InputForm
                         type="text"
-                        className="form-control"
                         name="full-name"
-                        id="full-name"
                         placeholder="Jonas El Rodriguez"
+                        label="Full Name"
                       />
                     </div>
                   </div>
@@ -125,13 +120,11 @@ export default function Profile() {
                 <div className="row">
                   <div className="col-xl-6">
                     <div className="form-group">
-                      <label htmlFor="email">E-mail</label>
-                      <input
+                      <InputForm
                         type="email"
-                        className="form-control"
                         name="email"
-                        id="email"
                         placeholder="jonasrodrigu123@gmail.com"
+                        label="E-mail"
                       />
                     </div>
                   </div>
@@ -140,7 +133,9 @@ export default function Profile() {
                       <label htmlFor="phone_number">Phone Number</label>
                       <div className="input-group">
                         <div className="input-group-prepend">
-                          <div className="input-group-text">+62</div>
+                          <div className="input-group-text profile-page">
+                            +62
+                          </div>
                         </div>
                         <input
                           type="number"
@@ -160,26 +155,21 @@ export default function Profile() {
                 <div className="row">
                   <div className="col-xl-6">
                     <div className="form-group">
-                      <label htmlFor="password">New Password</label>
-                      <input
+                      <InputForm
                         type="password"
-                        className="form-control"
-                        id="password"
+                        name="password"
                         placeholder="Write your password"
+                        label="New Password"
                       />
                     </div>
                   </div>
                   <div className="col-xl-6">
                     <div className="form-group">
-                      <label htmlFor="confirm-password">
-                        Confirm
-                        <span className="d-none d-lg-inline">Password</span>
-                      </label>
-                      <input
+                      <InputForm
                         type="password"
-                        className="form-control"
-                        id="confirm-password"
+                        name="confirm-password"
                         placeholder="Confirm your password"
+                        label="Confirm Password"
                       />
                     </div>
                   </div>

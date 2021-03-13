@@ -1,5 +1,7 @@
 import React from "react";
 
+import Card from "../../components/Card";
+
 import MovieHeader from "../../assets/img/movie-header.png";
 
 export default function Header() {
@@ -8,9 +10,9 @@ export default function Header() {
       <div className="container">
         <div className="row mt-5">
           <div className="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-start">
-            <div className="card movie-header">
+            <Card className="movie-header">
               <img src={MovieHeader} alt="MovieHeader" />
-            </div>
+            </Card>
           </div>
           <div className="col-12 movie col-lg-7 mt-5 mt-lg-0 pl-0">
             <div className="d-flex flex-column text-center text-lg-left mb-3">

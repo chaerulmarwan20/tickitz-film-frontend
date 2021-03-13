@@ -17,18 +17,14 @@ export default function Sidebar() {
       </p>
       <form>
         <InputForm
-          for="email"
-          textLabel="Email"
+          label="Email"
           type="email"
-          id="email"
           name="email"
           placeholder="Write your email"
         />
         <InputForm
-          for="password"
-          textLabel="Password"
+          label="Password"
           type="password"
-          id="password"
           name="password"
           placeholder="Write your password"
         />

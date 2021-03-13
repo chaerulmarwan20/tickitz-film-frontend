@@ -1,17 +1,3 @@
-body,
-html {
-  margin: 0;
-  padding: 0;
-}
-
-main {
-  display: grid;
-  grid-template-areas: "section aside";
-  grid-template-columns: 1.5fr 1fr;
-  grid-template-rows: 1fr;
-  height: 1024px;
-}
-
 main section.sign-up {
   padding-left: 100px;
   padding-top: 80px;
@@ -108,7 +94,7 @@ main aside.sign-up img {
 
 main aside.sign-up {
   grid-area: aside;
-  background-color: white;
+  background-color: #f5f6f8;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -314,20 +300,7 @@ main aside.sign-up .btn-facebook::before {
 }
 
 /* Responsive Breakpoints */
-@media screen and (max-width: 1200px) {
-  main {
-    grid-template-columns: 1.1fr 1fr;
-  }
-}
-
 @media screen and (max-width: 992px) {
-  main {
-    grid-template-areas: "aside";
-    grid-template-columns: 1fr;
-    height: 812px;
-    padding-bottom: 88px;
-  }
-
   main section.sign-up,
   main aside.sign-up p {
     display: none;

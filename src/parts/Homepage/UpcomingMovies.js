@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import Section from "../../components/Section";
+import Card from "../../components/Card";
 
 import Image1 from "../../assets/img/image-upcoming-1.png";
 import Image2 from "../../assets/img/image-upcoming-2.png";
@@ -21,6 +22,34 @@ export default function UpcomingMovies() {
     "October",
     "November",
     "December",
+  ];
+
+  const cardUpcoming = [
+    {
+      src: Image1,
+      title: "Black Widow",
+      genre: "Action, Adventure, Sci-Fi",
+    },
+    {
+      src: Image2,
+      title: "The Witches",
+      genre: "Adventure, Comedy",
+    },
+    {
+      src: Image3,
+      title: "Tenet",
+      genre: "Action, Sci-Fi",
+    },
+    {
+      src: Image1,
+      title: "Black Widow",
+      genre: "Action, Adventure, Sci-Fi",
+    },
+    {
+      src: Image2,
+      title: "The Witches",
+      genre: "Adventure, Comedy",
+    },
   ];
 
   return (
@@ -47,56 +76,20 @@ export default function UpcomingMovies() {
         </div>
         <div className="row pl-2 pl-lg-0">
           <div className="col-12 px-0 container-upcoming-movie">
-            <div className="card">
-              <div className="card-upcoming-movie">
-                <img src={Image1} alt="ImageUpcomingMovie" />
-                <p>Black Widow</p>
-                <span>Action, Adventure, Sci-Fi</span>
-                <Link to="#" className="btn btn-details">
-                  Details
-                </Link>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-upcoming-movie">
-                <img src={Image2} alt="ImageUpcomingMovie" />
-                <p>The Witches</p>
-                <span>Adventure, Comedy</span>
-                <Link to="#" className="btn btn-details">
-                  Details
-                </Link>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-upcoming-movie">
-                <img src={Image3} alt="ImageUpcomingMovie" />
-                <p>Tenet</p>
-                <span>Action, Sci-Fi</span>
-                <Link to="#" className="btn btn-details">
-                  Details
-                </Link>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-upcoming-movie">
-                <img src={Image1} alt="ImageUpcomingMovie" />
-                <p>Black Widow</p>
-                <span>Action, Adventure, Sci-Fi</span>
-                <Link to="#" className="btn btn-details">
-                  Details
-                </Link>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-upcoming-movie">
-                <img src={Image2} alt="ImageUpcomingMovie" />
-                <p>The Witches</p>
-                <span>Adventure, Comedy</span>
-                <Link to="#" className="btn btn-details">
-                  Details
-                </Link>
-              </div>
-            </div>
+            {cardUpcoming.map((data, index) => {
+              return (
+                <Card key={index}>
+                  <div className="card-upcoming-movie">
+                    <img src={data.src} alt="ImageUpcomingMovie" />
+                    <p>{data.title}</p>
+                    <span>{data.genre}</span>
+                    <Link to="#" className="btn btn-details">
+                      Details
+                    </Link>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </div>

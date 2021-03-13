@@ -15,26 +15,23 @@ export default function Sidebar() {
       <h1 className="d-lg-none mt-2">Sign Up</h1>
       <form>
         <InputForm
-          for="email"
-          textLabel="Email"
+          label="Email"
           type="email"
-          id="email"
           name="email"
           placeholder="Write your email"
         />
         <InputForm
-          for="password"
-          textLabel="Password"
+          label="Password"
           type="password"
-          id="password"
           name="password"
           placeholder="Write your password"
         />
         <div className="d-flex checkbox mt-0">
-          <input type="checkbox" className="ml-1" name="agree" id="agree" />
-          <label htmlFor="agree" className="ml-3">
-            I agree to terms & conditions
-          </label>
+          <InputForm
+            type="checkbox"
+            name="agree"
+            label="I agree to terms & conditions"
+          />
           <br />
         </div>
         <Button type="submit" className="btn-join mt-0 mt-lg-4">

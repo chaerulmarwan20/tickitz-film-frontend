@@ -4,14 +4,25 @@ import propTypes from "prop-types";
 export default function InputForm(props) {
   const className = ["form-control"];
   className.push(props.className);
-  return (
+  return props.type === "checkbox" ? (
     <Fragment>
-      <label htmlFor={props.for}>{props.textLabel}</label>
-      <br />
+      <input
+        type={props.type}
+        className="ml-1"
+        id={props.name}
+        name={props.name}
+      />
+      <label htmlFor={props.name} className="ml-3">
+        {props.label}
+      </label>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <label htmlFor={props.name}>{props.label}</label>
       <input
         type={props.type}
         className={className.join(" ")}
-        id={props.id}
+        id={props.name}
         name={props.name}
         placeholder={props.placeholder}
       />

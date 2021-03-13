@@ -2,6 +2,8 @@ import React from "react";
 import Section from "../../components/Section";
 
 export default function Date() {
+  const location = ["Purwokerto", "Jakarta", "Bandung", "Surabaya"];
+
   return (
     <Section className="date">
       <div className="container">
@@ -15,12 +17,13 @@ export default function Date() {
             <form className="form-inline d-flex justify-content-center">
               <input type="date" className="form-control" value="2021-07-21" />
               <select className="custom-select">
-                <option value="Purwokerto" selected>
-                  Purwokerto
-                </option>
-                <option value="Jakarta">Jakarta</option>
-                <option value="Bandung">Bandung</option>
-                <option value="Surabaya">Surabaya</option>
+                {location.map((data, index) => {
+                  return (
+                    <option key={index} value={data}>
+                      {data}
+                    </option>
+                  );
+                })}
               </select>
             </form>
           </div>

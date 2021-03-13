@@ -1,0 +1,275 @@
+.order-history {
+  margin-top: 130px;
+}
+
+.order-history .info {
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0px 8px 32px rgba(186, 186, 186, 0.08);
+  border-radius: 6px;
+  padding-bottom: 100px;
+}
+
+.order-history h1 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 0.75px;
+  color: #4e4b66;
+  text-transform: uppercase;
+  transform: translateY(5px);
+}
+
+.order-history .dot div {
+  cursor: pointer;
+}
+
+.order-history .dot span {
+  width: 5px;
+  height: 5px;
+  background-color: #5f2eea;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.order-history img.rounded-circle {
+  filter: drop-shadow(0px 8px 16px rgba(73, 83, 99, 0.24));
+}
+
+.order-history h2 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 34px;
+  letter-spacing: 0.75px;
+  color: #14142b;
+  white-space: nowrap;
+}
+
+.order-history p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.75px;
+  color: #4e4b66;
+}
+
+.order-history hr {
+  width: 100%;
+  border-bottom: 1px solid #dedede;
+}
+
+.order-history h3 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.75px;
+  color: #4e4b66;
+  white-space: normal;
+}
+
+.order-history .moviegoers {
+  height: 125px;
+  background: linear-gradient(75deg, #5f2eea 31.28%, #7647f9 62.16%);
+  border-radius: 8px;
+  position: relative;
+}
+
+.order-history .moviegoers h4 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 0.75px;
+  color: #fff;
+}
+
+.order-history .moviegoers p {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 38px;
+  letter-spacing: 0.75px;
+  color: #fff;
+}
+
+.order-history .moviegoers p span {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 24px;
+  letter-spacing: 0.75px;
+  color: #ffffff;
+}
+
+.order-history .moviegoers div:first-of-type {
+  position: absolute;
+  right: -50px;
+  top: -30px;
+  width: 122px;
+  height: 122px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+
+.order-history .moviegoers div:last-of-type {
+  position: absolute;
+  right: -30px;
+  top: -60px;
+  width: 122px;
+  height: 122px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+
+.order-history .moviegoers img {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.order-history h5 {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 32px;
+  letter-spacing: 0.25px;
+  color: #4e4b66;
+}
+
+.order-history .progress,
+.order-history .progress-bar {
+  border-radius: 8px;
+}
+
+.order-history .progress-bar {
+  background-color: #5f2eea;
+}
+
+.order-history .breadcrumbs-custom {
+  height: 84px;
+  background-color: #fff;
+  border-radius: 6px;
+}
+
+.order-history .breadcrumbs-custom a {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 0.75px;
+  color: #aaaaaa;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.order-history .breadcrumbs-custom a:last-of-type {
+  color: #14142b;
+}
+
+.order-history .breadcrumbs-custom a:hover {
+  color: #14142b;
+}
+
+.order-history .breadcrumbs-custom a:last-of-type:hover {
+  color: #aaaaaa;
+}
+
+.order-history .breadcrumbs-custom a.active::after {
+  content: "";
+  display: block;
+  transform: translateY(24px);
+  border-bottom: 2px solid #5f2eea;
+}
+
+.order-history .detail-order {
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.order-history .detail-order .left p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.75px;
+  color: #aaaaaa;
+}
+
+.order-history .detail-order .left h3 {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 38px;
+  letter-spacing: 0.75px;
+  color: #000000;
+}
+
+.order-history .detail-order hr {
+  border-bottom: 1px solid #dedede;
+}
+
+.order-history .detail-order .btn-ticket {
+  width: 196px;
+  height: 40px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  background-color: #00ba88;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.75px;
+  color: #f7f7fc;
+  transition: 0.5s ease;
+}
+
+.order-history .detail-order .btn-ticket:hover {
+  border: 1px solid #00ba88;
+  background-color: #f7f7fc;
+  color: #00ba88;
+}
+
+.order-history .detail-order select {
+  appearance: none;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 0.75px;
+  color: #aaaaaa;
+  background-image: url(../img/Forward.png);
+  background-repeat: no-repeat;
+  background-size: 18px;
+  background-position-x: 99%;
+  background-position-y: 60%;
+}
+
+.order-history .detail-order .btn-ticket-used {
+  width: 196px;
+  height: 40px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  background-color: #6e7191;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.75px;
+  color: #f7f7fc;
+  transition: 0.5s ease;
+}
+
+.order-history .detail-order .btn-ticket-used:hover {
+  border: 1px solid#6E7191;
+  background-color: #f7f7fc;
+  color: #6e7191;
+}
+
+@media screen and (max-width: 991px) {
+  .order-history {
+    margin-top: 190px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .order-history .detail-order .btn-ticket,
+  .order-history .detail-order .btn-ticket-used {
+    width: 279px;
+  }
+}

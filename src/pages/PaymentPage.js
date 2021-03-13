@@ -1,14 +1,14 @@
 import { React, Fragment } from "react";
 import "../assets/css/payment-page.css";
 
-import Navbar from "../parts/PaymentPage/Navbar";
+import Navbar from "../components/Navbar";
 import PaymentDetail from "../parts/PaymentPage/PaymentDetail";
-import Footer from "../parts/PaymentPage/Footer";
+import Footer from "../components/Footer";
 
 export default function PaymentPage() {
   return (
     <Fragment>
-      <Navbar></Navbar>
+      <Navbar isPayment></Navbar>
       <nav class="navbar pt-4 fixed-top pl-1 total-payment d-flex d-md-none justify-content-between">
         <div class="container">
           <h2>Total Payment</h2>
@@ -16,7 +16,7 @@ export default function PaymentPage() {
         </div>
       </nav>
       <PaymentDetail></PaymentDetail>
-      <Footer></Footer>
+      <Footer className="pt-5"></Footer>
     </Fragment>
   );
 }

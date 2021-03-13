@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 import Section from "../../components/Section";
 import Button from "../../components/Button";
+import InputForm from "../../components/InputForm";
+import Card from "../../components/Card";
 
 import Google from "../../assets/img/logos_google-pay.png";
 import Visa from "../../assets/img/logos_visa.png";
@@ -21,7 +23,7 @@ export default function PaymentDetail() {
         <div className="row">
           <div className="col-lg-12 col-xl-8">
             <h1 className="d-none d-md-block">Payment Info</h1>
-            <div className="card d-none d-md-block payment-info p-5 mt-4">
+            <Card className="d-none d-md-block payment-info p-5 mt-4">
               <div className="container">
                 <div className="row justify-content-between align-items-center">
                   <h2>Date & time</h2>
@@ -48,12 +50,12 @@ export default function PaymentDetail() {
                   <p>$30,00</p>
                 </div>
               </div>
-            </div>
+            </Card>
             <h1 className="mt-5 choose-payment">
               <span className="d-none d-md-inline-block">Choose a</span> Payment
               Method
             </h1>
-            <div className="card payment-method mt-4 pt-5 pb-4">
+            <Card className="payment-method mt-4 pt-5 pb-4">
               <div className="row justify-content-center">
                 <div className="d-flex">
                   <Link to="#" className="btn btn-payment">
@@ -97,35 +99,33 @@ export default function PaymentDetail() {
                   Pay via cash. <span>See how it work</span>
                 </p>
               </div>
-            </div>
+            </Card>
           </div>
           <div className="col-lg-12 col-xl-4 mt-5 mt-xl-0">
             <h1 className="personal-info-heading">Personal Info</h1>
             <div className="card personal-info p-4 mt-4">
               <form className="mt-4">
                 <div className="form-group">
-                  <label htmlhtmlFor="full_name">Full Name</label>
-                  <input
+                  <InputForm
                     type="text"
-                    className="form-control"
-                    id="full_name"
+                    name="full-name"
                     placeholder="Jonas El Rodriguez"
+                    label="Full Name"
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="email"
+                  <InputForm
+                    type="email"
+                    name="email"
                     placeholder="jonasrodri123@gmail.com"
+                    label="Email"
                   />
                 </div>
                 <div className="form-group">
                   <label htmlFor="phone_number">Phone Number</label>
                   <div className="input-group">
                     <div className="input-group-prepend">
-                      <div className="input-group-text">+62</div>
+                      <div className="input-group-text payment-page">+62</div>
                     </div>
                     <input
                       type="number"
