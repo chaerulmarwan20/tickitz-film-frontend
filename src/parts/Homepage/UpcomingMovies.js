@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Container from "../../components/Container";
+import Row from "../../components/Row";
+import Col from "../../components/Col";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 
@@ -54,13 +57,13 @@ export default function UpcomingMovies() {
 
   return (
     <Section className="upcoming-movies">
-      <div className="container">
-        <div className="row">
-          <div className="col-12 d-flex justify-content-between align-items-center">
+      <Container>
+        <Row>
+          <Col className="col-12 d-flex justify-content-between align-items-center">
             <h1 className="upcoming">Upcoming Movies</h1>
             <Link to="#">view all</Link>
-          </div>
-        </div>
+          </Col>
+        </Row>
         <div className="mt-4 container-btn-month">
           {month.map((item, index) => {
             return (
@@ -74,8 +77,8 @@ export default function UpcomingMovies() {
             );
           })}
         </div>
-        <div className="row pl-2 pl-lg-0">
-          <div className="col-12 px-0 container-upcoming-movie">
+        <Row className="pl-2 pl-lg-0">
+          <Col className="col-12 px-0 container-upcoming-movie">
             {cardUpcoming.map((data, index) => {
               return (
                 <Card key={index}>
@@ -90,9 +93,9 @@ export default function UpcomingMovies() {
                 </Card>
               );
             })}
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </Section>
   );
 }

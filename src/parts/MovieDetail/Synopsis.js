@@ -1,12 +1,16 @@
 import React from "react";
+
+import Container from "../../components/Container";
+import Row from "../../components/Row";
+import Col from "../../components/Col";
 import Section from "../../components/Section";
 
 export default function Synopsis() {
   return (
     <Section className="synopsis">
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
+      <Container>
+        <Row>
+          <Col className="col-12">
             <h2>Synopsis</h2>
             <p>
               Thrilled by his experience with the Avengers, Peter returns home,
@@ -17,9 +21,9 @@ export default function Synopsis() {
               the Vulture emerges as a new villain, everything that Peter holds
               most important will be threatened.
             </p>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </Section>
   );
 }

@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Container from "../../components/Container";
+import Row from "../../components/Row";
+import Col from "../../components/Col";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 
@@ -13,15 +16,15 @@ export default function ShowingMovie() {
 
   return (
     <Section className="showing-movie">
-      <div className="container">
-        <div className="row">
-          <div className="col-12 d-flex justify-content-between align-items-center">
+      <Container>
+        <Row>
+          <Col className="col-12 d-flex justify-content-between align-items-center">
             <h1 className="now-showing">Now Showing</h1>
             <Link to="#">view all</Link>
-          </div>
-        </div>
-        <div className="row mt-5 pl-2 pl-lg-0">
-          <div className="col-12 px-0 now-showing-movie">
+          </Col>
+        </Row>
+        <Row className="mt-5 pl-2 pl-lg-0">
+          <Col className="col-12 px-0 now-showing-movie">
             {imageCard.map((data, index) => {
               return (
                 <Card key={index}>
@@ -31,9 +34,9 @@ export default function ShowingMovie() {
                 </Card>
               );
             })}
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </Section>
   );
 }

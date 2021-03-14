@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Container from "../../components/Container";
+import Row from "../../components/Row";
+import Col from "../../components/Col";
 import Section from "../../components/Section";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
@@ -12,25 +15,25 @@ import Hiflix from "../../assets/img/hiflix-cinema.png";
 export default function Date() {
   return (
     <Section className="cinema">
-      <div className="container">
-        <div className="row container-cinema justify-content-center mb-5">
-          <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
+      <Container>
+        <Row className="container-cinema justify-content-center mb-5">
+          <Col className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
             <Card className="cinema-card">
-              <div className="row flex-column flex-sm-row pt-3">
-                <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
+              <Row className="flex-column flex-sm-row pt-3">
+                <Col className="d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={Ebv} alt="Ebv" className="ebv" />
-                </div>
-                <div className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
+                </Col>
+                <Col className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
                   <h2>ebv.id</h2>
                   <p>
                     Whatever street No.12, South{" "}
                     <br className="d-block d-sm-none" /> Purwokerto
                   </p>
-                </div>
-              </div>
+                </Col>
+              </Row>
               <hr className="mx-auto" />
-              <div className="row">
-                <div className="col">
+              <Row>
+                <Col>
                   <nav className="nav pl-3 flex-row">
                     <p className="nav-link" href="#">
                       08:30am
@@ -54,43 +57,43 @@ export default function Date() {
                       08:30pm
                     </p>
                   </nav>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col px-5 d-flex justify-content-between align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="px-5 d-flex justify-content-between align-items-center">
                   <h3>Price</h3>
                   <p className="price">$10.00/seat</p>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
                   <Button type="button" className="btn book-now">
                     Book now
                   </Button>
                   <Link to="#" className="add-cart">
                     Add Cart
                   </Link>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </Card>
-          </div>
-          <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
+          </Col>
+          <Col className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
             <Card className="cinema-card d-none d-sm-block">
-              <div className="row flex-column flex-sm-row pt-3">
-                <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
+              <Row className="flex-column flex-sm-row pt-3">
+                <Col className="d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={CineOne} alt="Cineone" className="cineone" />
-                </div>
-                <div className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
+                </Col>
+                <Col className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
                   <h2>CineOne21</h2>
                   <p>
                     Downcare street No. 21, East{" "}
                     <br className="d-block d-sm-none" /> Purwokerto
                   </p>
-                </div>
-              </div>
+                </Col>
+              </Row>
               <hr className="mx-auto" />
-              <div className="row">
-                <div className="col">
+              <Row>
+                <Col>
                   <nav className="nav pl-3 flex-row">
                     <p className="nav-link empty" href="#">
                       08:30am
@@ -114,43 +117,43 @@ export default function Date() {
                       08:00pm
                     </p>
                   </nav>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col px-5 d-flex justify-content-between align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="px-5 d-flex justify-content-between align-items-center">
                   <h3>Price</h3>
                   <p className="price">$10.00/seat</p>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
                   <Button type="button" className="btn book-now">
                     Book now
                   </Button>
                   <Link to="#" className="add-cart">
                     Add Cart
                   </Link>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </Card>
-          </div>
-          <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
+          </Col>
+          <Col className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
             <Card className="cinema-card d-none d-sm-block">
-              <div className="row flex-column flex-sm-row pt-3">
-                <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
+              <Row className="flex-column flex-sm-row pt-3">
+                <Col className="d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={Hiflix} alt="Hiflix" className="hiflix" />
-                </div>
-                <div className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
+                </Col>
+                <Col className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
                   <h2>hiflix Cinema</h2>
                   <p>
                     Colonel street No. 2, East{" "}
                     <br className="d-block d-sm-none" /> Purwokerto
                   </p>
-                </div>
-              </div>
+                </Col>
+              </Row>
               <hr className="mx-auto" />
-              <div className="row">
-                <div className="col">
+              <Row>
+                <Col>
                   <nav className="nav pl-3 flex-row">
                     <p className="nav-link" href="#">
                       08:30am
@@ -174,43 +177,43 @@ export default function Date() {
                       08:00pm
                     </p>
                   </nav>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col px-5 d-flex justify-content-between align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="px-5 d-flex justify-content-between align-items-center">
                   <h3>Price</h3>
                   <p className="price">$10.00/seat</p>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
                   <Button type="button" className="btn book-now">
                     Book now
                   </Button>
                   <Link to="#" className="add-cart">
                     Add Cart
                   </Link>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </Card>
-          </div>
-          <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
+          </Col>
+          <Col className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
             <Card className="cinema-card">
-              <div className="row flex-column flex-sm-row pt-3">
-                <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
+              <Row className="flex-column flex-sm-row pt-3">
+                <Col className="d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={Ebv} alt="Ebv" className="ebv" />
-                </div>
-                <div className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
+                </Col>
+                <Col className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
                   <h2>ebv.id</h2>
                   <p>
                     Whatever street No. 12, South{" "}
                     <br className="d-block d-sm-none" /> Purwokerto
                   </p>
-                </div>
-              </div>
+                </Col>
+              </Row>
               <hr className="mx-auto" />
-              <div className="row">
-                <div className="col">
+              <Row>
+                <Col>
                   <nav className="nav pl-3 flex-row">
                     <p className="nav-link" href="#">
                       08:30am
@@ -234,43 +237,43 @@ export default function Date() {
                       08:00pm
                     </p>
                   </nav>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col px-5 d-flex justify-content-between align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="px-5 d-flex justify-content-between align-items-center">
                   <h3>Price</h3>
                   <p className="price">$10.00/seat</p>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
                   <Button type="button" className="btn book-now">
                     Book now
                   </Button>
                   <Link to="#" className="add-cart">
                     Add Cart
                   </Link>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </Card>
-          </div>
-          <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
+          </Col>
+          <Col className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
             <Card className="cinema-card d-none d-sm-block">
-              <div className="row flex-column flex-sm-row pt-3">
-                <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
+              <Row className="flex-column flex-sm-row pt-3">
+                <Col className="d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={CineOne} alt="Cineone" className="cineone" />
-                </div>
-                <div className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
+                </Col>
+                <Col className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
                   <h2>CineOne21</h2>
                   <p>
                     Downcare street No. 21, East{" "}
                     <br className="d-block d-sm-none" /> Purwokerto
                   </p>
-                </div>
-              </div>
+                </Col>
+              </Row>
               <hr className="mx-auto" />
-              <div className="row">
-                <div className="col">
+              <Row>
+                <Col>
                   <nav className="nav pl-3 flex-row">
                     <p className="nav-link empty" href="#">
                       08:30am
@@ -294,43 +297,43 @@ export default function Date() {
                       08:00pm
                     </p>
                   </nav>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col px-5 d-flex justify-content-between align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="px-5 d-flex justify-content-between align-items-center">
                   <h3>Price</h3>
                   <p className="price">$10.00/seat</p>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
                   <Button type="button" className="btn book-now">
                     Book now
                   </Button>
                   <Link to="#" className="add-cart">
                     Add Cart
                   </Link>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </Card>
-          </div>
-          <div className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
+          </Col>
+          <Col className="col-12 col-lg-5 d-flex justify-content-center d-xl-block col-xl-4 mt-2">
             <Card className="cinema-card d-none d-sm-block">
-              <div className="row flex-column flex-sm-row pt-3">
-                <div className="col d-flex justify-content-center align-items-center mt-2 mt-sm-0">
+              <Row className="flex-column flex-sm-row pt-3">
+                <Col className="d-flex justify-content-center align-items-center mt-2 mt-sm-0">
                   <img src={Hiflix} alt="Hiflix" className="hiflix" />
-                </div>
-                <div className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
+                </Col>
+                <Col className="col d-flex flex-column pl-1 mt-3 mt-sm-0">
                   <h2>hiflix Cinema</h2>
                   <p>
                     Colonel street No. 2, East{" "}
                     <br className="d-block d-sm-none" /> Purwokerto
                   </p>
-                </div>
-              </div>
+                </Col>
+              </Row>
               <hr className="mx-auto" />
-              <div className="row">
-                <div className="col">
+              <Row>
+                <Col>
                   <nav className="nav pl-3 flex-row">
                     <p className="nav-link" href="#">
                       08:30am
@@ -354,29 +357,29 @@ export default function Date() {
                       08:00pm
                     </p>
                   </nav>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col px-5 d-flex justify-content-between align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="px-5 d-flex justify-content-between align-items-center">
                   <h3>Price</h3>
                   <p className="price">$10.00/seat</p>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
+                </Col>
+              </Row>
+              <Row className="mt-2">
+                <Col className="pr-5 pl-3 pl-sm-2 d-flex justify-content-around align-items-center">
                   <Button type="button" className="btn book-now">
                     Book now
                   </Button>
                   <Link to="#" className="add-cart">
                     Add Cart
                   </Link>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </Card>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12 d-flex justify-content-center">
+          </Col>
+        </Row>
+        <Row>
+          <Col className="col-12 d-flex justify-content-center">
             <nav>
               <ul className="pagination-custom">
                 <li>
@@ -395,9 +398,9 @@ export default function Date() {
                 </li>
               </ul>
             </nav>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </Section>
   );
 }

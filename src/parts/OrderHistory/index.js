@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Container from "../../components/Container";
+import Row from "../../components/Row";
+import Col from "../../components/Col";
 import Section from "../../components/Section";
 import Button from "../../components/Button";
 
@@ -12,41 +15,41 @@ import Ebv from "../../assets/img/ebv.id 2.png";
 export default function Order() {
   return (
     <Section className="order-history mb-5">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-5 col-xl-4 d-none d-md-block">
+      <Container>
+        <Row>
+          <Col className="col-lg-5 col-xl-4 d-none d-md-block">
             <div className="info d-block pt-4">
-              <div className="row px-5">
-                <div className="col pl-0">
+              <Row className="px-5">
+                <Col className="pl-0">
                   <h1>Info</h1>
-                </div>
-                <div className="col d-flex align-items-center justify-content-end pr-0 ml-auto dot">
+                </Col>
+                <Row className="d-flex align-items-center justify-content-end pr-0 ml-auto dot">
                   <div className="d-flex">
                     <span></span>
                     <span></span>
                     <span></span>
                   </div>
-                </div>
-              </div>
-              <div className="row flex-column px-5 mt-4">
-                <div className="col d-flex justify-content-center">
+                </Row>
+              </Row>
+              <Row className="flex-column px-5 mt-4">
+                <Col className="d-flex justify-content-center">
                   <img
                     src={User}
                     width="136"
                     alt="User"
                     className="rounded-circle"
                   />
-                </div>
-                <div className="col d-flex justify-content-center text-center mt-2">
+                </Col>
+                <Col className="d-flex justify-content-center text-center mt-2">
                   <h2>Jonas El Rodriguez</h2>
-                </div>
-                <div className="col d-flex justify-content-center text-center">
+                </Col>
+                <Col className="d-flex justify-content-center text-center">
                   <p>Moviegoers</p>
-                </div>
-              </div>
+                </Col>
+              </Row>
               <hr className="mt-4" />
-              <div className="row mx-5 mt-4">
-                <div className="col">
+              <Row className="mx-5 mt-4">
+                <Col>
                   <h3 className="mb-4">Loyalty Points</h3>
                   <div className="moviegoers pl-3 pt-3">
                     <div></div>
@@ -70,11 +73,11 @@ export default function Order() {
                       aria-valuemax="100"
                     ></div>
                   </div>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </div>
-          </div>
-          <div className="col-lg-7 col-xl-8">
+          </Col>
+          <Col className="col-lg-7 col-xl-8">
             <div className="breadcrumbs-custom d-none d-lg-flex align-items-center">
               <Link to="#" className="mx-5">
                 Account Settings
@@ -83,8 +86,8 @@ export default function Order() {
                 Order History
               </Link>
             </div>
-            <div className="container">
-              <div className="detail-order row justify-content-between flex-column flex-md-row align-items-start align-items-md-center mt-0 mt-md-4 py-4">
+            <Container>
+              <Row className="detail-order justify-content-between flex-column flex-md-row align-items-start align-items-md-center mt-0 mt-md-4 py-4">
                 <div className="left pl-4 pl-md-5 order-1 order-md-0">
                   <p className="m-0">Tuesday, 07 July 2020 - 04:30pm</p>
                   <h3 className="mt-1">Spider-Man: Homecoming</h3>
@@ -103,8 +106,8 @@ export default function Order() {
                     <option>Show Details</option>
                   </select>
                 </div>
-              </div>
-              <div className="detail-order row justify-content-between flex-column flex-md-row align-items-start align-items-md-center mt-4 py-4">
+              </Row>
+              <Row className="detail-order justify-content-between flex-column flex-md-row align-items-start align-items-md-center mt-4 py-4">
                 <div className="left pl-4 pl-md-5 order-1 order-md-0">
                   <p className="m-0">Monday, 14 June 2020 - 02:00pm</p>
                   <h3 className="mt-1">Avengers: End Game</h3>
@@ -123,8 +126,8 @@ export default function Order() {
                     <option>Show Details</option>
                   </select>
                 </div>
-              </div>
-              <div className="detail-order row justify-content-between flex-column flex-md-row align-items-start align-items-md-center mt-4 py-4 d-none d-md-flex">
+              </Row>
+              <Row className="detail-order justify-content-between flex-column flex-md-row align-items-start align-items-md-center mt-4 py-4 d-none d-md-flex">
                 <div className="left pl-4 pl-md-5 order-1 order-md-0">
                   <p className="m-0">Monday, 10 March 2020 - 04:00pm</p>
                   <h3 className="mt-1">Thor: Ragnarok</h3>
@@ -143,11 +146,11 @@ export default function Order() {
                     <option>Show Details</option>
                   </select>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+      </Container>
     </Section>
   );
 }

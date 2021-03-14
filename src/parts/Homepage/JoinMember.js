@@ -1,18 +1,23 @@
 import React from "react";
 
+import Container from "../../components/Container";
 import Section from "../../components/Section";
 import Button from "../../components/Button";
-import InputForm from "../../components/InputForm";
+import Input from "../../components/Input";
 
 export default function JoinMember() {
   return (
     <Section className="join-member">
-      <div className="container">
+      <Container>
         <div className="jumbotron py-5">
           <p>Be the vanguard of the</p>
           <h1>Moviegoers</h1>
           <form className="form-inline join-now">
-            <InputForm type="text" placeholder="Type your email" />
+            <Input
+              type="text"
+              name="join-member"
+              placeholder="Type your email"
+            />
             <Button className="btn btn-join-now" type="submit">
               Join now
             </Button>
@@ -23,7 +28,7 @@ export default function JoinMember() {
             we will always send you the <br /> latest updates via email .
           </p>
         </div>
-      </div>
+      </Container>
     </Section>
   );
 }

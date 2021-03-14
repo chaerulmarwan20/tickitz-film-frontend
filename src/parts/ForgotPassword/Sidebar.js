@@ -1,7 +1,7 @@
 import React from "react";
 
 import Aside from "../../components/Aside";
-import InputForm from "../../components/InputForm";
+import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Logo from "../../assets/img/Tickitz-mobile-sign-in.png";
 
@@ -13,7 +13,7 @@ export default function Sidebar() {
       <h1 className="d-lg-none">Forgot password</h1>
       <p>we'll send a link to your email shortly</p>
       <form>
-        <InputForm
+        <Input
           label="Email"
           type="email"
           name="email"

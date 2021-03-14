@@ -2,7 +2,11 @@ import React from "react";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import InputForm from "./InputForm";
+import Container from "./Container";
+import Row from "./Row";
+import Col from "./Col";
+import Nav from "./Nav";
+import Input from "./Input";
 import Button from "./Button";
 
 import Logo from "../assets/img/Tickitz 1.png";
@@ -15,8 +19,8 @@ export default function Navbar(props) {
   const location = ["Jakarta", "Bandung", "Surabaya"];
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-      <div className="container">
+    <Nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <Container>
         <Link className="navbar-brand" to="/homepage">
           <img src={Logo} alt="Tickitz" />
         </Link>
@@ -35,11 +39,7 @@ export default function Navbar(props) {
                 props.isPayment ? "payment" : ""
               } ${props.isProfile ? "profile" : ""}`}
             >
-              <InputForm
-                className="form-control"
-                type="text"
-                placeholder="Search..."
-              />
+              <Input type="text" name="keyword" placeholder="Search..." />
             </form>
             {menu.map((data, index) => {
               return (
@@ -73,13 +73,13 @@ export default function Navbar(props) {
                 })}
               </div>
             </li>
-            <div className="row d-block d-lg-none mt-5 mb-2">
-              <div className="col d-flex align-items-center justify-content-center">
+            <Row className="d-block d-lg-none mt-5 mb-2">
+              <Col className="d-flex align-items-center justify-content-center">
                 <p className="copyright-nav">
                   © 2021 Tickitz. All Rights Reserved.
                 </p>
-              </div>
-            </div>
+              </Col>
+            </Row>
           </ul>
           <div className="dropdown d-none d-lg-block">
             <Link
@@ -118,8 +118,8 @@ export default function Navbar(props) {
             />
           )}
         </div>
-      </div>
-    </nav>
+      </Container>
+    </Nav>
   );
 }
 

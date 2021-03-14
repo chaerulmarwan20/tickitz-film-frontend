@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import Aside from "../../components/Aside";
-import InputForm from "../../components/InputForm";
+import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 import Logo from "../../assets/img/Tickitz-mobile-sign-in.png";
@@ -16,13 +16,13 @@ export default function Sidebar() {
         Sign in with your data that you entered during <br /> your registration
       </p>
       <form>
-        <InputForm
+        <Input
           label="Email"
           type="email"
           name="email"
           placeholder="Write your email"
         />
-        <InputForm
+        <Input
           label="Password"
           type="password"
           name="password"

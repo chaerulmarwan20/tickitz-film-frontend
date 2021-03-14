@@ -1,5 +1,7 @@
 import React from "react";
 
+import Row from "../../components/Row";
+import Col from "../../components/Col";
 import Section from "../../components/Section";
 import Logo from "../../assets/img/tickitz-sign-in.png";
 
@@ -38,14 +40,14 @@ export default function Hero() {
       </p>
       {stepResetPassword.map((data, index) => {
         return (
-          <div key={index} className="row">
-            <div className="col d-flex">
+          <Row key={index}>
+            <Col className="d-flex">
               <span className={data.class}>{data.number}</span>
               <p className={`ml-5 mt-2 ${data.number === 1 ? "main" : ""}`}>
                 {data.text}
               </p>
-            </div>
-          </div>
+            </Col>
+          </Row>
         );
       })}
     </Section>

@@ -2,6 +2,11 @@ import React from "react";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import Container from "./Container";
+import Row from "./Row";
+import Col from "./Col";
+import Nav from "./Nav";
+
 import Logo from "../assets/img/Tickitz 2.png";
 import Ebv from "../assets/img/ebv.id.png";
 import CineOne from "../assets/img/CineOne21 2.png";
@@ -39,19 +44,19 @@ export default function Footer(props) {
 
   return (
     <footer className={props.className}>
-      <div className="container">
-        <div className="row mb-5">
-          <div className="col-lg-4 col-md-6 col-sm-12 mb-4 mb-md-0">
+      <Container>
+        <Row className="mb-5">
+          <Col className="col-lg-4 col-md-6 col-sm-12 mb-4 mb-md-0">
             <img src={Logo} className="logo" alt="Tickitz" />
             <p>
               Stop waiting in line. Buy tickets
               <br />
               conveniently, watch movies quietly.
             </p>
-          </div>
-          <div className="col-lg-2 col-md-6 col-sm-12 mb-4 mb-md-0 pl-0">
+          </Col>
+          <Col className="col-lg-2 col-md-6 col-sm-12 mb-4 mb-md-0 pl-0">
             <p className="explore nav-link">Explore</p>
-            <nav className="nav explore flex-row flex-md-column mt-1 mt-md-0">
+            <Nav className="nav explore flex-row flex-md-column mt-1 mt-md-0">
               {menuFooter.map((data, index) => {
                 return (
                   <Link
@@ -63,11 +68,11 @@ export default function Footer(props) {
                   </Link>
                 );
               })}
-            </nav>
-          </div>
-          <div className="col-lg-3 col-md-6 col-sm-12 mb-4 mb-md-0 pl-0">
+            </Nav>
+          </Col>
+          <Col className="col-lg-3 col-md-6 col-sm-12 mb-4 mb-md-0 pl-0">
             <p className="our-sponsor nav-link">Our Sponsor</p>
-            <nav className="nav sponsor flex-row flex-md-column align-items-center align-items-md-start mt-1 mt-md-0">
+            <Nav className="nav sponsor flex-row flex-md-column align-items-center align-items-md-start mt-1 mt-md-0">
               {sponsor.map((data, index) => {
                 return (
                   <Link key={index} className="nav-link" to="#">
@@ -75,11 +80,11 @@ export default function Footer(props) {
                   </Link>
                 );
               })}
-            </nav>
-          </div>
-          <div className="col-lg-2 col-md-6 col-sm-12 mb-4 mb-md-0 pl-0">
+            </Nav>
+          </Col>
+          <Col className="col-lg-2 col-md-6 col-sm-12 mb-1 mb-md-0 pl-0">
             <p className="follow-us nav-link">Follow Us</p>
-            <nav className="nav follow-us flex-row flex-md-column mt-1 mt-md-0">
+            <Nav className="nav follow-us flex-row flex-md-column mt-1 mt-md-0">
               {social.map((data, index) => {
                 return (
                   <Link
@@ -92,15 +97,15 @@ export default function Footer(props) {
                   </Link>
                 );
               })}
-            </nav>
-          </div>
-        </div>
-        <div className="row pb-5">
-          <div className="col d-flex align-items-center justify-content-start justify-content-md-center">
+            </Nav>
+          </Col>
+        </Row>
+        <Row className="pb-4">
+          <Col className="d-flex align-items-center justify-content-start justify-content-md-center">
             <p className="copyright">© 2021 Tickitz. All Rights Reserved.</p>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </footer>
   );
 }

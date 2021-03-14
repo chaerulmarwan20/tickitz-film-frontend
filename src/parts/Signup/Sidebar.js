@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import Aside from "../../components/Aside";
-import InputForm from "../../components/InputForm";
+import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 import Logo from "../../assets/img/Tickitz-mobile-sign-in.png";
@@ -14,20 +14,20 @@ export default function Sidebar() {
       <h1 className="my-5 d-none d-lg-block">Fill your additional details</h1>
       <h1 className="d-lg-none mt-2">Sign Up</h1>
       <form>
-        <InputForm
+        <Input
           label="Email"
           type="email"
           name="email"
           placeholder="Write your email"
         />
-        <InputForm
+        <Input
           label="Password"
           type="password"
           name="password"
           placeholder="Write your password"
         />
         <div className="d-flex checkbox mt-0">
-          <InputForm
+          <Input
             type="checkbox"
             name="agree"
             label="I agree to terms & conditions"

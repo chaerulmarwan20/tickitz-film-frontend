@@ -2,7 +2,7 @@ import { React, Fragment } from "react";
 import "../assets/css/style.css";
 
 import Navbar from "../components/Navbar";
-import Header from "../parts/Homepage/Header";
+import Hero from "../parts/Homepage/Hero";
 import ShowingMovie from "../parts/Homepage/ShowingMovie";
 import UpcomingMovies from "../parts/Homepage/UpcomingMovies";
 import JoinMember from "../parts/Homepage/JoinMember";
@@ -12,7 +12,7 @@ export default function Homepage() {
   return (
     <Fragment>
       <Navbar isHomepage></Navbar>
-      <Header></Header>
+      <Hero></Hero>
       <ShowingMovie></ShowingMovie>
       <UpcomingMovies></UpcomingMovies>
       <JoinMember></JoinMember>
