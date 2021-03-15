@@ -104,6 +104,7 @@ export default function Order() {
                 <div className="pr-0 pr-md-5 pb-2 order-4 d-none d-md-block">
                   <select className="custom-select">
                     <option>Show Details</option>
+                    <option>Delete</option>
                   </select>
                 </div>
               </Row>
@@ -124,6 +125,7 @@ export default function Order() {
                 <div className="pr-0 pr-md-5 pb-2 order-4 d-none d-md-block">
                   <select className="custom-select">
                     <option>Show Details</option>
+                    <option>Delete</option>
                   </select>
                 </div>
               </Row>
@@ -144,6 +146,7 @@ export default function Order() {
                 <div className="pr-0 pr-md-5 pb-2 order-4 d-none d-md-block">
                   <select className="custom-select">
                     <option>Show Details</option>
+                    <option>Delete</option>
                   </select>
                 </div>
               </Row>

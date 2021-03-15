@@ -45,6 +45,7 @@ export default function Sidebar() {
           text: res.data.message,
           icon: "success",
           confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
         });
       })
       .catch((err) => {
@@ -53,6 +54,7 @@ export default function Sidebar() {
           text: err.response.data.message,
           icon: "error",
           confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
         });
       });
   };

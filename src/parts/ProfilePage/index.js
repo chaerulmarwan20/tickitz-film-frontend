@@ -14,6 +14,9 @@ import User from "../../assets/img/user.png";
 import Star from "../../assets/img/star.png";
 
 export default function Profile() {
+  const Url = process.env.REACT_APP_API_URL;
+  const { id } = useParams();
+
   const [data, setData] = useState({
     user: [],
     form: {
@@ -49,8 +52,48 @@ export default function Profile() {
       });
   };
 
-  const Url = process.env.REACT_APP_API_URL;
-  const { id } = useParams();
+  const deleteData = () => {
+    Swal.fire({
+      title: "Are you sure about deleting this file?",
+      showDenyButton: true,
+      confirmButtonText: `Delete It!`,
+      confirmButtonColor: "#ea2e57",
+      denyButtonText: "Cancel",
+      denyButtonColor: `#5f2eea`,
+      focusDeny: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`${Url}/users/${id}`)
+          .then((res) => {
+            Swal.fire({
+              title: "Success!",
+              text: res.data.message,
+              icon: "success",
+              confirmButtonText: "Ok",
+              confirmButtonColor: "#5f2eea",
+            });
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Error!",
+              text: err.response.data.message,
+              icon: "error",
+              confirmButtonText: "Ok",
+              confirmButtonColor: "#5f2eea",
+            });
+          });
+      } else if (result.isDenied) {
+        Swal.fire({
+          title: "Delete canceled",
+          text: "",
+          icon: "info",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      }
+    });
+  };
 
   const handleFormChange = (event) => {
     const formNew = { ...data.form };
@@ -63,6 +106,11 @@ export default function Profile() {
   const handleSubmit = (event) => {
     event.preventDefault();
     putData();
+  };
+
+  const handleRemove = (event) => {
+    event.preventDefault();
+    deleteData();
   };
 
   useEffect(() => {
@@ -275,6 +323,13 @@ export default function Profile() {
                 onClick={handleSubmit}
               >
                 Update changes
+              </Button>
+              <Button
+                type="button"
+                className="btn btn-delete ml-1 mt-5 mb-5"
+                onClick={handleRemove}
+              >
+                Delete
               </Button>
             </div>
           </Col>

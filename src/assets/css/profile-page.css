@@ -336,6 +336,27 @@ nav.details-order a:hover {
   color: #5f2eea;
 }
 
+.profile .btn-delete {
+  width: 360px;
+  height: 56px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  background-color: #ea2e57;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.75px;
+  color: #f7f7fc;
+  transition: 0.5s ease;
+}
+
+.profile .btn-delete:hover {
+  border: 1px solid #ea2e57;
+  background-color: #f7f7fc;
+  color: #ea2e57;
+}
+
 .profile h6 {
   font-weight: 600;
   font-size: 18px;
