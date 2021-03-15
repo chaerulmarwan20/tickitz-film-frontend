@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.29211b02.chunk.css",
+    "main.js": "/static/js/main.6de9569a.chunk.js",
+    "main.js.map": "/static/js/main.6de9569a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.624489cf.js",
+    "runtime-main.js.map": "/static/js/runtime-main.624489cf.js.map",
+    "static/js/2.5cec323a.chunk.js": "/static/js/2.5cec323a.chunk.js",
+    "static/js/2.5cec323a.chunk.js.map": "/static/js/2.5cec323a.chunk.js.map",
+    "static/js/3.28fd144d.chunk.js": "/static/js/3.28fd144d.chunk.js",
+    "static/js/3.28fd144d.chunk.js.map": "/static/js/3.28fd144d.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.29211b02.chunk.css.map": "/static/css/main.29211b02.chunk.css.map",
+    "static/js/2.5cec323a.chunk.js.LICENSE.txt": "/static/js/2.5cec323a.chunk.js.LICENSE.txt",
+    "static/media/Ellipse 11.1d4d2c6c.png": "/static/media/Ellipse 11.1d4d2c6c.png",
+    "static/media/forgot-password.css": "/static/media/bg.daebf134.png",
+    "static/media/image-1.b19aa7b1.png": "/static/media/image-1.b19aa7b1.png",
+    "static/media/image-2.4d396a74.png": "/static/media/image-2.4d396a74.png",
+    "static/media/image-3.401e350b.png": "/static/media/image-3.401e350b.png",
+    "static/media/tickitz-sign-in.d3a05814.png": "/static/media/tickitz-sign-in.d3a05814.png",
+    "static/media/user.7256e2e6.png": "/static/media/user.7256e2e6.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.624489cf.js",
+    "static/js/2.5cec323a.chunk.js",
+    "static/css/main.29211b02.chunk.css",
+    "static/js/main.6de9569a.chunk.js"
+  ]
+}
