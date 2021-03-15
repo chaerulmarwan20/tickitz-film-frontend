@@ -269,7 +269,11 @@ export default function Profile() {
               </form>
             </div>
             <div className="text-center text-lg-left">
-              <Button type="button" className="btn btn-update my-5">
+              <Button
+                type="button"
+                className="btn btn-update my-5"
+                onClick={handleSubmit}
+              >
                 Update changes
               </Button>
             </div>

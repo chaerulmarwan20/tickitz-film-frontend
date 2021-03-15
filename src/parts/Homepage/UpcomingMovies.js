@@ -1,5 +1,5 @@
-import {React, useState ,useEffect} from "react";
-import axios from 'axios'
+import { React, useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 import Container from "../../components/Container";
@@ -24,18 +24,17 @@ export default function UpcomingMovies() {
     "December",
   ];
 
-  const Url = process.env.REACT_APP_API_URL
+  const Url = process.env.REACT_APP_API_URL;
   const [state, setState] = useState({
-    movie: []
-  })
+    movie: [],
+  });
 
-  useEffect( () => {
-    axios.get(`${Url}/movies/`)
-      .then(res => {
-        setState({
-          movie: res.data.data
-        });
+  useEffect(() => {
+    axios.get(`${Url}/movies/`).then((res) => {
+      setState({
+        movie: res.data.data,
       });
+    });
   }, [Url]);
 
   return (
@@ -69,7 +68,10 @@ export default function UpcomingMovies() {
                     <img src={data.image} alt="ImageUpcomingMovie" />
                     <p>{data.title}</p>
                     <span>{data.genre}</span>
-                    <Link to={`movie-detail/${data.id}`} className="btn btn-details">
+                    <Link
+                      to={`movie-detail/${data.id}`}
+                      className="btn btn-details"
+                    >
                       Details
                     </Link>
                   </div>
