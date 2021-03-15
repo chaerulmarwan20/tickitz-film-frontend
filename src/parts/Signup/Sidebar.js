@@ -1,5 +1,7 @@
-import React from "react";
+import { React, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import Aside from "../../components/Aside";
 import Input from "../../components/Input";
@@ -8,6 +10,53 @@ import Button from "../../components/Button";
 import Logo from "../../assets/img/Tickitz-mobile-sign-in.png";
 
 export default function Sidebar() {
+  const Url = process.env.REACT_APP_API_URL;
+  const [data, setData] = useState({
+    firstName: "firstName",
+    lastName: "lastName",
+    phoneNumber: "000000000000",
+    username: "username",
+    email: "",
+    password: "",
+    role: 2,
+  });
+
+  const handleFormChange = (event) => {
+    const dataNew = { ...data };
+    dataNew[event.target.name] = event.target.value;
+    setData(dataNew);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    postData();
+  };
+
+  const postData = () => {
+    axios
+      .post(`${Url}/users/`, data)
+      .then((res) => {
+        setData({
+          email: "",
+          password: "",
+        });
+        Swal.fire({
+          title: "Success!",
+          text: res.data.message,
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.response.data.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
+
   return (
     <Aside className="sign-up">
       <img src={Logo} alt="Tickitz" />
@@ -18,13 +67,17 @@ export default function Sidebar() {
           label="Email"
           type="email"
           name="email"
+          value={data.email}
           placeholder="Write your email"
+          onChange={handleFormChange}
         />
         <Input
           label="Password"
           type="password"
           name="password"
+          value={data.password}
           placeholder="Write your password"
+          onChange={handleFormChange}
         />
         <div className="d-flex checkbox mt-0">
           <Input
@@ -34,7 +87,11 @@ export default function Sidebar() {
           />
           <br />
         </div>
-        <Button type="submit" className="btn-join mt-0 mt-lg-4">
+        <Button
+          type="submit"
+          className="btn-join mt-0 mt-lg-4"
+          onClick={handleSubmit}
+        >
           Join for free now
         </Button>
       </form>

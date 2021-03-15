@@ -15,7 +15,20 @@ import Search from "../assets/img/ic-search.png";
 import User from "../assets/img/Ellipse 11.png";
 
 export default function Navbar(props) {
-  const menu = ["Movies", "Cinemas", "Buy Ticket"];
+  const menu = [
+    {
+      title: "Movies",
+      href: "/homepage",
+    },
+    {
+      title: "Cinemas",
+      href: "#",
+    },
+    {
+      title: "Buy Ticket",
+      href: "/order-page",
+    },
+  ];
   const location = ["Jakarta", "Bandung", "Surabaya"];
 
   return (
@@ -44,8 +57,8 @@ export default function Navbar(props) {
             {menu.map((data, index) => {
               return (
                 <li key={index} className="nav-item">
-                  <Link className="nav-link my-2 my-lg-0" to="#">
-                    {data}
+                  <Link className="nav-link my-2 my-lg-0" to={data.href}>
+                    {data.title}
                   </Link>
                 </li>
               );
@@ -107,7 +120,7 @@ export default function Navbar(props) {
             alt="Search"
           />
           {props.isHomepage ? (
-            <Link className="btn btn-sign-up d-none d-lg-block" to="#">
+            <Link className="btn btn-sign-up d-none d-lg-block" to="/sign-up">
               Sign Up
             </Link>
           ) : (

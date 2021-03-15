@@ -12,7 +12,7 @@ class Input extends Component {
           className={className.join(" ")}
           id={this.props.name}
           name={this.props.name}
-          value={this.props.value}
+          defaultValue={this.props.value}
         />
       );
     } else if (this.props.type === "checkbox") {
@@ -38,7 +38,9 @@ class Input extends Component {
             className={className.join(" ")}
             id={this.props.name}
             name={this.props.name}
+            value={this.props.value}
             placeholder={this.props.placeholder}
+            onChange={this.props.onChange}
           />
         </Fragment>
       );

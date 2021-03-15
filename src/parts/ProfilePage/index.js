@@ -1,5 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { React, useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -12,6 +14,73 @@ import User from "../../assets/img/user.png";
 import Star from "../../assets/img/star.png";
 
 export default function Profile() {
+  const [data, setData] = useState({
+    user: [],
+    form: {
+      firstName: "",
+      lastName: "",
+      fullName: "",
+      phoneNumber: "",
+      username: "username",
+      email: "",
+      password: "",
+      role: 2,
+    },
+  });
+
+  const putData = () => {
+    axios
+      .put(`${Url}/users/${id}`, data.form)
+      .then((res) => {
+        Swal.fire({
+          title: "Success!",
+          text: res.data.message,
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.response.data.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
+
+  const Url = process.env.REACT_APP_API_URL;
+  const { id } = useParams();
+
+  const handleFormChange = (event) => {
+    const formNew = { ...data.form };
+    formNew[event.target.name] = event.target.value;
+    setData({
+      form: formNew,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    putData();
+  };
+
+  useEffect(() => {
+    axios.get(`${Url}/users/${id}`).then((res) => {
+      setData({
+        user: res.data.data,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get(`${Url}/users/${id}`).then((res) => {
+      setData({
+        user: res.data.data,
+      });
+    });
+  }, [data.form]);
+
   return (
     <Section className="profile">
       <Container>
@@ -30,22 +99,26 @@ export default function Profile() {
                   </div>
                 </Col>
               </Row>
-              <Row className="flex-column px-5 mt-4">
-                <Col className="d-flex justify-content-center">
-                  <img
-                    src={User}
-                    width="136"
-                    className="rounded-circle"
-                    alt="User"
-                  />
-                </Col>
-                <Col className="d-flex justify-content-center text-center mt-2">
-                  <h2>Jonas El Rodriguez</h2>
-                </Col>
-                <Col className="d-flex justify-content-center text-center">
-                  <p>Moviegoers</p>
-                </Col>
-              </Row>
+              {data.user.map((item, index) => {
+                return (
+                  <Row key={index} className="flex-column px-5 mt-4">
+                    <Col className="d-flex justify-content-center">
+                      <img
+                        src={User}
+                        width="136"
+                        className="rounded-circle"
+                        alt="User"
+                      />
+                    </Col>
+                    <Col className="d-flex justify-content-center text-center mt-2">
+                      <h2>{item.fullName}</h2>
+                    </Col>
+                    <Col className="d-flex justify-content-center text-center">
+                      <p>Moviegoers</p>
+                    </Col>
+                  </Row>
+                );
+              })}
               <hr className="mt-4" />
               <Row className="mx-5 mt-4">
                 <div className="col">
@@ -78,78 +151,92 @@ export default function Profile() {
           </Col>
           <Col className="col-lg-7 col-xl-8">
             <div className="breadcrumbs-custom d-none d-lg-flex align-items-center">
-              <Link to="#" className="mx-5 active">
+              <Link to="/profile-page" className="mx-5 active">
                 Account Settings
               </Link>
-              <Link to="#">Order History</Link>
+              <Link to="/order-history">Order History</Link>
             </div>
             <h6 className="d-block d-lg-none mt-4">Account Settings</h6>
             <div className="details-information mt-4 py-5 px-4">
               <p>Details Information</p>
               <hr />
-              <form className="mt-5">
-                <Row>
-                  <Col className="col-xl-6 d-none d-lg-block">
-                    <div className="form-group">
-                      <Input
-                        label="First Name"
-                        type="text"
-                        name="first-name"
-                        placeholder="Jonas"
-                      />
-                    </div>
-                  </Col>
-                  <Col className="col-xl-6 d-none d-lg-block">
-                    <div className="form-group">
-                      <Input
-                        label="Last Name"
-                        type="text"
-                        name="last-name"
-                        placeholder="El Rodriguez"
-                      />
-                    </div>
-                  </Col>
-                  <Col className="col-xl-6 d-block d-lg-none">
-                    <div className="form-group">
-                      <Input
-                        label="Full Name"
-                        type="text"
-                        name="full-name"
-                        placeholder="Jonas El Rodriguez"
-                      />
-                    </div>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col className="col-xl-6">
-                    <div className="form-group">
-                      <Input
-                        label="E-mail"
-                        type="email"
-                        name="email"
-                        placeholder="jonasrodrigu123@gmail.com"
-                      />
-                    </div>
-                  </Col>
-                  <Col className="col-xl-6">
-                    <div className="form-group">
-                      <label htmlFor="phone-number">Phone Number</label>
-                      <div className="input-group">
-                        <div className="input-group-prepend">
-                          <div className="input-group-text profile-page">
-                            +62
+              {data.user.map((item, index) => {
+                return (
+                  <form key={index} className="mt-5">
+                    <Row>
+                      <Col className="col-xl-6 d-none d-lg-block">
+                        <div className="form-group">
+                          <Input
+                            label="First Name"
+                            type="text"
+                            name="firstName"
+                            value={item.firstName}
+                            placeholder="Jonas"
+                            onChange={handleFormChange}
+                          />
+                        </div>
+                      </Col>
+                      <Col className="col-xl-6 d-none d-lg-block">
+                        <div className="form-group">
+                          <Input
+                            label="Last Name"
+                            type="text"
+                            name="lastName"
+                            value={item.lastName}
+                            placeholder="El Rodriguez"
+                            onChange={handleFormChange}
+                          />
+                        </div>
+                      </Col>
+                      <Col className="col-xl-6 d-block d-lg-none">
+                        <div className="form-group">
+                          <Input
+                            label="Full Name"
+                            type="text"
+                            name="fullName"
+                            value={item.fullName}
+                            placeholder="Jonas El Rodriguez"
+                            onChange={handleFormChange}
+                          />
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col className="col-xl-6">
+                        <div className="form-group">
+                          <Input
+                            label="E-mail"
+                            type="email"
+                            name="email"
+                            value={item.email}
+                            placeholder="jonasrodrigu123@gmail.com"
+                            onChange={handleFormChange}
+                          />
+                        </div>
+                      </Col>
+                      <Col className="col-xl-6">
+                        <div className="form-group">
+                          <label htmlFor="phone-number">Phone Number</label>
+                          <div className="input-group">
+                            <div className="input-group-prepend">
+                              <div className="input-group-text profile-page">
+                                +62
+                              </div>
+                            </div>
+                            <Input
+                              type="number"
+                              name="phoneNumber"
+                              value={item.phoneNumber}
+                              placeholder="81445687121"
+                              onChange={handleFormChange}
+                            />
                           </div>
                         </div>
-                        <Input
-                          type="number"
-                          name="phone-number"
-                          placeholder="81445687121"
-                        />
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-              </form>
+                      </Col>
+                    </Row>
+                  </form>
+                );
+              })}
             </div>
             <div className="account-privacy mt-4 py-5 px-4">
               <p>Account and Privacy</p>
@@ -163,6 +250,7 @@ export default function Profile() {
                         type="password"
                         name="password"
                         placeholder="Write your password"
+                        onChange={handleFormChange}
                       />
                     </div>
                   </Col>
@@ -171,8 +259,9 @@ export default function Profile() {
                       <Input
                         label="Confirm Password"
                         type="password"
-                        name="confirm-password"
+                        name="confirmPassword"
                         placeholder="Confirm your password"
+                        onChange={handleFormChange}
                       />
                     </div>
                   </Col>

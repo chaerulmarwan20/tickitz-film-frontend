@@ -19,10 +19,10 @@ function App() {
         <Route path="/sign-up" component={Signup} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/homepage" component={Homepage} />
-        <Route path="/movie-detail" component={MovieDetail} />
+        <Route path="/movie-detail/:id" component={MovieDetail} />
         <Route path="/order-page" component={OrderPage} />
         <Route path="/payment-page" component={PaymentPage} />
-        <Route path="/profile-page" component={ProfilePage} />
+        <Route path="/profile-page/:id" component={ProfilePage} />
         <Route path="/order-history" component={OrderHistory} />
       </Switch>
     </Router>

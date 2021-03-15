@@ -1,4 +1,5 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 import Container from "../../components/Container";
@@ -7,12 +8,19 @@ import Col from "../../components/Col";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 
-import Image1 from "../../assets/img/image-showing-1.png";
-import Image2 from "../../assets/img/image-showing-2.png";
-import Image3 from "../../assets/img/image-showing-3.png";
-
 export default function ShowingMovie() {
-  const imageCard = [Image1, Image2, Image3, Image1, Image2];
+  const Url = process.env.REACT_APP_API_URL;
+  const [state, setState] = useState({
+    movie: [],
+  });
+
+  useEffect(() => {
+    axios.get(`${Url}/movies/?order=desc`).then((res) => {
+      setState({
+        movie: res.data.data,
+      });
+    });
+  }, [Url]);
 
   return (
     <Section className="showing-movie">
@@ -25,11 +33,13 @@ export default function ShowingMovie() {
         </Row>
         <Row className="mt-5 pl-2 pl-lg-0">
           <Col className="col-12 px-0 now-showing-movie">
-            {imageCard.map((data, index) => {
+            {state.movie.map((data, index) => {
               return (
                 <Card key={index}>
                   <div className="image-card">
-                    <img src={data} alt="ImageCard" />
+                    <Link to={`movie-detail/${data.id}`}>
+                      <img src={data.image} alt="ImageCard" />
+                    </Link>
                   </div>
                 </Card>
               );

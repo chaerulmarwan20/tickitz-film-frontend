@@ -79,10 +79,10 @@ export default function Order() {
           </Col>
           <Col className="col-lg-7 col-xl-8">
             <div className="breadcrumbs-custom d-none d-lg-flex align-items-center">
-              <Link to="#" className="mx-5">
+              <Link to="/profile-page/1" className="mx-5">
                 Account Settings
               </Link>
-              <Link to="#" className="active">
+              <Link to="/order-history" className="active">
                 Order History
               </Link>
             </div>
