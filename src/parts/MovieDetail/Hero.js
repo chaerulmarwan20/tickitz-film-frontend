@@ -23,7 +23,7 @@ export default function Hero() {
         movie: res.data.data,
       });
     });
-  }, [Url, id]);
+  }, []);
 
   const setDate = (params) => {
     const date = new Date(params);
@@ -41,6 +41,7 @@ export default function Hero() {
       "November",
       "December",
     ];
+
     return `${month[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   };
 

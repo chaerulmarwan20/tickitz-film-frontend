@@ -1,5 +1,5 @@
 .order-history {
-  margin-top: 130px;
+  margin-top: 125px;
 }
 
 .order-history .info {
@@ -259,6 +259,27 @@
   border: 1px solid#6E7191;
   background-color: #f7f7fc;
   color: #6e7191;
+}
+
+.order-history .detail-order .btn-ticket-canceled {
+  width: 196px;
+  height: 40px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  background-color: #ea2e57;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.75px;
+  color: #f7f7fc;
+  transition: 0.5s ease;
+}
+
+.order-history .detail-order .btn-ticket-canceled:hover {
+  border: 1px solid#ea2e57;
+  background-color: #f7f7fc;
+  color: #ea2e57;
 }
 
 @media screen and (max-width: 991px) {

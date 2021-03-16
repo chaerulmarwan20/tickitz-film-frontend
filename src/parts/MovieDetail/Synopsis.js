@@ -16,13 +16,13 @@ export default function Synopsis() {
   });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     axios.get(`${Url}/movies/${id}`).then((res) => {
       setState({
         movie: res.data.data,
       });
     });
   }, [Url, id]);
+
   return (
     <Section className="synopsis">
       <Container>

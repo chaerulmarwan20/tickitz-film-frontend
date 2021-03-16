@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -8,15 +7,9 @@ import Section from "../../components/Section";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Card from "../../components/Card";
+import PaymentInfo from "./components/PaymentInfo";
+import PaymentMethod from "./components/PaymentMethod";
 
-import Google from "../../assets/img/logos_google-pay.png";
-import Visa from "../../assets/img/logos_visa.png";
-import GoPay from "../../assets/img/Logo GoPay (SVG-240p) - FileVector69 1.png";
-import Paypal from "../../assets/img/logos_paypal.png";
-import Dana from "../../assets/img/Logo DANA (PNG-240p) - FileVector69 1.png";
-import BCA from "../../assets/img/Bank BCA Logo (SVG-240p) - FileVector69 1.png";
-import BRI from "../../assets/img/Bank BRI (Bank Rakyat Indonesia) Logo (SVG-240p) - FileVector69 1.png";
-import Ovo from "../../assets/img/ovo.png";
 import Alert from "../../assets/img/warning.png";
 
 export default function PaymentDetail() {
@@ -28,30 +21,26 @@ export default function PaymentDetail() {
             <h1 className="d-none d-md-block">Payment Info</h1>
             <Card className="d-none d-md-block payment-info p-5 mt-4">
               <Container>
-                <Row className="justify-content-between align-items-center">
-                  <h2>Date & time</h2>
-                  <p>Tuesday, 07 July 2020 at 02:00pm</p>
-                  <hr />
-                </Row>
-                <Row className="justify-content-between align-items-center">
-                  <h2>Movie title</h2>
-                  <p>Spider-Man: Homecoming</p>
-                  <hr />
-                </Row>
-                <Row className="justify-content-between align-items-center">
-                  <h2>Cinema name</h2>
-                  <p>CineOne21 Cinema</p>
-                  <hr />
-                </Row>
-                <Row className="justify-content-between align-items-center">
-                  <h2>Number of tickets</h2>
-                  <p>3 pieces</p>
-                  <hr />
-                </Row>
-                <Row className="justify-content-between align-items-center">
-                  <h2>Total payment</h2>
-                  <p>$30,00</p>
-                </Row>
+                <PaymentInfo
+                  heading="Date & time"
+                  title="Tuesday, 07 July 2020 at 02:00pm"
+                ></PaymentInfo>
+                <PaymentInfo
+                  heading="Movie title"
+                  title="Spider-Man: Homecoming"
+                ></PaymentInfo>
+                <PaymentInfo
+                  heading="Cinema name"
+                  title="CineOne21 Cinema"
+                ></PaymentInfo>
+                <PaymentInfo
+                  heading="Number of tickets"
+                  title="3 pieces"
+                ></PaymentInfo>
+                <PaymentInfo
+                  heading="Total payment"
+                  title="$30,00"
+                ></PaymentInfo>
               </Container>
             </Card>
             <h1 className="mt-5 choose-payment">
@@ -60,37 +49,7 @@ export default function PaymentDetail() {
             </h1>
             <Card className="payment-method mt-4 pt-5 pb-4">
               <Row className="justify-content-center">
-                <div className="d-flex">
-                  <Link to="#" className="btn btn-payment">
-                    <img src={Google} alt="Google" width="74" />
-                  </Link>
-                  <Link to="#" className="btn btn-payment">
-                    <img src={Visa} alt="Visa" width="80" />
-                  </Link>
-                  <Link to="#" className="btn btn-payment">
-                    <img src={GoPay} alt="GoPay" width="106" />
-                  </Link>
-                  <Link to="#" className="btn btn-payment d-none d-md-block">
-                    <img src={Paypal} alt="Paypal" width="31" />
-                  </Link>
-                </div>
-                <div className="d-flex">
-                  <Link to="#" className="btn btn-payment d-md-none">
-                    <img src={Paypal} alt="Paypal" width="31" />
-                  </Link>
-                  <Link to="#" className="btn btn-payment">
-                    <img src={Dana} alt="Dana" width="108" />
-                  </Link>
-                  <Link to="#" className="btn btn-payment d-none d-md-block">
-                    <img src={BCA} alt="BCA" width="85" />
-                  </Link>
-                  <Link to="#" className="btn btn-payment d-none d-md-block">
-                    <img src={BRI} alt="BRI" width="45" />
-                  </Link>
-                  <Link to="#" className="btn btn-payment">
-                    <img src={Ovo} alt="Ovo" width="92" />
-                  </Link>
-                </div>
+                <PaymentMethod></PaymentMethod>
               </Row>
               <div className="d-flex ml-3 ml-md-0 justify-content-center mt-2 mt-md-3 mb-2 mb-md-4">
                 <hr />

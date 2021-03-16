@@ -285,7 +285,7 @@ nav.total-payment p {
   }
 
   .form-search.payment {
-    margin-top: 76px !important;
+    margin-top: 100px !important;
   }
 
   nav.total-payment h2 {
@@ -448,5 +448,11 @@ nav.total-payment p {
 
   .payment-detail .btn-order {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .form-search.payment {
+    margin-top: 76px !important;
   }
 }

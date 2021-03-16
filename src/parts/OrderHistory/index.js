@@ -1,155 +1,197 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { React, useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
 import Col from "../../components/Col";
 import Section from "../../components/Section";
 import Button from "../../components/Button";
+import Select from "../../components/Select";
+import ProfileInfo from "./components/ProfileInfo";
+import Breadcrumbs from "./components/Breadcrumbs";
 
-import User from "../../assets/img/user.png";
-import Star from "../../assets/img/star.png";
 import CineOne from "../../assets/img/CineOne21 2.png";
 import Ebv from "../../assets/img/ebv.id 2.png";
+import Hiflix from "../../assets/img/hiflix 2.png";
 
 export default function Order() {
+  const Url = process.env.REACT_APP_API_URL;
+  const { id } = useParams();
+
+  const [data, setData] = useState({
+    user: {
+      fullName: "",
+    },
+  });
+  const [transactions, setTransactions] = useState({
+    item: [],
+  });
+
+  const setDate = (params) => {
+    const date = new Date(params);
+    const month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const day = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
+
+    return `${day[date.getDay()]}, ${date.getDate()} ${
+      month[date.getMonth()]
+    } ${date.getFullYear()}`;
+  };
+
+  const setTime = (params) => {
+    let time = params.split(":");
+    return `${time[0]}:${time[1]}`;
+  };
+
+  const deleteData = (id) => {
+    Swal.fire({
+      title: "Are you sure about deleting this file?",
+      showDenyButton: true,
+      confirmButtonText: `Delete It!`,
+      confirmButtonColor: "#ea2e57",
+      denyButtonText: "Cancel",
+      denyButtonColor: `#5f2eea`,
+      focusDeny: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`${Url}/transactions/${id}`)
+          .then((res) => {
+            Swal.fire({
+              title: "Success!",
+              text: res.data.message,
+              icon: "success",
+              confirmButtonText: "Ok",
+              confirmButtonColor: "#5f2eea",
+            });
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Error!",
+              text: err.response.data.message,
+              icon: "error",
+              confirmButtonText: "Ok",
+              confirmButtonColor: "#5f2eea",
+            });
+          });
+      } else if (result.isDenied) {
+        Swal.fire({
+          title: "Delete canceled",
+          text: "",
+          icon: "info",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      }
+    });
+  };
+
+  const handleRemove = (id) => {
+    deleteData(id);
+  };
+
+  useEffect(() => {
+    axios.get(`${Url}/transactions/${id}`).then((res) => {
+      setTransactions({
+        item: res.data.data,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get(`${Url}/users/${id}`).then((res) => {
+      setData({
+        user: res.data.data[0],
+      });
+    });
+  }, []);
+
   return (
-    <Section className="order-history mb-5">
+    <Section className="order-history">
       <Container>
         <Row>
-          <Col className="col-lg-5 col-xl-4 d-none d-md-block">
-            <div className="info d-block pt-4">
-              <Row className="px-5">
-                <Col className="pl-0">
-                  <h1>Info</h1>
-                </Col>
-                <Row className="d-flex align-items-center justify-content-end pr-0 ml-auto dot">
-                  <div className="d-flex">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </Row>
-              </Row>
-              <Row className="flex-column px-5 mt-4">
-                <Col className="d-flex justify-content-center">
-                  <img
-                    src={User}
-                    width="136"
-                    alt="User"
-                    className="rounded-circle"
-                  />
-                </Col>
-                <Col className="d-flex justify-content-center text-center mt-2">
-                  <h2>Jonas El Rodriguez</h2>
-                </Col>
-                <Col className="d-flex justify-content-center text-center">
-                  <p>Moviegoers</p>
-                </Col>
-              </Row>
-              <hr className="mt-4" />
-              <Row className="mx-5 mt-4">
-                <Col>
-                  <h3 className="mb-4">Loyalty Points</h3>
-                  <div className="moviegoers pl-3 pt-3">
-                    <div></div>
-                    <div></div>
-                    <h4>Moviegoers</h4>
-                    <p className="mt-4">
-                      320 <span>points</span>
-                    </p>
-                    <img src={Star} alt="Star" width="51" />
-                  </div>
-                  <h5 className="mt-4 text-center">
-                    180 points become a master
-                  </h5>
-                  <div className="progress">
-                    <div
-                      className="progress-bar"
-                      role="progressbar"
-                      style={{ width: ` 45%` }}
-                      aria-valuenow="40"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                </Col>
-              </Row>
-            </div>
-          </Col>
+          <ProfileInfo data={data.user.fullName}></ProfileInfo>
           <Col className="col-lg-7 col-xl-8">
-            <div className="breadcrumbs-custom d-none d-lg-flex align-items-center">
-              <Link to="/profile-page/1" className="mx-5">
-                Account Settings
-              </Link>
-              <Link to="/order-history" className="active">
-                Order History
-              </Link>
-            </div>
+            <Breadcrumbs></Breadcrumbs>
             <Container>
-              <Row className="detail-order justify-content-between flex-column flex-md-row align-items-start align-items-md-center mt-0 mt-md-4 py-4">
-                <div className="left pl-4 pl-md-5 order-1 order-md-0">
-                  <p className="m-0">Tuesday, 07 July 2020 - 04:30pm</p>
-                  <h3 className="mt-1">Spider-Man: Homecoming</h3>
-                </div>
-                <div className="right pr-0 pr-md-5 pl-4 pl-md-0 order-0 order-md-1 mb-4 mb-md-0">
-                  <img src={CineOne} alt="CineOne" width="122" />
-                </div>
-                <hr className="mt-4 mb-4 order-2" />
-                <div className="pl-4 pl-md-5 pb-2 order-3">
-                  <Button className="btn btn-ticket ml-2 ml-sm-0">
-                    Ticket in active
-                  </Button>
-                </div>
-                <div className="pr-0 pr-md-5 pb-2 order-4 d-none d-md-block">
-                  <select className="custom-select">
-                    <option>Show Details</option>
-                    <option>Delete</option>
-                  </select>
-                </div>
-              </Row>
-              <Row className="detail-order justify-content-between flex-column flex-md-row align-items-start align-items-md-center mt-4 py-4">
-                <div className="left pl-4 pl-md-5 order-1 order-md-0">
-                  <p className="m-0">Monday, 14 June 2020 - 02:00pm</p>
-                  <h3 className="mt-1">Avengers: End Game</h3>
-                </div>
-                <div className="right pr-0 pr-md-5 pl-4 pl-md-0 order-0 order-md-1 mb-4 mb-md-0">
-                  <img src={Ebv} alt="Ebv" width="122" />
-                </div>
-                <hr className="mt-4 mb-4 order-2" />
-                <div className="pl-4 pl-md-5 pb-2 order-3">
-                  <Button className="btn btn-ticket-used ml-2 ml-sm-0">
-                    Ticket used
-                  </Button>
-                </div>
-                <div className="pr-0 pr-md-5 pb-2 order-4 d-none d-md-block">
-                  <select className="custom-select">
-                    <option>Show Details</option>
-                    <option>Delete</option>
-                  </select>
-                </div>
-              </Row>
-              <Row className="detail-order justify-content-between flex-column flex-md-row align-items-start align-items-md-center mt-4 py-4 d-none d-md-flex">
-                <div className="left pl-4 pl-md-5 order-1 order-md-0">
-                  <p className="m-0">Monday, 10 March 2020 - 04:00pm</p>
-                  <h3 className="mt-1">Thor: Ragnarok</h3>
-                </div>
-                <div className="right pr-0 pr-md-5 pl-4 pl-md-0 order-0 order-md-1 mb-4 mb-md-0">
-                  <img src={Ebv} alt="Ebv" width="122" />
-                </div>
-                <hr className="mt-4 mb-4 order-2" />
-                <div className="pl-4 pl-md-5 pb-2 order-3">
-                  <Button className="btn btn-ticket-used ml-2 ml-sm-0">
-                    Ticket used
-                  </Button>
-                </div>
-                <div className="pr-0 pr-md-5 pb-2 order-4 d-none d-md-block">
-                  <select className="custom-select">
-                    <option>Show Details</option>
-                    <option>Delete</option>
-                  </select>
-                </div>
-              </Row>
+              {transactions.item.map((data, index) => {
+                return (
+                  <Row
+                    key={index}
+                    className="detail-order justify-content-between flex-column flex-md-row align-items-start align-items-md-center mt-0 mt-md-4 mb-4 mb-md-0 py-4"
+                  >
+                    <div className="left pl-4 pl-md-5 order-1 order-md-0">
+                      <p className="m-0">
+                        {setDate(data.date)} - {setTime(data.time)}
+                      </p>
+                      <h3 className="mt-1">{data.movieTitle}</h3>
+                    </div>
+                    <div className="right pr-0 pr-md-5 pl-4 pl-md-0 order-0 order-md-1 mb-4 mb-md-0">
+                      <img
+                        src={
+                          data.idCinema === 1
+                            ? Hiflix
+                            : data.idCinema === 2
+                            ? Ebv
+                            : CineOne
+                        }
+                        alt="Cinema"
+                        width="122"
+                      />
+                    </div>
+                    <hr className="mt-4 mb-4 order-2" />
+                    <div className="pl-4 pl-md-5 pb-2 order-3">
+                      <Button
+                        className={`btn ml-2 ml-sm-0 ${
+                          data.status === "SUCCESS"
+                            ? "btn-ticket"
+                            : data.status === "PENDING"
+                            ? "btn-ticket-used"
+                            : "btn-ticket-canceled"
+                        }`}
+                      >
+                        {`${
+                          data.status === "SUCCESS"
+                            ? "Ticket in active"
+                            : data.status === "PENDING"
+                            ? "Ticket in not active"
+                            : "Ticket in cancel"
+                        }`}
+                      </Button>
+                    </div>
+                    <div className="pr-0 pr-md-5 pb-2 order-4 d-none d-md-block">
+                      <Select
+                        onChange={(e) =>
+                          e.target.value === "Delete" && handleRemove(data.id)
+                        }
+                        option={["Show Details", "Delete"]}
+                      ></Select>
+                    </div>
+                  </Row>
+                );
+              })}
             </Container>
           </Col>
         </Row>

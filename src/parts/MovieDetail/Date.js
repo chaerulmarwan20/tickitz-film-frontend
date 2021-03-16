@@ -5,6 +5,7 @@ import Row from "../../components/Row";
 import Col from "../../components/Col";
 import Section from "../../components/Section";
 import Input from "../../components/Input";
+import Select from "../../components/Select";
 
 export default function Date() {
   const location = ["Purwokerto", "Jakarta", "Bandung", "Surabaya"];
@@ -21,15 +22,7 @@ export default function Date() {
           <Col className="col-12 d-flex justify-content-center">
             <form className="form-inline d-flex justify-content-center">
               <Input type="date" name="date" value="2021-07-21" />
-              <select className="custom-select" name="location" id="location">
-                {location.map((data, index) => {
-                  return (
-                    <option key={index} value={data}>
-                      {data}
-                    </option>
-                  );
-                })}
-              </select>
+              <Select name="location" option={location}></Select>
             </form>
           </Col>
         </Row>

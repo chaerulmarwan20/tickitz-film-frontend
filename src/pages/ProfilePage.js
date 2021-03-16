@@ -14,10 +14,10 @@ export default function ProfilePage() {
       <Navbar isProfile></Navbar>
       <Nav className="navbar pt-4 fixed-top pb-3 details-order d-block d-lg-none">
         <Container className="justify-content-around nav-details">
-          <Link to="/profile-page" className="active">
+          <Link to="/profile-page/1" className="active">
             Details Account
           </Link>
-          <Link to="/order-history">Order History</Link>
+          <Link to="/order-history/1">Order History</Link>
         </Container>
       </Nav>
       <Profile></Profile>

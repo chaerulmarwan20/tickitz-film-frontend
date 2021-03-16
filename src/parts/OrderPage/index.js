@@ -5,10 +5,10 @@ import Row from "../../components/Row";
 import Col from "../../components/Col";
 import Section from "../../components/Section";
 import Button from "../../components/Button";
-import GridLeft from "./Grid/GridLeft";
-import GridRight from "./Grid/GridRight";
-import SeatLeft from "./Grid/SeatNumberLeft";
-import SeatRight from "./Grid/SeatNumberRight";
+import Select from "../../components/Select";
+import RowCinema from "./components/Row";
+import SeatCinema from "./components/Seat";
+import OrderInfo from "./components/OrderInfo";
 
 import CineOne from "../../assets/img/CineOne21-order.png";
 
@@ -27,22 +27,8 @@ export default function Movie() {
             <div className="seat mt-3">
               <p className="text-center screen">Screen</p>
               <hr className="mb-4" />
-              <div className="d-flex justify-content-between">
-                <div className="container-seat-1">
-                  <GridLeft></GridLeft>
-                </div>
-                <div className="container-seat-2">
-                  <GridRight></GridRight>
-                </div>
-              </div>
-              <div className="d-flex justify-content-between mt-3">
-                <div className="number-seat-1">
-                  <SeatLeft></SeatLeft>
-                </div>
-                <div className="number-seat-2">
-                  <SeatRight></SeatRight>
-                </div>
-              </div>
+              <RowCinema></RowCinema>
+              <SeatCinema></SeatCinema>
               <p className="seating-key mt-1 mt-md-3">Seating Key</p>
               <Row className="justify-content-around availability mt-3 mt-md-0">
                 <Col className="d-md-flex justify-content-around d-none">
@@ -71,22 +57,16 @@ export default function Movie() {
                 <img src={CineOne} alt="CineOne" width="132" />
                 <h2 className="mt-1">CineOne21 Cinema</h2>
               </Row>
-              <Row className="px-5 mt-3 justify-content-between">
-                <h3>Movie Selected</h3>
-                <p>Spider-Man: Homecoming</p>
-              </Row>
-              <Row className="px-5 justify-content-between">
-                <h3>Tuesday, 07 July 2020</h3>
-                <p>02:00pm</p>
-              </Row>
-              <Row className="px-5 justify-content-between">
-                <h3>One ticket price</h3>
-                <p>$10</p>
-              </Row>
-              <Row className="px-5 justify-content-between">
-                <h3>Seat choosed</h3>
-                <p>C4, C5, C6</p>
-              </Row>
+              <OrderInfo
+                heading="Movie Selected"
+                title="Spider-Man: Homecoming"
+              ></OrderInfo>
+              <OrderInfo
+                heading="Tuesday, 07 July 2020"
+                title="02:00pm"
+              ></OrderInfo>
+              <OrderInfo heading="One ticket price" title="$10"></OrderInfo>
+              <OrderInfo heading="Seat choosed" title="C4, C5, C6"></OrderInfo>
               <hr />
               <Row className="px-5 mt-3 justify-content-between">
                 <h4>Total Payment</h4>
@@ -104,44 +84,20 @@ export default function Movie() {
           </Col>
           <Col className="col-12">
             <div className="input-choosed d-flex align-items-center justify-content-around mt-3 py-3 px-3">
-              <select className="custom-select">
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
-              </select>
-              <select className="custom-select">
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
+              <Select option={["C", "D", "E"]}></Select>
+              <Select option={["4", "5", "6"]}></Select>
             </div>
           </Col>
           <Col className="col-12">
             <div className="input-choosed d-flex align-items-center justify-content-around mt-3 py-3 px-3">
-              <select className="custom-select">
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
-              </select>
-              <select className="custom-select">
-                <option value="5">5</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
-              </select>
+              <Select option={["C", "D", "E"]}></Select>
+              <Select option={["4", "5", "6"]}></Select>
             </div>
           </Col>
           <Col className="col-12">
             <div className="input-choosed d-flex align-items-center justify-content-around mt-3 py-3 px-3">
-              <select className="custom-select">
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
-              </select>
-              <select className="custom-select">
-                <option value="6">6</option>
-                <option value="5">5</option>
-                <option value="4">4</option>
-              </select>
+              <Select option={["C", "D", "E"]}></Select>
+              <Select option={["4", "5", "6"]}></Select>
             </div>
           </Col>
         </Row>

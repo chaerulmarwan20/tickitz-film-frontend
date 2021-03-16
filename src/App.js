@@ -23,7 +23,7 @@ function App() {
         <Route path="/order-page" component={OrderPage} />
         <Route path="/payment-page" component={PaymentPage} />
         <Route path="/profile-page/:id" component={ProfilePage} />
-        <Route path="/order-history" component={OrderHistory} />
+        <Route path="/order-history/:id" component={OrderHistory} />
       </Switch>
     </Router>
   );

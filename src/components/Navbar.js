@@ -29,7 +29,7 @@ export default function Navbar(props) {
       href: "/order-page",
     },
   ];
-  const location = ["Jakarta", "Bandung", "Surabaya"];
+  const location = ["Purwokerto", "Jakarta", "Bandung", "Surabaya"];
 
   return (
     <Nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">

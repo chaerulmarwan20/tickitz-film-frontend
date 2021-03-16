@@ -15,7 +15,7 @@ export default function OrderHistory() {
       <Nav className="navbar pt-4 fixed-top pb-3 details-order d-block d-lg-none">
         <Container className="justify-content-around nav-details">
           <Link to="/profile-page/1">Details Account</Link>
-          <Link to="/order-history" className="active">
+          <Link to="/order-history/1" className="active">
             Order History
           </Link>
         </Container>
