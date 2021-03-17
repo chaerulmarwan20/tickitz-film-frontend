@@ -64,7 +64,11 @@ export default function Hero() {
                 <Row className="flex-row flex-lg-column ml-auto ml-lg-n3 movie-detail">
                   <Col className="col-6 col-lg-12">
                     <h2>Release Date</h2>
-                    <p>{setDate(data.createdAt)}</p>
+                    <p>
+                      {data.realesed === 1
+                        ? setDate(data.createdAt)
+                        : "Unknown"}
+                    </p>
                   </Col>
                   <Col className="col-6 col-lg-12">
                     <h2>Duration</h2>

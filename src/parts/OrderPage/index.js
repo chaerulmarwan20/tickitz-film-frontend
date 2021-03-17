@@ -12,7 +12,7 @@ import OrderInfo from "./components/OrderInfo";
 
 import CineOne from "../../assets/img/CineOne21-order.png";
 
-export default function Movie() {
+export default function index() {
   return (
     <Section className="movie-order">
       <Container>

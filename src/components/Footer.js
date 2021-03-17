@@ -47,7 +47,9 @@ export default function Footer(props) {
       <Container>
         <Row className="mb-5">
           <Col className="col-lg-4 col-md-6 col-sm-12 mb-4 mb-md-0">
-            <img src={Logo} className="logo" alt="Tickitz" />
+            <Link to="/">
+              <img src={Logo} className="logo" alt="Tickitz" />
+            </Link>
             <p>
               Stop waiting in line. Buy tickets
               <br />

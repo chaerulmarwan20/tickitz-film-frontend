@@ -21,6 +21,8 @@ export default function Sidebar() {
     role: 2,
   });
 
+  const [checked, setChecked] = useState(false);
+
   const handleFormChange = (event) => {
     const dataNew = { ...data };
     dataNew[event.target.name] = event.target.value;
@@ -37,9 +39,15 @@ export default function Sidebar() {
       .post(`${Url}/users/`, data)
       .then((res) => {
         setData({
+          firstName: "firstName",
+          lastName: "lastName",
+          phoneNumber: "000000000000",
+          username: "username",
           email: "",
           password: "",
+          role: 2,
         });
+        setChecked(false);
         Swal.fire({
           title: "Success!",
           text: res.data.message,
@@ -57,6 +65,14 @@ export default function Sidebar() {
           confirmButtonColor: "#5f2eea",
         });
       });
+  };
+
+  const handleChecked = () => {
+    if (checked === true) {
+      setChecked(false);
+    } else {
+      setChecked(true);
+    }
   };
 
   return (
@@ -86,6 +102,8 @@ export default function Sidebar() {
             type="checkbox"
             name="agree"
             label="I agree to terms & conditions"
+            onChange={handleChecked}
+            checked={checked}
           />
           <br />
         </div>
@@ -93,12 +111,13 @@ export default function Sidebar() {
           type="submit"
           className="btn-join mt-0 mt-lg-4"
           onClick={handleSubmit}
+          disabled={checked === true ? false : true}
         >
           Join for free now
         </Button>
       </form>
       <p className="forgot-password">
-        Do you already have an account? <Link to="/">Log in</Link>
+        Do you already have an account? <Link to="/sign-in">Log in</Link>
       </p>
       <p className="or">Or</p>
       <div className="btn-group">

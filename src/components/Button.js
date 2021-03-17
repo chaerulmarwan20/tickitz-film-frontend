@@ -9,6 +9,7 @@ export default function Button(props) {
       data-toggle={props.toggle}
       data-target={props.target}
       onClick={props.onClick}
+      disabled={props.disabled}
     >
       {props.children}
     </button>

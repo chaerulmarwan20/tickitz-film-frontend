@@ -1,4 +1,6 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -8,7 +10,18 @@ import Input from "../../components/Input";
 import Select from "../../components/Select";
 
 export default function Date() {
-  const location = ["Purwokerto", "Jakarta", "Bandung", "Surabaya"];
+  const Url = process.env.REACT_APP_API_URL;
+  const [state, setState] = useState({
+    location: [],
+  });
+
+  useEffect(() => {
+    axios.get(`${Url}/cities`).then((res) => {
+      setState({
+        location: res.data.data,
+      });
+    });
+  }, []);
 
   return (
     <Section className="date">
@@ -22,7 +35,7 @@ export default function Date() {
           <Col className="col-12 d-flex justify-content-center">
             <form className="form-inline d-flex justify-content-center">
               <Input type="date" name="date" value="2021-07-21" />
-              <Select name="location" option={location}></Select>
+              <Select name="location" option={state.location}></Select>
             </form>
           </Col>
         </Row>

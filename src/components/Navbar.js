@@ -1,6 +1,8 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import propTypes from "prop-types";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 import Container from "./Container";
 import Row from "./Row";
@@ -15,10 +17,11 @@ import Search from "../assets/img/ic-search.png";
 import User from "../assets/img/Ellipse 11.png";
 
 export default function Navbar(props) {
+  const Url = process.env.REACT_APP_API_URL;
   const menu = [
     {
       title: "Movies",
-      href: "/homepage",
+      href: "/",
     },
     {
       title: "Cinemas",
@@ -29,12 +32,48 @@ export default function Navbar(props) {
       href: "/order-page",
     },
   ];
-  const location = ["Purwokerto", "Jakarta", "Bandung", "Surabaya"];
+  const [state, setState] = useState({
+    location: [],
+  });
+  const history = useHistory();
+
+  useEffect(() => {
+    axios.get(`${Url}/cities`).then((res) => {
+      setState({
+        location: res.data.data,
+      });
+    });
+  }, []);
+
+  const HandleLogout = () => {
+    Swal.fire({
+      title: "Are you sure you want to logout?",
+      showDenyButton: true,
+      confirmButtonText: `Logout!`,
+      confirmButtonColor: "#ea2e57",
+      denyButtonText: "Cancel",
+      denyButtonColor: `#5f2eea`,
+      focusDeny: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.clear();
+        history.push("/");
+      } else if (result.isDenied) {
+        Swal.fire({
+          title: "Logout canceled",
+          text: "",
+          icon: "info",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      }
+    });
+  };
 
   return (
     <Nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
       <Container>
-        <Link className="navbar-brand" to="/homepage">
+        <Link className="navbar-brand" to="/">
           <img src={Logo} alt="Tickitz" />
         </Link>
         <Button
@@ -77,10 +116,10 @@ export default function Navbar(props) {
                 className="dropdown-menu mb-3"
                 aria-labelledby="navbarDropdown"
               >
-                {location.map((data, index) => {
+                {state.location.map((data, index) => {
                   return (
                     <Link key={index} className="dropdown-item" to="#">
-                      {data}
+                      {data.name}
                     </Link>
                   );
                 })}
@@ -105,10 +144,10 @@ export default function Navbar(props) {
               Location <img src={Icon} width="18px" alt="Icon" />
             </Link>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              {location.map((data, index) => {
+              {state.location.map((data, index) => {
                 return (
                   <Link key={index} className="dropdown-item" to="#">
-                    {data}
+                    {data.name}
                   </Link>
                 );
               })}
@@ -119,16 +158,31 @@ export default function Navbar(props) {
             className="ic-search d-none d-lg-block mx-5"
             alt="Search"
           />
-          {props.isHomepage ? (
+          {localStorage.getItem("IsLogin") === "true" ? (
+            <div className="dropdown">
+              <Link
+                className="nav-link"
+                to="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+              >
+                <img
+                  src={User}
+                  className="rounded-circle d-none d-lg-block img-user"
+                  alt="User"
+                />
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <Link className="dropdown-item" onClick={HandleLogout}>
+                  Logout
+                </Link>
+              </div>
+            </div>
+          ) : (
             <Link className="btn btn-sign-up d-none d-lg-block" to="/sign-up">
               Sign Up
             </Link>
-          ) : (
-            <img
-              src={User}
-              className="rounded-circle d-none d-lg-block img-user"
-              alt="User"
-            />
           )}
         </div>
       </Container>

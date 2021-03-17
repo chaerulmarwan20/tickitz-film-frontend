@@ -23,6 +23,8 @@ class Input extends Component {
             className="ml-1"
             id={this.props.name}
             name={this.props.name}
+            onChange={this.props.onChange}
+            checked={this.props.checked}
           />
           <label htmlFor={this.props.name} className="ml-3">
             {this.props.label}

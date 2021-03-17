@@ -12,7 +12,11 @@ export default function Select(props) {
       onChange={props.onChange}
     >
       {props.option.map((data, index) => {
-        return (
+        return data.name ? (
+          <option key={index} value={data.name}>
+            {data.name}
+          </option>
+        ) : (
           <option key={index} value={data}>
             {data}
           </option>

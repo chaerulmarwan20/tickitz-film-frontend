@@ -1,6 +1,6 @@
 import { React, Fragment } from "react";
 import "../assets/css/order-history.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Nav from "../components/Nav";
 import Navbar from "../components/Navbar";
@@ -9,13 +9,19 @@ import Order from "../parts/OrderHistory";
 import Footer from "../components/Footer";
 
 export default function OrderHistory() {
+  const history = useHistory();
+
+  if (localStorage.getItem("IsLogin") !== "true") {
+    history.goBack();
+  }
+
   return (
     <Fragment>
       <Navbar isProfile></Navbar>
       <Nav className="navbar pt-4 fixed-top pb-3 details-order d-block d-lg-none">
         <Container className="justify-content-around nav-details">
-          <Link to="/profile-page/1">Details Account</Link>
-          <Link to="/order-history/1" className="active">
+          <Link to="/profile-page">Details Account</Link>
+          <Link to="/order-history" className="active">
             Order History
           </Link>
         </Container>

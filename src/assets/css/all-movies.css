@@ -1,0 +1,224 @@
+section.all-movies {
+  margin-top: 80px;
+  padding-bottom: 70px;
+}
+
+section.all-movies .container-all-movie {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+section.all-movies .card-all-movie {
+  width: 212px;
+  height: 420px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.all-movies .container-all-movie .card {
+  display: inline-block;
+  width: 212px;
+  height: 420px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0px 8px 32px rgba(186, 186, 186, 0.24);
+  border: 0;
+  margin-right: 16px;
+}
+
+section.all-movies .container-all-movie .card img {
+  width: 155px;
+  height: 240px;
+  border-radius: 6px;
+}
+
+section.all-movies .container-all-movie .card p {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #14142b;
+  letter-spacing: 0.15px;
+  text-align: center;
+}
+
+section.all-movies .container-all-movie .card span {
+  margin-top: -10px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: #a0a3bd;
+  letter-spacing: 0.4px;
+  text-align: center;
+}
+
+section.all-movies .container-all-movie .card .btn-details {
+  width: 159px;
+  height: 33px;
+  border-radius: 4px;
+  color: #5f2eea;
+  background-color: #fff;
+  border: 1px solid #5f2eea;
+  font-size: 14px;
+  font-weight: 400;
+  transition: 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+section.all-movies .container-all-movie .card .btn-details:hover {
+  color: #fff;
+  background-color: #5f2eea;
+  border: 1px solid transparent;
+}
+
+section.all-movies ul.pagination-custom {
+  list-style: none;
+  display: flex;
+  transform: translateX(-22px);
+}
+
+section.all-movies ul.pagination-custom li a {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 0.5px solid #dedede;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 0.75px;
+  color: #4e4b66;
+  text-decoration: none;
+  transition: 0.5s ease;
+}
+
+section.all-movies ul.pagination-custom li a:hover {
+  background-color: #5f2eea;
+  box-shadow: 0px 8px 16px rgba(95, 46, 234, 0.24);
+  border: 0.5px solid transparent;
+  color: #fff;
+}
+
+section.all-movies ul.pagination-custom li a.page-active {
+  background-color: #5f2eea;
+  box-shadow: 0px 8px 16px rgba(95, 46, 234, 0.24);
+  border: 0.5px solid transparent;
+  color: #fff;
+}
+
+section.all-movies ul.pagination-custom li a.page-active:hover {
+  background-color: #ffffff;
+  border: 0.5px solid #dedede;
+  color: #4e4b66;
+  box-shadow: inherit;
+}
+
+section.all-movies .btn-search {
+  border-radius: 4px;
+  background-color: #5f2eea;
+  color: #f7f7fc;
+  border: 1px solid transparent;
+  transition: 0.5s ease;
+}
+
+section.all-movies .btn-search:hover {
+  background-color: #f7f7fc;
+  color: #5f2eea;
+  border: 1px solid #5f2eea;
+}
+
+section.all-movies .form-search-movie {
+  height: 48px;
+  border-radius: 4px;
+  padding-left: 50px;
+  background-color: #fff;
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  line-height: 26px;
+  letter-spacing: 0.75px;
+  color: #a0a3bd;
+  font-weight: 600;
+  font-size: 14px;
+  background-image: url(../img/ic-search-2.png);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position-x: 16px;
+  background-position-y: center;
+}
+
+section.all-movies .form-search-movie::-webkit-input-placeholder {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 26px;
+  letter-spacing: 0.75px;
+  color: #a0a3bd;
+}
+
+@media (max-width: 1316px) {
+  section.all-movies .container-all-movie {
+    overflow: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  section.all-movies .container-all-movie .card,
+  section.all-movies .card-all-movie {
+    width: 175px;
+    height: 330px;
+  }
+
+  section.all-movies .container-all-movie .card img {
+    width: 130px;
+    height: 185px;
+  }
+
+  section.all-movies .container-all-movie .card p {
+    margin-top: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+    letter-spacing: 0.75px;
+    text-align: center;
+  }
+
+  section.all-movies .container-all-movie .card .card-all-movie span {
+    font-family: "Mulish", sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.75px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  section.all-movies .container-all-movie .card .btn-details {
+    width: 120px;
+    height: 25px;
+    border: 0.5px solid #5f2eea;
+    font-size: 10px;
+    font-weight: 300;
+    margin-top: 24px;
+    text-align: center;
+    letter-spacing: 0.25px;
+  }
+
+  section.all-movies .container-all-movie .card .btn-details:hover {
+    border: 0.5px solid transparent;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  section.all-movies ul.pagination-custom {
+    margin-top: -17px;
+  }
+}

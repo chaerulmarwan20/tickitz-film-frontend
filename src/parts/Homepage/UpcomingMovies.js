@@ -30,7 +30,7 @@ export default function UpcomingMovies() {
   });
 
   useEffect(() => {
-    axios.get(`${Url}/movies/`).then((res) => {
+    axios.get(`${Url}/movies/realesed?realese=false`).then((res) => {
       setState({
         movie: res.data.data,
       });
@@ -43,7 +43,7 @@ export default function UpcomingMovies() {
         <Row>
           <Col className="col-12 d-flex justify-content-between align-items-center">
             <h1 className="upcoming">Upcoming Movies</h1>
-            <Link to="#">view all</Link>
+            <Link to="/all-movies-upcoming">view all</Link>
           </Col>
         </Row>
         <div className="mt-4 container-btn-month">

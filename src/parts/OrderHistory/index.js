@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import Container from "../../components/Container";
@@ -18,7 +17,7 @@ import Hiflix from "../../assets/img/hiflix 2.png";
 
 export default function Order() {
   const Url = process.env.REACT_APP_API_URL;
-  const { id } = useParams();
+  const id = localStorage.getItem("id");
 
   const [data, setData] = useState({
     user: {
@@ -85,6 +84,13 @@ export default function Order() {
               icon: "success",
               confirmButtonText: "Ok",
               confirmButtonColor: "#5f2eea",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                setTimeout(() => {
+                  window.scrollTo(0, 0);
+                  window.location.reload();
+                }, 500);
+              }
             });
           })
           .catch((err) => {

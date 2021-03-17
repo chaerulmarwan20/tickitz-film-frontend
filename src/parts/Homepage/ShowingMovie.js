@@ -15,12 +15,12 @@ export default function ShowingMovie() {
   });
 
   useEffect(() => {
-    axios.get(`${Url}/movies/?order=desc`).then((res) => {
+    axios.get(`${Url}/movies/realesed?realese=true`).then((res) => {
       setState({
         movie: res.data.data,
       });
     });
-  }, [Url]);
+  }, []);
 
   return (
     <Section className="showing-movie">
@@ -28,7 +28,7 @@ export default function ShowingMovie() {
         <Row>
           <Col className="col-12 d-flex justify-content-between align-items-center">
             <h1 className="now-showing">Now Showing</h1>
-            <Link to="#">view all</Link>
+            <Link to="/all-movies-showing">view all</Link>
           </Col>
         </Row>
         <Row className="mt-5 pl-2 pl-lg-0">

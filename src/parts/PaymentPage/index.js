@@ -12,7 +12,7 @@ import PaymentMethod from "./components/PaymentMethod";
 
 import Alert from "../../assets/img/warning.png";
 
-export default function PaymentDetail() {
+export default function index() {
   return (
     <Section className="payment-detail">
       <Container>

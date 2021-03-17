@@ -129,6 +129,7 @@ nav .nav-link {
 .img-user {
   width: 56px;
   height: 56px;
+  cursor: pointer;
 }
 
 /* Header */

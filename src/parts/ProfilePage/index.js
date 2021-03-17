@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import Container from "../../components/Container";
@@ -14,7 +13,7 @@ import Breadcrumbs from "./components/Breadcrumbs";
 
 export default function Profile() {
   const Url = process.env.REACT_APP_API_URL;
-  const { id } = useParams();
+  const id = localStorage.getItem("id");
 
   const [data, setData] = useState({
     confirmPassword: "",
@@ -40,6 +39,13 @@ export default function Profile() {
           icon: "success",
           confirmButtonText: "Ok",
           confirmButtonColor: "#5f2eea",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+              window.location.reload();
+            }, 500);
+          }
         });
       })
       .catch((err) => {
@@ -113,7 +119,7 @@ export default function Profile() {
               <hr />
               <form className="mt-5">
                 <Row>
-                  <Col className="col-xl-6 d-none d-lg-block">
+                  <Col className="col-xl-6">
                     <div className="form-group">
                       <Input
                         label="First Name"
@@ -125,7 +131,7 @@ export default function Profile() {
                       />
                     </div>
                   </Col>
-                  <Col className="col-xl-6 d-none d-lg-block">
+                  <Col className="col-xl-6">
                     <div className="form-group">
                       <Input
                         label="Last Name"
@@ -133,18 +139,6 @@ export default function Profile() {
                         name="lastName"
                         value={data.user.lastName}
                         placeholder="El Rodriguez"
-                        onChange={handleFormChange}
-                      />
-                    </div>
-                  </Col>
-                  <Col className="col-xl-6 d-block d-lg-none">
-                    <div className="form-group">
-                      <Input
-                        label="Full Name"
-                        type="text"
-                        name="fullName"
-                        value={data.user.fullName}
-                        placeholder="Jonas El Rodriguez"
                         onChange={handleFormChange}
                       />
                     </div>
