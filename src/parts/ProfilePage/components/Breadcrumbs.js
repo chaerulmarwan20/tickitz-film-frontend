@@ -7,7 +7,7 @@ export default function Breadcrumbs() {
       <Link to="/profile-page" className="mx-5 active">
         Account Settings
       </Link>
-      <Link to="/order-history/1">Order History</Link>
+      <Link to="/order-history">Order History</Link>
     </div>
   );
 }

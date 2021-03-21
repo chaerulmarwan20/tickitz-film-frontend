@@ -65,7 +65,7 @@ export default function Index() {
         movie: res.data.data,
       });
     });
-  }, []);
+  }, [Url]);
 
   return (
     <Section className="all-movies">

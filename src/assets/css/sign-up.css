@@ -197,15 +197,18 @@ main aside.sign-up .btn-join {
   transition: 0.5s ease;
 }
 
-main aside.sign-up .btn-join:hover {
+.pointer {
   cursor: pointer;
-  background-color: #f7f7fc;
-  color: #5f2eea;
-  border: 1px solid #5f2eea;
 }
 
-main aside.sign-up .btn-join:active {
-  border: 1px solid transparent;
+.no-drop {
+  cursor: no-drop;
+}
+
+.pointer:hover {
+  background-color: #f7f7fc !important;
+  color: #5f2eea !important;
+  border: 1px solid #5f2eea !important;
 }
 
 main aside.sign-up p.forgot-password {

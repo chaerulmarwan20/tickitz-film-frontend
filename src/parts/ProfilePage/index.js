@@ -15,12 +15,14 @@ export default function Profile() {
   const Url = process.env.REACT_APP_API_URL;
   const id = localStorage.getItem("id");
 
-  const [data, setData] = useState({
+  const [auth, setAuth] = useState({
+    password: "",
     confirmPassword: "",
+  });
+  const [data, setData] = useState({
     user: {
       firstName: "",
       lastName: "",
-      fullName: "",
       phoneNumber: "",
       username: "username",
       email: "",
@@ -41,10 +43,15 @@ export default function Profile() {
           confirmButtonColor: "#5f2eea",
         }).then((result) => {
           if (result.isConfirmed) {
-            setTimeout(() => {
-              window.scrollTo(0, 0);
-              window.location.reload();
-            }, 500);
+            axios.get(`${Url}/users/${id}`).then((res) => {
+              setData({
+                user: res.data.data[0],
+              });
+              setAuth({
+                password: "",
+                confirmPassword: "",
+              });
+            });
           }
         });
       })
@@ -60,31 +67,19 @@ export default function Profile() {
   };
 
   const handleFormChange = (event) => {
+    const authNew = { ...auth };
     const userNew = { ...data.user };
+    authNew[event.target.name] = event.target.value;
     userNew[event.target.name] = event.target.value;
-    if (
-      userNew.confirmPassword === undefined &&
-      userNew.password === data.user.password
-    ) {
-      axios.get(`${Url}/users/${id}`).then((res) => {
-        setData({
-          confirmPassword: userNew.password,
-          user: userNew,
-        });
-      });
-    } else {
-      axios.get(`${Url}/users/${id}`).then((res) => {
-        setData({
-          confirmPassword: userNew.confirmPassword,
-          user: userNew,
-        });
-      });
-    }
+    setAuth(authNew);
+    setData({
+      user: userNew,
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (data.user.password === data.confirmPassword) {
+    if (auth.password === auth.confirmPassword) {
       putData();
     } else {
       Swal.fire({
@@ -100,11 +95,10 @@ export default function Profile() {
   useEffect(() => {
     axios.get(`${Url}/users/${id}`).then((res) => {
       setData({
-        confirmPassword: res.data.data[0].password,
         user: res.data.data[0],
       });
     });
-  }, []);
+  }, [Url, id]);
 
   return (
     <Section className="profile">
@@ -190,6 +184,7 @@ export default function Profile() {
                         label="New Password"
                         type="password"
                         name="password"
+                        value={auth.password}
                         placeholder="Write your password"
                         onChange={handleFormChange}
                       />
@@ -201,6 +196,7 @@ export default function Profile() {
                         label="Confirm Password"
                         type="password"
                         name="confirmPassword"
+                        value={auth.confirmPassword}
                         placeholder="Confirm your password"
                         onChange={handleFormChange}
                       />

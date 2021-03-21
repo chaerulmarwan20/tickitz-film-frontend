@@ -11,7 +11,7 @@ import CinemaCard from "./components/CinemaCard";
 export default function Date() {
   return (
     <Section className="cinema">
-      <Container>
+      <Container className="mt-6">
         <CinemaCard></CinemaCard>
         <Row>
           <Col className="col-12 d-flex justify-content-center">

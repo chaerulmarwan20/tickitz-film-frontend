@@ -9,7 +9,6 @@ import JoinMember from "../parts/Homepage/JoinMember";
 import Footer from "../components/Footer";
 
 export default function Homepage() {
-  window.scrollTo(0, 0);
   return (
     <Fragment>
       <Navbar isHomepage></Navbar>

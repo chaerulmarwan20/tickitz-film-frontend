@@ -20,7 +20,7 @@ export default function ShowingMovie() {
         movie: res.data.data,
       });
     });
-  }, []);
+  }, [Url]);
 
   return (
     <Section className="showing-movie">

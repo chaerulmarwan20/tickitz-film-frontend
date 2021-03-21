@@ -84,13 +84,6 @@ export default function Order() {
               icon: "success",
               confirmButtonText: "Ok",
               confirmButtonColor: "#5f2eea",
-            }).then((result) => {
-              if (result.isConfirmed) {
-                setTimeout(() => {
-                  window.scrollTo(0, 0);
-                  window.location.reload();
-                }, 500);
-              }
             });
           })
           .catch((err) => {
@@ -119,12 +112,12 @@ export default function Order() {
   };
 
   useEffect(() => {
-    axios.get(`${Url}/transactions/${id}`).then((res) => {
+    axios.get(`${Url}/transactions/users/${id}?sortBy=date`).then((res) => {
       setTransactions({
         item: res.data.data,
       });
     });
-  }, []);
+  }, [Url, id, transactions.item]);
 
   useEffect(() => {
     axios.get(`${Url}/users/${id}`).then((res) => {
@@ -132,7 +125,7 @@ export default function Order() {
         user: res.data.data[0],
       });
     });
-  }, []);
+  }, [Url, id]);
 
   return (
     <Section className="order-history">

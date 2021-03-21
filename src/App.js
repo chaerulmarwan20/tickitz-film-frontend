@@ -10,6 +10,7 @@ import OrderPage from "./pages/OrderPage";
 import PaymentPage from "./pages/PaymentPage";
 import ProfilePage from "./pages/ProfilePage";
 import OrderHistory from "./pages/OrderHistory";
+import TicketResult from "./pages/TicketResult";
 import AllMoviesShowing from "./pages/AllMoviesShowing";
 import AllMoviesUpcoming from "./pages/AllMoviesUpcoming";
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/payment-page" component={PaymentPage} />
         <Route path="/profile-page" component={ProfilePage} />
         <Route path="/order-history" component={OrderHistory} />
+        <Route path="/ticket-result" component={TicketResult} />
         <Route path="/all-movies-showing" component={AllMoviesShowing} />
         <Route path="/all-movies-upcoming" component={AllMoviesUpcoming} />
       </Switch>

@@ -109,7 +109,9 @@ export default function Sidebar() {
         </div>
         <Button
           type="submit"
-          className="btn-join mt-0 mt-lg-4"
+          className={`btn-join mt-0 mt-lg-4 ${
+            checked === true ? "pointer" : "no-drop"
+          }`}
           onClick={handleSubmit}
           disabled={checked === true ? false : true}
         >
