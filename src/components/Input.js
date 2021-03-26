@@ -34,7 +34,9 @@ class Input extends Component {
     } else {
       return (
         <Fragment>
-          <label htmlFor={this.props.name}>{this.props.label}</label>
+          <label htmlFor={this.props.name} className={this.props.classLabel}>
+            {this.props.label}
+          </label>
           <input
             type={this.props.type}
             className={className.join(" ")}
