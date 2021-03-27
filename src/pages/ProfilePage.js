@@ -23,7 +23,7 @@ export default function ProfilePage() {
           <Link to="/profile-page" className="active">
             Details Account
           </Link>
-          <Link to="/order-history">Order History</Link>
+          <Link to="/order-history?sortBy=date&order=asc">Order History</Link>
         </Container>
       </Nav>
       <Profile></Profile>

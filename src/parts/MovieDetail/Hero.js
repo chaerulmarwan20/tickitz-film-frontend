@@ -16,14 +16,22 @@ export default function Hero() {
     movie: [],
   });
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    axios.get(`${Url}/movies/${id}`).then((res) => {
-      setState({
-        movie: res.data.data,
+    axios
+      .get(`${Url}/movies/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setState({
+          movie: res.data.data,
+        });
       });
-    });
-  }, [Url, id]);
+  }, [Url, id, token]);
 
   const setDate = (params) => {
     const date = new Date(params);

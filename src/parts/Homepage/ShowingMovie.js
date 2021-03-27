@@ -15,7 +15,7 @@ export default function ShowingMovie() {
   });
 
   useEffect(() => {
-    axios.get(`${Url}/movies/realesed?realese=true`).then((res) => {
+    axios.get(`${Url}/movies/realesed/?keyword=true`).then((res) => {
       setState({
         movie: res.data.data,
       });

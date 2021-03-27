@@ -13,7 +13,9 @@ import Breadcrumbs from "./components/Breadcrumbs";
 
 export default function Profile() {
   const Url = process.env.REACT_APP_API_URL;
+
   const id = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
 
   const [auth, setAuth] = useState({
     password: "",
@@ -24,16 +26,18 @@ export default function Profile() {
       firstName: "",
       lastName: "",
       phoneNumber: "",
-      username: "username",
       email: "",
       password: "",
-      role: 2,
     },
   });
 
   const putData = () => {
     axios
-      .put(`${Url}/users/${id}`, data.user)
+      .put(`${Url}/users/${id}`, data.user, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         Swal.fire({
           title: "Success!",
@@ -43,15 +47,21 @@ export default function Profile() {
           confirmButtonColor: "#5f2eea",
         }).then((result) => {
           if (result.isConfirmed) {
-            axios.get(`${Url}/users/${id}`).then((res) => {
-              setData({
-                user: res.data.data[0],
+            axios
+              .get(`${Url}/users/${id}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+              .then((res) => {
+                setData({
+                  user: res.data.data[0],
+                });
+                setAuth({
+                  password: "",
+                  confirmPassword: "",
+                });
               });
-              setAuth({
-                password: "",
-                confirmPassword: "",
-              });
-            });
           }
         });
       })
@@ -93,18 +103,27 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    axios.get(`${Url}/users/${id}`).then((res) => {
-      setData({
-        user: res.data.data[0],
+    axios
+      .get(`${Url}/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setData({
+          user: res.data.data[0],
+        });
       });
-    });
-  }, [Url, id]);
+  }, [Url, id, token]);
 
   return (
     <Section className="profile">
       <Container>
         <Row>
-          <ProfileInfo data={data.user.fullName}></ProfileInfo>
+          <ProfileInfo
+            user={data.user.fullName}
+            img={data.user.image ? data.user.image : "images/avatar.png"}
+          ></ProfileInfo>
           <Col className="col-lg-7 col-xl-8">
             <Breadcrumbs></Breadcrumbs>
             <h6 className="d-block d-lg-none mt-4">Account Settings</h6>

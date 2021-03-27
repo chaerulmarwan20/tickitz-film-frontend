@@ -15,13 +15,21 @@ export default function Synopsis() {
     movie: [],
   });
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
-    axios.get(`${Url}/movies/${id}`).then((res) => {
-      setState({
-        movie: res.data.data,
+    axios
+      .get(`${Url}/movies/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setState({
+          movie: res.data.data,
+        });
       });
-    });
-  }, [Url, id]);
+  }, [Url, id, token]);
 
   return (
     <Section className="synopsis">

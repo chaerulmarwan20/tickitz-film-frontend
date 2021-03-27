@@ -3,10 +3,11 @@ import React from "react";
 import Row from "../../../components/Row";
 import Col from "../../../components/Col";
 
-import User from "../../../assets/img/user.png";
 import Star from "../../../assets/img/star.png";
 
 export default function ProfileInfo(props) {
+  const ImgUrl = process.env.REACT_APP_API_IMG;
+
   return (
     <Col className="col-lg-5 col-xl-4 d-none d-md-block">
       <div className="info d-block pt-4">
@@ -14,20 +15,25 @@ export default function ProfileInfo(props) {
           <Col className="pl-0">
             <h1>Info</h1>
           </Col>
-          <Row className="d-flex align-items-center justify-content-end pr-3 dot">
+          <Col className="d-flex align-items-center justify-content-end pr-0 ml-auto dot">
             <div className="d-flex">
               <span></span>
               <span></span>
               <span></span>
             </div>
-          </Row>
+          </Col>
         </Row>
         <Row className="flex-column px-5 mt-4">
           <Col className="d-flex justify-content-center">
-            <img src={User} width="136" alt="User" className="rounded-circle" />
+            <img
+              src={`${ImgUrl}${props.img}`}
+              width="136"
+              alt="User"
+              className="rounded-circle"
+            />
           </Col>
           <Col className="d-flex justify-content-center text-center mt-2">
-            <h2>{props.data}</h2>
+            <h2>{props.user}</h2>
           </Col>
           <Col className="d-flex justify-content-center text-center">
             <p>Moviegoers</p>

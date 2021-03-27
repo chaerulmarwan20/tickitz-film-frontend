@@ -30,7 +30,7 @@ export default function UpcomingMovies() {
   });
 
   useEffect(() => {
-    axios.get(`${Url}/movies/realesed?realese=false`).then((res) => {
+    axios.get(`${Url}/movies/realesed/?keyword=false`).then((res) => {
       setState({
         movie: res.data.data,
       });

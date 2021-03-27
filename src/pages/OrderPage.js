@@ -1,6 +1,7 @@
 import { React, Fragment } from "react";
-import "../assets/css/order-page.css";
 import { useHistory } from "react-router-dom";
+
+import "../assets/css/order-page.css";
 
 import Navbar from "../components/Navbar";
 import Movie from "../parts/OrderPage";

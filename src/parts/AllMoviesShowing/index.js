@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import Container from "../../components/Container";
@@ -13,23 +13,20 @@ import Input from "../../components/Input";
 
 export default function Index() {
   window.scrollTo(0, 0);
+
+  const history = useHistory();
+
   const Url = process.env.REACT_APP_API_URL;
+
+  const [query, setQuery] = useState("");
   const [state, setState] = useState({
     movie: [],
   });
 
-  const [data, setData] = useState({
-    keyword: "",
-  });
-
   const handleFormChange = (event) => {
-    const dataNew = { ...data };
-    dataNew[event.target.name] = event.target.value;
-    setData(dataNew);
+    setQuery(event.target.value);
     axios
-      .post(`${Url}/movies/search-realese?perPage=10`, {
-        keyword: event.target.value,
-      })
+      .get(`${Url}/movies/is-realese/?keyword=${event.target.value}&perPage=10`)
       .then((res) => {
         setState({
           movie: res.data.data,
@@ -44,11 +41,9 @@ export default function Index() {
           confirmButtonColor: "#5f2eea",
         }).then((result) => {
           if (result.isConfirmed) {
-            setData({
-              keyword: "",
-            });
+            setQuery("");
             axios
-              .get(`${Url}/movies/realesed?realese=true&perPage=10`)
+              .get(`${Url}/movies/realesed/?keyword=true&perPage=10`)
               .then((res) => {
                 setState({
                   movie: res.data.data,
@@ -60,12 +55,22 @@ export default function Index() {
   };
 
   useEffect(() => {
-    axios.get(`${Url}/movies/realesed?realese=true&perPage=10`).then((res) => {
+    axios.get(`${Url}/movies/realesed/?keyword=true&perPage=10`).then((res) => {
       setState({
         movie: res.data.data,
       });
     });
   }, [Url]);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (query) {
+      params.append("keyword", query);
+    } else {
+      params.delete("keyword");
+    }
+    history.push({ search: params.toString() });
+  }, [query, history]);
 
   return (
     <Section className="all-movies">
@@ -77,7 +82,7 @@ export default function Index() {
               className="form-search-movie"
               placeholder="Search..."
               name="keyword"
-              value={data.keyword}
+              value={query}
               onChange={handleFormChange}
             />
           </Col>

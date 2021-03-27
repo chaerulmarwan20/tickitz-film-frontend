@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -11,18 +12,22 @@ import Select from "../../components/Select";
 import ProfileInfo from "./components/ProfileInfo";
 import Breadcrumbs from "./components/Breadcrumbs";
 
-import CineOne from "../../assets/img/CineOne21 2.png";
-import Ebv from "../../assets/img/ebv.id 2.png";
-import Hiflix from "../../assets/img/hiflix 2.png";
-
 export default function Order() {
+  const useQuery = () => new URLSearchParams(useLocation().search);
+
+  const query = useQuery();
+
+  const sortBy = query.get("sortBy");
+  const order = query.get("order");
+
   const Url = process.env.REACT_APP_API_URL;
+  const ImgUrl = process.env.REACT_APP_API_IMG;
+
   const id = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
 
   const [data, setData] = useState({
-    user: {
-      fullName: "",
-    },
+    user: {},
   });
   const [transactions, setTransactions] = useState({
     item: [],
@@ -112,26 +117,41 @@ export default function Order() {
   };
 
   useEffect(() => {
-    axios.get(`${Url}/transactions/users/${id}?sortBy=date`).then((res) => {
-      setTransactions({
-        item: res.data.data,
+    axios
+      .get(`${Url}/transactions/users/${id}?sortBy=${sortBy}&order=${order}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setTransactions({
+          item: res.data.data,
+        });
       });
-    });
-  }, [Url, id, transactions.item]);
+  }, [Url, id, token, sortBy, order, transactions.item]);
 
   useEffect(() => {
-    axios.get(`${Url}/users/${id}`).then((res) => {
-      setData({
-        user: res.data.data[0],
+    axios
+      .get(`${Url}/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setData({
+          user: res.data.data[0],
+        });
       });
-    });
-  }, [Url, id]);
+  }, [Url, id, token]);
 
   return (
     <Section className="order-history">
       <Container>
         <Row>
-          <ProfileInfo data={data.user.fullName}></ProfileInfo>
+          <ProfileInfo
+            user={data.user.fullName}
+            img={data.user.image ? data.user.image : "images/avatar.png"}
+          ></ProfileInfo>
           <Col className="col-lg-7 col-xl-8">
             <Breadcrumbs></Breadcrumbs>
             <Container>
@@ -149,13 +169,7 @@ export default function Order() {
                     </div>
                     <div className="right pr-0 pr-md-5 pl-4 pl-md-0 order-0 order-md-1 mb-4 mb-md-0">
                       <img
-                        src={
-                          data.idCinema === 1
-                            ? Hiflix
-                            : data.idCinema === 2
-                            ? Ebv
-                            : CineOne
-                        }
+                        src={`${ImgUrl}${data.imageCinema}`}
                         alt="Cinema"
                         width="122"
                       />

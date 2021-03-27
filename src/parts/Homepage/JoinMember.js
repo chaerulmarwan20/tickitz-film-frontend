@@ -24,29 +24,52 @@ export default function JoinMember() {
     putData();
   };
 
+  const token = localStorage.getItem("token");
+  const login = localStorage.getItem("IsLogin");
+
   const putData = () => {
     axios
-      .put(`${Url}/users/moviegoers/`, data)
+      .put(`${Url}/users/moviegoers/`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         setData({
           email: "",
         });
+        let title = "Success!";
+        let icon = "success";
+        if (res.data.message === "Your account has become moviegoers") {
+          title = "Info!";
+          icon = "info";
+        }
         Swal.fire({
-          title: "Success!",
+          title,
           text: res.data.message,
-          icon: "success",
+          icon,
           confirmButtonText: "Ok",
           confirmButtonColor: "#5f2eea",
         });
       })
       .catch((err) => {
-        Swal.fire({
-          title: "Error!",
-          text: err.response.data.message,
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
+        if (login === "true") {
+          Swal.fire({
+            title: "Error!",
+            text: err.response.data.message,
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Login required",
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        }
       });
   };
 

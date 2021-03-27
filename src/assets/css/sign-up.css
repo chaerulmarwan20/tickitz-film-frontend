@@ -47,13 +47,6 @@ main section.sign-up p {
   color: rgba(255, 255, 255, 0.7);
 }
 
-main section.sign-up p.main {
-  z-index: 1;
-  font-weight: 400;
-  font-size: 1.8vmax;
-  color: #fff;
-}
-
 main section.sign-up span.one,
 main section.sign-up span.two,
 main section.sign-up span.three {
@@ -67,7 +60,9 @@ main section.sign-up span.three {
   align-items: center;
 }
 
-main section.sign-up span.one {
+main section.sign-up span.one.main,
+main section.sign-up span.two.main,
+main section.sign-up span.three.main {
   background-color: #fff;
   font-weight: 600;
   font-size: 24px;
@@ -76,6 +71,7 @@ main section.sign-up span.one {
   color: rgba(41, 3, 65, 0.5);
 }
 
+main section.sign-up span.one,
 main section.sign-up span.two,
 main section.sign-up span.three {
   background-color: transparent;
@@ -88,7 +84,7 @@ main section.sign-up span.three {
   color: #ffffff;
 }
 
-main aside.sign-up img {
+main aside.sign-up img.tickitz {
   display: none;
 }
 
@@ -313,7 +309,7 @@ main aside.sign-up .btn-facebook::before {
     display: none !important;
   }
 
-  main aside.sign-up img {
+  main aside.sign-up img.tickitz {
     display: block;
     width: 85px;
     height: 33px;

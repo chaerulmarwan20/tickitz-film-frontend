@@ -30,9 +30,11 @@ export default function Sidebar() {
   const history = useHistory();
   const PostData = () => {
     axios
-      .post(`${Url}/users/login`, data)
+      .post(`${Url}/users/auth/login`, data)
       .then((res) => {
-        localStorage.setItem("id", res.data.data);
+        localStorage.setItem("id", res.data.data.id);
+        localStorage.setItem("token", res.data.data.token);
+        localStorage.setItem("image", res.data.data.image);
         localStorage.setItem("IsLogin", true);
         Swal.fire({
           title: "Success!",

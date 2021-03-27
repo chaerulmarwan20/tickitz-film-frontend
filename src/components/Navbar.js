@@ -14,10 +14,10 @@ import Button from "./Button";
 import Logo from "../assets/img/Tickitz 1.png";
 import Icon from "../assets/img/ic_dropdown.png";
 import Search from "../assets/img/ic-search.png";
-import User from "../assets/img/Ellipse 11.png";
 
 export default function Navbar(props) {
   const Url = process.env.REACT_APP_API_URL;
+  const ImgUrl = process.env.REACT_APP_API_IMG;
   const menu = [
     {
       title: "Movies",
@@ -36,6 +36,7 @@ export default function Navbar(props) {
     location: [],
   });
   const history = useHistory();
+  const ImgUser = localStorage.getItem("image");
 
   useEffect(() => {
     axios.get(`${Url}/cities`).then((res) => {
@@ -91,7 +92,7 @@ export default function Navbar(props) {
                 props.isPayment ? "payment" : ""
               } ${props.isProfile ? "profile" : ""}`}
             >
-              <Input type="text" name="keyword" placeholder="Search..." />
+              <Input type="text" name="search" placeholder="Search..." />
             </form>
             {menu.map((data, index) => {
               return (
@@ -191,7 +192,7 @@ export default function Navbar(props) {
                 data-toggle="dropdown"
               >
                 <img
-                  src={User}
+                  src={`${ImgUrl}${ImgUser}`}
                   className="rounded-circle d-none d-lg-block img-user"
                   alt="User"
                 />

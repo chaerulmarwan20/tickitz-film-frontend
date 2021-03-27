@@ -3,10 +3,11 @@ import React from "react";
 import Row from "../../../components/Row";
 import Col from "../../../components/Col";
 
-import User from "../../../assets/img/user.png";
 import Star from "../../../assets/img/star.png";
 
 export default function ProfileInfo(props) {
+  const ImgUrl = process.env.REACT_APP_API_IMG;
+
   return (
     <Col className="col-lg-5 col-xl-4">
       <div className="info d-block pt-4">
@@ -24,10 +25,15 @@ export default function ProfileInfo(props) {
         </Row>
         <Row className="flex-column px-5 mt-4">
           <Col className="d-flex justify-content-center">
-            <img src={User} width="136" className="rounded-circle" alt="User" />
+            <img
+              src={`${ImgUrl}${props.img}`}
+              width="136"
+              className="rounded-circle"
+              alt="User"
+            />
           </Col>
           <Col className="d-flex justify-content-center text-center mt-2">
-            <h2>{props.data}</h2>
+            <h2>{props.user}</h2>
           </Col>
           <Col className="d-flex justify-content-center text-center">
             <p>Moviegoers</p>

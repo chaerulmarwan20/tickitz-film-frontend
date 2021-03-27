@@ -2,8 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import "../assets/css/sign-up.css";
 
-import Hero from "../parts/Signup/Hero";
-import Sidebar from "../parts/Signup/Sidebar";
+import Main from "../parts/Signup";
 
 export default function Signup() {
   const history = useHistory();
@@ -14,8 +13,7 @@ export default function Signup() {
 
   return (
     <main>
-      <Hero></Hero>
-      <Sidebar></Sidebar>
+      <Main></Main>
     </main>
   );
 }

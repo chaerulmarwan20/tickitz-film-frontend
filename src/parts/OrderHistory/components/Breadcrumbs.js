@@ -7,7 +7,7 @@ export default function Breadcrumbs() {
       <Link to="/profile-page" className="mx-5">
         Account Settings
       </Link>
-      <Link to="/order-history" className="active">
+      <Link to="/order-history?sortBy=date&order=asc" className="active">
         Order History
       </Link>
     </div>
