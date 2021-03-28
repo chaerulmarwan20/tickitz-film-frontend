@@ -45,6 +45,8 @@ export default function Sidebar() {
         }).then((result) => {
           if (result.isConfirmed) {
             history.push("/");
+          } else {
+            history.push("/");
           }
         });
       })

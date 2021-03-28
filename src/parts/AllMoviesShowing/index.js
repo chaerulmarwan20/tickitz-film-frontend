@@ -1,7 +1,12 @@
 import { React, useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {
+  getAllMoviesShowing,
+  searchMoviesShowing,
+} from "../../configs/redux/actions/allMoviesShowing";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -14,23 +19,37 @@ import Input from "../../components/Input";
 export default function Index() {
   window.scrollTo(0, 0);
 
-  const history = useHistory();
-
   const Url = process.env.REACT_APP_API_URL;
 
+  const useQuery = () => new URLSearchParams(useLocation().search);
+
+  const params = useQuery();
+
+  const page = params.get("page") ? params.get("page") : 1;
+  const perPage = params.get("perPage") ? params.get("perPage") : 5;
+
+  const dispatch = useDispatch();
+  const { allMoviesShowing, totalPage, currentPage } = useSelector(
+    (state) => state.allMoviesShowing
+  );
+
   const [query, setQuery] = useState("");
-  const [state, setState] = useState({
-    movie: [],
-  });
+  const [show, setShow] = useState(true);
+  const paginate = [];
 
   const handleFormChange = (event) => {
     setQuery(event.target.value);
     axios
-      .get(`${Url}/movies/is-realese/?keyword=${event.target.value}&perPage=10`)
+      .get(
+        `${Url}/movies/is-realese/?keyword=${event.target.value}&perPage=${perPage}`
+      )
       .then((res) => {
-        setState({
-          movie: res.data.data,
-        });
+        if (event.target.value === "") {
+          setShow(true);
+        } else {
+          setShow(false);
+        }
+        dispatch(searchMoviesShowing(res.data.data));
       })
       .catch((err) => {
         Swal.fire({
@@ -40,37 +59,25 @@ export default function Index() {
           confirmButtonText: "Ok",
           confirmButtonColor: "#5f2eea",
         }).then((result) => {
+          setShow(true);
           if (result.isConfirmed) {
             setQuery("");
-            axios
-              .get(`${Url}/movies/realesed/?keyword=true&perPage=10`)
-              .then((res) => {
-                setState({
-                  movie: res.data.data,
-                });
-              });
+            dispatch(getAllMoviesShowing(page, perPage));
+          } else {
+            setQuery("");
+            dispatch(getAllMoviesShowing(page, perPage));
           }
         });
       });
   };
 
   useEffect(() => {
-    axios.get(`${Url}/movies/realesed/?keyword=true&perPage=10`).then((res) => {
-      setState({
-        movie: res.data.data,
-      });
-    });
-  }, [Url]);
+    dispatch(getAllMoviesShowing(page, perPage));
+  }, [dispatch, page, perPage]);
 
-  useEffect(() => {
-    const params = new URLSearchParams();
-    if (query) {
-      params.append("keyword", query);
-    } else {
-      params.delete("keyword");
-    }
-    history.push({ search: params.toString() });
-  }, [query, history]);
+  for (let i = 0; i < totalPage; i++) {
+    paginate.push(i + 1);
+  }
 
   return (
     <Section className="all-movies">
@@ -89,7 +96,7 @@ export default function Index() {
         </Row>
         <Row className="pl-2 pl-lg-0">
           <Col className="col-12 px-0 container-all-movie">
-            {state.movie.map((data, index) => {
+            {allMoviesShowing.map((data, index) => {
               return (
                 <Card key={index} className="mt-5">
                   <div className="card-all-movie">
@@ -111,22 +118,24 @@ export default function Index() {
         <Row className="pl-2 pl-lg-0 mt-5">
           <Col className="col-12 px-0">
             <Nav className="d-flex justify-content-center">
-              <ul className="pagination-custom">
-                <li>
-                  <Link to="#" className="page-active">
-                    1
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#">2</Link>
-                </li>
-                <li>
-                  <Link to="#">3</Link>
-                </li>
-                <li>
-                  <Link to="#">4</Link>
-                </li>
-              </ul>
+              {show === true && (
+                <ul className="pagination-custom">
+                  {paginate.map((data, index) => {
+                    return (
+                      <li key={index}>
+                        <Link
+                          to={`/all-movies-showing?page=${
+                            index + 1
+                          }&perPage=${perPage}`}
+                          className={`${data === currentPage && "page-active"}`}
+                        >
+                          {data}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </Nav>
           </Col>
         </Row>

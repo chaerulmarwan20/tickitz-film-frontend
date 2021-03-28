@@ -126,29 +126,37 @@ export default function Navbar(props) {
                 })}
               </div>
             </li>
-            <li className="nav-item dropdown d-lg-none">
-              <Link
-                className="nav-link mt-4 mb-2 my-lg-0"
-                to="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-              >
-                Account <img src={Icon} width="18px" alt="Icon" />
-              </Link>
-              <div
-                className="dropdown-menu mb-3"
-                aria-labelledby="navbarDropdown"
-              >
-                <Link className="dropdown-item" to="/profile-page">
-                  Settings
+            {localStorage.getItem("IsLogin") === "true" ? (
+              <li className="nav-item dropdown d-lg-none">
+                <Link
+                  className="nav-link mt-4 mb-2 my-lg-0"
+                  to="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                >
+                  Account <img src={Icon} width="18px" alt="Icon" />
                 </Link>
-                <div className="dropdown-divider"></div>
-                <Link className="dropdown-item" to="#" onClick={HandleLogout}>
-                  Logout
+                <div
+                  className="dropdown-menu mb-3"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <Link className="dropdown-item" to="/profile-page">
+                    Settings
+                  </Link>
+                  <div className="dropdown-divider"></div>
+                  <Link className="dropdown-item" to="#" onClick={HandleLogout}>
+                    Logout
+                  </Link>
+                </div>
+              </li>
+            ) : (
+              <li className="nav-item mt-3">
+                <Link className="nav-link my-2 my-lg-0" to="/sign-up">
+                  Sign Up
                 </Link>
-              </div>
-            </li>
+              </li>
+            )}
             <Row className="d-lg-none">
               <Col className="d-flex align-items-center justify-content-center">
                 <p className="copyright-nav">

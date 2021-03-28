@@ -26,7 +26,6 @@ export default function Index() {
     firstName: "firstName",
     lastName: "lastName",
     phoneNumber: "000000000000",
-    username: "username",
     email: "",
     password: "",
   });
@@ -52,7 +51,6 @@ export default function Index() {
           firstName: "firstName",
           lastName: "lastName",
           phoneNumber: "000000000000",
-          username: "username",
           email: "",
           password: "",
         });
