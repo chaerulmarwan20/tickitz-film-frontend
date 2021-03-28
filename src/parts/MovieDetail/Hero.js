@@ -1,6 +1,7 @@
-import { React, useState, useEffect } from "react";
-import axios from "axios";
+import { React, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getMovieDetail } from "../../configs/redux/actions/movieDetail";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -8,30 +9,17 @@ import Col from "../../components/Col";
 import Header from "../../components/Header";
 import Card from "../../components/Card";
 
-export default function Hero() {
-  const Url = process.env.REACT_APP_API_URL;
+function Hero() {
+  window.scrollTo(0, 0);
+
   const { id } = useParams();
 
-  const [state, setState] = useState({
-    movie: [],
-  });
-
-  const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
+  const { movieDetail } = useSelector((state) => state.movieDetail);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    axios
-      .get(`${Url}/movies/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setState({
-          movie: res.data.data,
-        });
-      });
-  }, [Url, id, token]);
+    dispatch(getMovieDetail(id));
+  }, [dispatch, id]);
 
   const setDate = (params) => {
     const date = new Date(params);
@@ -56,7 +44,7 @@ export default function Hero() {
   return (
     <Header className="movies-details mb-5">
       <Container>
-        {state.movie.map((data, index) => {
+        {movieDetail.map((data, index) => {
           return (
             <Row key={index} className="mt-5">
               <Col className="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-start">
@@ -102,3 +90,5 @@ export default function Hero() {
     </Header>
   );
 }
+
+export default Hero;

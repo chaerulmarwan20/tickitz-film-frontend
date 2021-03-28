@@ -1,6 +1,7 @@
-import { React, useState, useEffect } from "react";
-import axios from "axios";
+import { React, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getUpcomingMovies } from "../../configs/redux/actions/homePage";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -24,18 +25,12 @@ export default function UpcomingMovies() {
     "December",
   ];
 
-  const Url = process.env.REACT_APP_API_URL;
-  const [state, setState] = useState({
-    movie: [],
-  });
+  const dispatch = useDispatch();
+  const { upcomingMovies } = useSelector((state) => state.homePage);
 
   useEffect(() => {
-    axios.get(`${Url}/movies/realesed/?keyword=false`).then((res) => {
-      setState({
-        movie: res.data.data,
-      });
-    });
-  }, [Url]);
+    dispatch(getUpcomingMovies());
+  }, [dispatch]);
 
   return (
     <Section className="upcoming-movies">
@@ -61,7 +56,7 @@ export default function UpcomingMovies() {
         </div>
         <Row className="pl-2 pl-lg-0">
           <Col className="col-12 px-0 container-upcoming-movie">
-            {state.movie.map((data, index) => {
+            {upcomingMovies.map((data, index) => {
               return (
                 <Card key={index}>
                   <div className="card-upcoming-movie">

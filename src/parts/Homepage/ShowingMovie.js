@@ -1,6 +1,7 @@
-import { React, useState, useEffect } from "react";
-import axios from "axios";
+import { React, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getShowingMovies } from "../../configs/redux/actions/homePage";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -9,18 +10,12 @@ import Section from "../../components/Section";
 import Card from "../../components/Card";
 
 export default function ShowingMovie() {
-  const Url = process.env.REACT_APP_API_URL;
-  const [state, setState] = useState({
-    movie: [],
-  });
+  const dispatch = useDispatch();
+  const { showingMovies } = useSelector((state) => state.homePage);
 
   useEffect(() => {
-    axios.get(`${Url}/movies/realesed/?keyword=true`).then((res) => {
-      setState({
-        movie: res.data.data,
-      });
-    });
-  }, [Url]);
+    dispatch(getShowingMovies());
+  }, [dispatch]);
 
   return (
     <Section className="showing-movie">
@@ -33,7 +28,7 @@ export default function ShowingMovie() {
         </Row>
         <Row className="mt-5 pl-2 pl-lg-0">
           <Col className="col-12 px-0 now-showing-movie">
-            {state.movie.map((data, index) => {
+            {showingMovies.map((data, index) => {
               return (
                 <Card key={index}>
                   <div className="image-card">
