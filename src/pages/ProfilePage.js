@@ -1,6 +1,6 @@
 import { React, Fragment } from "react";
 import "../assets/css/profile-page.css";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Nav from "../components/Nav";
 import Navbar from "../components/Navbar";
@@ -9,12 +9,6 @@ import Profile from "../parts/ProfilePage";
 import Footer from "../components/Footer";
 
 export default function ProfilePage() {
-  const history = useHistory();
-
-  if (localStorage.getItem("IsLogin") !== "true") {
-    history.goBack();
-  }
-
   return (
     <Fragment>
       <Navbar isProfile></Navbar>

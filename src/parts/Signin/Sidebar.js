@@ -1,6 +1,7 @@
 import { React, useState } from "react";
-import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../configs/redux/actions/user";
 import Swal from "sweetalert2";
 
 import Aside from "../../components/Aside";
@@ -10,7 +11,10 @@ import Button from "../../components/Button";
 import Logo from "../../assets/img/Tickitz-mobile-sign-in.png";
 
 export default function Sidebar() {
-  const Url = process.env.REACT_APP_API_URL;
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -24,21 +28,11 @@ export default function Sidebar() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    PostData();
-  };
-
-  const history = useHistory();
-  const PostData = () => {
-    axios
-      .post(`${Url}/users/auth/login`, data)
+    dispatch(login(data))
       .then((res) => {
-        localStorage.setItem("id", res.data.data.id);
-        localStorage.setItem("token", res.data.data.token);
-        localStorage.setItem("image", res.data.data.image);
-        localStorage.setItem("IsLogin", true);
         Swal.fire({
           title: "Success!",
-          text: res.data.message,
+          text: res,
           icon: "success",
           confirmButtonText: "Ok",
           confirmButtonColor: "#5f2eea",
@@ -53,7 +47,7 @@ export default function Sidebar() {
       .catch((err) => {
         Swal.fire({
           title: "Error!",
-          text: err.response.data.message,
+          text: err,
           icon: "error",
           confirmButtonText: "Ok",
           confirmButtonColor: "#5f2eea",

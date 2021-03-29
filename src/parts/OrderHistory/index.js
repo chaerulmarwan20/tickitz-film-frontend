@@ -1,10 +1,8 @@
 import { React, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getUser,
-  getOrderHistory,
-} from "../../configs/redux/actions/orderHistory";
+import { getOrderHistory } from "../../configs/redux/actions/orderHistory";
+import { getUser } from "../../configs/redux/actions/user";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -24,7 +22,8 @@ export default function Order() {
   const order = query.get("order");
 
   const dispatch = useDispatch();
-  const { user, transactions } = useSelector((state) => state.orderHistory);
+  const { transactions } = useSelector((state) => state.orderHistory);
+  const { user } = useSelector((state) => state.user);
 
   const ImgUrl = process.env.REACT_APP_API_IMG;
 

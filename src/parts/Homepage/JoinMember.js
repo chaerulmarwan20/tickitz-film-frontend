@@ -1,5 +1,6 @@
 import { React, useState } from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { moviegoers } from "../../configs/redux/actions/user";
 import Swal from "sweetalert2";
 
 import Container from "../../components/Container";
@@ -8,7 +9,8 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 
 export default function JoinMember() {
-  const Url = process.env.REACT_APP_API_URL;
+  const dispatch = useDispatch();
+
   const [data, setData] = useState({
     email: "",
   });
@@ -21,55 +23,33 @@ export default function JoinMember() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    putData();
-  };
-
-  const token = localStorage.getItem("token");
-  const login = localStorage.getItem("IsLogin");
-
-  const putData = () => {
-    axios
-      .put(`${Url}/users/moviegoers/`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    dispatch(moviegoers(data))
       .then((res) => {
         setData({
           email: "",
         });
         let title = "Success!";
         let icon = "success";
-        if (res.data.message === "Your account has become moviegoers") {
+        if (res === "Your account has become moviegoers") {
           title = "Info!";
           icon = "info";
         }
         Swal.fire({
           title,
-          text: res.data.message,
+          text: res,
           icon,
           confirmButtonText: "Ok",
           confirmButtonColor: "#5f2eea",
         });
       })
       .catch((err) => {
-        if (login === "true") {
-          Swal.fire({
-            title: "Error!",
-            text: err.response.data.message,
-            icon: "error",
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#5f2eea",
-          });
-        } else {
-          Swal.fire({
-            title: "Error!",
-            text: "Login required",
-            icon: "error",
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#5f2eea",
-          });
-        }
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
       });
   };
 

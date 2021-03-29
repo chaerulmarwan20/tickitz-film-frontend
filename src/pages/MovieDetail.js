@@ -1,5 +1,4 @@
 import { React, Fragment } from "react";
-import { useHistory } from "react-router-dom";
 
 import "../assets/css/movie-detail.css";
 
@@ -11,13 +10,7 @@ import Date from "../parts/MovieDetail/Date";
 import Cinema from "../parts/MovieDetail/Cinema";
 import Footer from "../components/Footer";
 
-export default function MovieDetail() {
-  const history = useHistory();
-
-  if (localStorage.getItem("IsLogin") !== "true") {
-    history.goBack();
-  }
-
+export default function MovieDetail(props) {
   return (
     <Fragment>
       <Navbar></Navbar>

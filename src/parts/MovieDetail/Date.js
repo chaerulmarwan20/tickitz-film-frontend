@@ -1,5 +1,6 @@
-import { React, useEffect, useState } from "react";
-import axios from "axios";
+import { React, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getLocation } from "../../configs/redux/actions/location";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -9,19 +10,12 @@ import Input from "../../components/Input";
 import Select from "../../components/Select";
 
 export default function Date() {
-  const [state, setState] = useState({
-    location: [],
-  });
-
-  const Url = process.env.REACT_APP_API_URL;
+  const dispatch = useDispatch();
+  const { location } = useSelector((state) => state.location);
 
   useEffect(() => {
-    axios.get(`${Url}/cities`).then((res) => {
-      setState({
-        location: res.data.data,
-      });
-    });
-  }, [Url]);
+    dispatch(getLocation());
+  }, [dispatch]);
 
   return (
     <Section className="date">
@@ -35,7 +29,7 @@ export default function Date() {
           <Col className="col-12 d-flex justify-content-center">
             <form className="form-inline d-flex justify-content-center">
               <Input type="date" name="date" value="2021-07-21" />
-              <Select name="location" option={state.location}></Select>
+              <Select name="location" option={location}></Select>
             </form>
           </Col>
         </Row>

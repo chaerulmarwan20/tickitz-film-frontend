@@ -1,6 +1,5 @@
 import { React, Fragment } from "react";
 import "../assets/css/payment-page.css";
-import { useHistory } from "react-router-dom";
 
 import Nav from "../components/Nav";
 import Navbar from "../components/Navbar";
@@ -9,12 +8,6 @@ import PaymentDetail from "../parts/PaymentPage";
 import Footer from "../components/Footer";
 
 export default function PaymentPage() {
-  const history = useHistory();
-
-  if (localStorage.getItem("IsLogin") !== "true") {
-    history.goBack();
-  }
-
   return (
     <Fragment>
       <Navbar isPayment></Navbar>

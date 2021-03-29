@@ -1,7 +1,8 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getLocation } from "../configs/redux/actions/location";
 import propTypes from "prop-types";
-import axios from "axios";
 import Swal from "sweetalert2";
 
 import Container from "./Container";
@@ -16,8 +17,14 @@ import Icon from "../assets/img/ic_dropdown.png";
 import Search from "../assets/img/ic-search.png";
 
 export default function Navbar(props) {
-  const Url = process.env.REACT_APP_API_URL;
   const ImgUrl = process.env.REACT_APP_API_IMG;
+  const ImgUser = localStorage.getItem("image");
+
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+  const { location } = useSelector((state) => state.location);
+
   const menu = [
     {
       title: "Movies",
@@ -32,19 +39,10 @@ export default function Navbar(props) {
       href: "/order-page",
     },
   ];
-  const [state, setState] = useState({
-    location: [],
-  });
-  const history = useHistory();
-  const ImgUser = localStorage.getItem("image");
 
   useEffect(() => {
-    axios.get(`${Url}/cities`).then((res) => {
-      setState({
-        location: res.data.data,
-      });
-    });
-  }, [Url]);
+    dispatch(getLocation());
+  }, [dispatch]);
 
   const HandleLogout = () => {
     Swal.fire({
@@ -59,7 +57,7 @@ export default function Navbar(props) {
       if (result.isConfirmed) {
         localStorage.clear();
         history.push("/");
-      } else if (result.isDenied) {
+      } else {
         Swal.fire({
           title: "Logout canceled",
           text: "",
@@ -117,7 +115,7 @@ export default function Navbar(props) {
                 className="dropdown-menu mb-3"
                 aria-labelledby="navbarDropdown"
               >
-                {state.location.map((data, index) => {
+                {location.map((data, index) => {
                   return (
                     <Link key={index} className="dropdown-item" to="#">
                       {data.name}
@@ -126,7 +124,7 @@ export default function Navbar(props) {
                 })}
               </div>
             </li>
-            {localStorage.getItem("IsLogin") === "true" ? (
+            {localStorage.getItem("token") ? (
               <li className="nav-item dropdown d-lg-none">
                 <Link
                   className="nav-link mt-4 mb-2 my-lg-0"
@@ -176,7 +174,7 @@ export default function Navbar(props) {
               Location <img src={Icon} width="18px" alt="Icon" />
             </Link>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              {state.location.map((data, index) => {
+              {location.map((data, index) => {
                 return (
                   <Link key={index} className="dropdown-item" to="#">
                     {data.name}
@@ -190,7 +188,7 @@ export default function Navbar(props) {
             className="ic-search d-none d-lg-block mx-5"
             alt="Search"
           />
-          {localStorage.getItem("IsLogin") === "true" ? (
+          {localStorage.getItem("token") ? (
             <div className="dropdown">
               <Link
                 className="nav-link"

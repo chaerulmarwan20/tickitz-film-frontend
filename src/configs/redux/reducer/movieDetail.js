@@ -3,12 +3,13 @@ const initialState = {
 };
 
 const movieDetailReducer = (state = initialState, action) => {
-  if (action.type === "GET_DETAIL") {
-    return {
-      movieDetail: action.payload,
-    };
-  } else {
-    return state;
+  switch (action.type) {
+    case "GET_DETAIL":
+      return {
+        movieDetail: action.payload,
+      };
+    default:
+      return state;
   }
 };
 

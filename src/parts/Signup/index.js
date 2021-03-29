@@ -1,6 +1,7 @@
 import { React, Fragment, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp, verify } from "../../configs/redux/actions/user";
 import Swal from "sweetalert2";
 
 import Aside from "../../components/Aside";
@@ -20,7 +21,9 @@ export default function Index() {
   let email = query.get("email");
   let token = query.get("token");
 
-  const Url = process.env.REACT_APP_API_URL;
+  const dispatch = useDispatch();
+
+  const { loading } = useSelector((state) => state.user);
 
   const [data, setData] = useState({
     firstName: "firstName",
@@ -40,12 +43,7 @@ export default function Index() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postData();
-  };
-
-  const postData = () => {
-    axios
-      .post(`${Url}/users/`, data)
+    dispatch(signUp(data))
       .then((res) => {
         setData({
           firstName: "firstName",
@@ -58,7 +56,7 @@ export default function Index() {
         setStep("activate");
         Swal.fire({
           title: "Success!",
-          text: res.data.message,
+          text: res,
           icon: "success",
           confirmButtonText: "Ok",
           confirmButtonColor: "#5f2eea",
@@ -68,7 +66,7 @@ export default function Index() {
         setChecked(false);
         Swal.fire({
           title: "Error!",
-          text: err.response.data.message,
+          text: err.message,
           icon: "error",
           confirmButtonText: "Ok",
           confirmButtonColor: "#5f2eea",
@@ -86,14 +84,13 @@ export default function Index() {
 
   useEffect(() => {
     if (email !== null && token !== null) {
-      axios
-        .get(`${Url}/users/auth/verify/?email=${email}&token=${token}`)
+      dispatch(verify(email, token))
         .then((res) => {
           setChecked(false);
           setStep("done");
           Swal.fire({
             title: "Success!",
-            text: res.data.message,
+            text: res,
             icon: "success",
             confirmButtonText: "Ok",
             confirmButtonColor: "#5f2eea",
@@ -102,14 +99,14 @@ export default function Index() {
         .catch((err) => {
           Swal.fire({
             title: "Error!",
-            text: err.response.data.message,
+            text: err.message,
             icon: "error",
             confirmButtonText: "Ok",
             confirmButtonColor: "#5f2eea",
           });
         });
     }
-  }, [Url, email, token]);
+  }, [dispatch, email, token]);
 
   return (
     <Fragment>
@@ -193,7 +190,7 @@ export default function Index() {
             onClick={handleSubmit}
             disabled={checked === true ? false : true}
           >
-            Join for free now
+            {!loading ? "Join for free now" : "Please wait..."}
           </Button>
         </form>
         <p className="forgot-password">
