@@ -1,7 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getUserUpdate, update } from "../../configs/redux/actions/user";
+import { update, getUser } from "../../configs/redux/actions/user";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -12,7 +13,14 @@ import Input from "../../components/Input";
 import ProfileInfo from "./components/ProfileInfo";
 import Breadcrumbs from "./components/Breadcrumbs";
 
+import Eye from "../../assets/img/eye.png";
+
 export default function Profile() {
+  const Url = process.env.REACT_APP_API_URL;
+
+  const id = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
+
   const dispatch = useDispatch();
 
   const [auth, setAuth] = useState({
@@ -20,30 +28,58 @@ export default function Profile() {
     confirmPassword: "",
   });
   const [data, setData] = useState({
-    user: {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      email: "",
-      password: "",
-    },
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+    password: "",
   });
+  const [dataImage, setDataImage] = useState({
+    image: {},
+  });
+  const [select, setSelect] = useState("No choosen");
+  const [status, setStatus] = useState(false);
+  const [typePassword, setTypePassword] = useState("password");
+  const [typeConfirmPassword, setTypeConfirmPassword] = useState("password");
+
+  const handleTogglePassword = () => {
+    if (typePassword === "text") {
+      setTypePassword("password");
+    } else {
+      setTypePassword("text");
+    }
+  };
+
+  const handleToggleConfirmPassword = () => {
+    if (typeConfirmPassword === "text") {
+      setTypeConfirmPassword("password");
+    } else {
+      setTypeConfirmPassword("text");
+    }
+  };
 
   const handleFormChange = (event) => {
     const authNew = { ...auth };
-    const userNew = { ...data.user };
+    const userNew = { ...data };
     authNew[event.target.name] = event.target.value;
     userNew[event.target.name] = event.target.value;
     setAuth(authNew);
-    setData({
-      user: userNew,
-    });
+    setData(userNew);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("firstName", data.firstName);
+    formData.append("lastName", data.lastName);
+    formData.append("phoneNumber", data.phoneNumber);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("image", dataImage.image);
+    setStatus(true);
+    setSelect("No Choosen");
     if (auth.password === auth.confirmPassword) {
-      dispatch(update(data.user))
+      dispatch(update(formData))
         .then((res) => {
           Swal.fire({
             title: "Success!",
@@ -51,28 +87,21 @@ export default function Profile() {
             icon: "success",
             confirmButtonText: "Ok",
             confirmButtonColor: "#5f2eea",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              dispatch(getUserUpdate()).then((res) => {
-                setData({
-                  user: res,
-                });
+          }).then(() => {
+            axios
+              .get(`${Url}/users/${id}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+              .then((res) => {
+                dispatch(getUser());
+                setData(res.data.data[0]);
                 setAuth({
                   password: "",
                   confirmPassword: "",
                 });
               });
-            } else {
-              dispatch(getUserUpdate()).then((res) => {
-                setData({
-                  user: res,
-                });
-                setAuth({
-                  password: "",
-                  confirmPassword: "",
-                });
-              });
-            }
           });
         })
         .catch((err) => {
@@ -95,21 +124,34 @@ export default function Profile() {
     }
   };
 
-  useEffect(() => {
-    dispatch(getUserUpdate()).then((res) => {
-      setData({
-        user: res,
-      });
+  const handleChangeImage = (file, name) => {
+    setSelect(name);
+    setDataImage({
+      image: file,
     });
-  }, [dispatch]);
+  };
+
+  useEffect(() => {
+    axios
+      .get(`${Url}/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setData(res.data.data[0]);
+      });
+  }, [Url, id, token]);
 
   return (
     <Section className="profile">
       <Container>
         <Row>
           <ProfileInfo
-            user={data.user.fullName}
-            img={data.user.image ? data.user.image : "images/avatar.png"}
+            user={data.fullName}
+            img={data.image ? data.image : "images/avatar.png"}
+            changeImage={handleChangeImage}
+            status={status}
           ></ProfileInfo>
           <Col className="col-lg-7 col-xl-8">
             <Breadcrumbs></Breadcrumbs>
@@ -125,7 +167,7 @@ export default function Profile() {
                         label="First Name"
                         type="text"
                         name="firstName"
-                        value={data.user.firstName}
+                        value={data.firstName}
                         placeholder="Jonas"
                         onChange={handleFormChange}
                       />
@@ -137,7 +179,7 @@ export default function Profile() {
                         label="Last Name"
                         type="text"
                         name="lastName"
-                        value={data.user.lastName}
+                        value={data.lastName}
                         placeholder="El Rodriguez"
                         onChange={handleFormChange}
                       />
@@ -151,7 +193,7 @@ export default function Profile() {
                         label="E-mail"
                         type="email"
                         name="email"
-                        value={data.user.email}
+                        value={data.email}
                         placeholder="jonasrodrigu123@gmail.com"
                         onChange={handleFormChange}
                       />
@@ -169,7 +211,7 @@ export default function Profile() {
                         <Input
                           type="number"
                           name="phoneNumber"
-                          value={data.user.phoneNumber}
+                          value={data.phoneNumber}
                           placeholder="81445687121"
                           onChange={handleFormChange}
                         />
@@ -177,6 +219,7 @@ export default function Profile() {
                     </div>
                   </Col>
                 </Row>
+                Change image: Click your image <br /> Selected: {select}
               </form>
             </div>
             <div className="account-privacy mt-4 py-5 px-4">
@@ -185,26 +228,40 @@ export default function Profile() {
               <form className="mt-5">
                 <Row>
                   <Col className="col-xl-6">
-                    <div className="form-group">
+                    <div className="form-group password-container">
                       <Input
                         label="New Password"
-                        type="password"
+                        type={typePassword}
                         name="password"
                         value={auth.password}
                         placeholder="Write your password"
                         onChange={handleFormChange}
                       />
+                      <img
+                        src={Eye}
+                        alt="Eye"
+                        width="20"
+                        className="img-eye"
+                        onClick={handleTogglePassword}
+                      />
                     </div>
                   </Col>
                   <Col className="col-xl-6">
-                    <div className="form-group">
+                    <div className="form-group password-container">
                       <Input
                         label="Confirm Password"
-                        type="password"
+                        type={typeConfirmPassword}
                         name="confirmPassword"
                         value={auth.confirmPassword}
                         placeholder="Confirm your password"
                         onChange={handleFormChange}
+                      />
+                      <img
+                        src={Eye}
+                        alt="Eye"
+                        width="20"
+                        className="img-eye"
+                        onClick={handleToggleConfirmPassword}
                       />
                     </div>
                   </Col>

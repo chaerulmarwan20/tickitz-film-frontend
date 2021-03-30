@@ -2,6 +2,7 @@ import { React, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getLocation } from "../configs/redux/actions/location";
+import { getUser } from "../configs/redux/actions/user";
 import propTypes from "prop-types";
 import Swal from "sweetalert2";
 
@@ -18,12 +19,12 @@ import Search from "../assets/img/ic-search.png";
 
 export default function Navbar(props) {
   const ImgUrl = process.env.REACT_APP_API_IMG;
-  const ImgUser = localStorage.getItem("image");
 
   const history = useHistory();
 
   const dispatch = useDispatch();
   const { location } = useSelector((state) => state.location);
+  const { user } = useSelector((state) => state.user);
 
   const menu = [
     {
@@ -42,6 +43,12 @@ export default function Navbar(props) {
 
   useEffect(() => {
     dispatch(getLocation());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      dispatch(getUser());
+    }
   }, [dispatch]);
 
   const HandleLogout = () => {
@@ -149,7 +156,7 @@ export default function Navbar(props) {
                 </div>
               </li>
             ) : (
-              <li className="nav-item mt-3">
+              <li className="nav-item mt-3 d-lg-none">
                 <Link className="nav-link my-2 my-lg-0" to="/sign-up">
                   Sign Up
                 </Link>
@@ -197,11 +204,19 @@ export default function Navbar(props) {
                 id="dropdownMenuLink"
                 data-toggle="dropdown"
               >
-                <img
-                  src={`${ImgUrl}${ImgUser}`}
-                  className="rounded-circle d-none d-lg-block img-user"
-                  alt="User"
-                />
+                {user.image ? (
+                  <img
+                    src={`${ImgUrl}${user.image}`}
+                    className="rounded-circle d-none d-lg-block img-user"
+                    alt="User"
+                  />
+                ) : (
+                  <img
+                    src={`${ImgUrl}images/avatar.png`}
+                    className="rounded-circle d-none d-lg-block img-user"
+                    alt="User"
+                  />
+                )}
               </Link>
               <div
                 className="dropdown-menu user"

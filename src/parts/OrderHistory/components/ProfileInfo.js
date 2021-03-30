@@ -28,8 +28,9 @@ export default function ProfileInfo(props) {
             <img
               src={`${ImgUrl}${props.img}`}
               width="136"
-              alt="User"
+              height="136"
               className="rounded-circle"
+              alt="User"
             />
           </Col>
           <Col className="d-flex justify-content-center text-center mt-2">

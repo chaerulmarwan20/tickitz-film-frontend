@@ -9,6 +9,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 import Logo from "../../assets/img/Tickitz-mobile-sign-in.png";
+import Eye from "../../assets/img/eye.png";
 
 export default function Sidebar() {
   const history = useHistory();
@@ -19,6 +20,15 @@ export default function Sidebar() {
     email: "",
     password: "",
   });
+  const [type, setType] = useState("password");
+
+  const handleToggle = () => {
+    if (type === "text") {
+      setType("password");
+    } else {
+      setType("text");
+    }
+  };
 
   const handleFormChange = (event) => {
     const dataNew = { ...data };
@@ -70,13 +80,22 @@ export default function Sidebar() {
           placeholder="Write your email"
           onChange={handleFormChange}
         />
-        <Input
-          label="Password"
-          type="password"
-          name="password"
-          placeholder="Write your password"
-          onChange={handleFormChange}
-        />
+        <div className="password-container">
+          <Input
+            label="Password"
+            type={type}
+            name="password"
+            placeholder="Write your password"
+            onChange={handleFormChange}
+          />
+          <img
+            src={Eye}
+            alt="Eye"
+            width="20"
+            className="img-eye"
+            onClick={handleToggle}
+          />
+        </div>
         <Button type="submit" className="btn-sign-in" onClick={handleSubmit}>
           Sign In
         </Button>

@@ -64,7 +64,7 @@ export const login = (data) => (dispatch) => {
         dispatch({ type: "LOGIN", payload: res.data.data });
         localStorage.setItem("id", res.data.data.id);
         localStorage.setItem("token", res.data.data.token);
-        localStorage.setItem("image", res.data.data.image);
+        localStorage.setItem("role", res.data.data.role);
         resolve(res.data.message);
       })
       .catch((err) => {
@@ -129,23 +129,6 @@ export const update = (data) => (dispatch) => {
       })
       .catch((err) => {
         reject(new Error(err.response.data.message));
-      });
-  });
-};
-
-export const getUserUpdate = () => (dispatch) => {
-  return new Promise((resolve, reject) => {
-    const Url = process.env.REACT_APP_API_URL;
-    const id = localStorage.getItem("id");
-    const token = localStorage.getItem("token");
-    axios
-      .get(`${Url}/users/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        resolve(res.data.data[0]);
       });
   });
 };

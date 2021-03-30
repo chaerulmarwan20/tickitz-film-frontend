@@ -290,7 +290,8 @@
 
 @media screen and (max-width: 767px) {
   .order-history .detail-order .btn-ticket,
-  .order-history .detail-order .btn-ticket-used {
+  .order-history .detail-order .btn-ticket-used,
+  .order-history .detail-order .btn-ticket-canceled {
     width: 279px;
   }
 }

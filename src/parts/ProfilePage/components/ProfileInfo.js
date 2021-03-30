@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useRef } from "react";
 
 import Row from "../../../components/Row";
 import Col from "../../../components/Col";
@@ -7,6 +7,18 @@ import Star from "../../../assets/img/star.png";
 
 export default function ProfileInfo(props) {
   const ImgUrl = process.env.REACT_APP_API_IMG;
+
+  const imageRef = useRef(null);
+
+  if (props.status) {
+    imageRef.current.value = "";
+  }
+
+  const handleChangeImage = (event) => {
+    const imgFiles = event.target.files[0];
+    const imgName = event.target.files[0].name;
+    props.changeImage(imgFiles, imgName);
+  };
 
   return (
     <Col className="col-lg-5 col-xl-4">
@@ -28,10 +40,17 @@ export default function ProfileInfo(props) {
             <img
               src={`${ImgUrl}${props.img}`}
               width="136"
+              height="136"
               className="rounded-circle"
               alt="User"
             />
-            <input type="file" name="image" className="file-input" />
+            <input
+              type="file"
+              name="image"
+              className="file-input"
+              ref={imageRef}
+              onChange={(event) => handleChangeImage(event)}
+            />
           </Col>
           <Col className="d-flex justify-content-center text-center mt-2">
             <h2>{props.user}</h2>

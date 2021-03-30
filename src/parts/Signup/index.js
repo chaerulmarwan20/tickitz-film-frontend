@@ -13,6 +13,7 @@ import Section from "../../components/Section";
 
 import Logo1 from "../../assets/img/tickitz-sign-in.png";
 import Logo2 from "../../assets/img/Tickitz-mobile-sign-in.png";
+import Eye from "../../assets/img/eye.png";
 
 export default function Index() {
   const useQuery = () => new URLSearchParams(useLocation().search);
@@ -34,6 +35,15 @@ export default function Index() {
   });
   const [checked, setChecked] = useState(false);
   const [step, setStep] = useState("fill");
+  const [type, setType] = useState("password");
+
+  const handleToggle = () => {
+    if (type === "text") {
+      setType("password");
+    } else {
+      setType("text");
+    }
+  };
 
   const handleFormChange = (event) => {
     const dataNew = { ...data };
@@ -164,14 +174,23 @@ export default function Index() {
             placeholder="Write your email"
             onChange={handleFormChange}
           />
-          <Input
-            label="Password"
-            type="password"
-            name="password"
-            value={data.password}
-            placeholder="Write your password"
-            onChange={handleFormChange}
-          />
+          <div className="password-container">
+            <Input
+              label="Password"
+              type={type}
+              name="password"
+              value={data.password}
+              placeholder="Write your password"
+              onChange={handleFormChange}
+            />
+            <img
+              src={Eye}
+              alt="Eye"
+              width="20"
+              className="img-eye"
+              onClick={handleToggle}
+            />
+          </div>
           <div className="d-flex checkbox mt-0">
             <Input
               type="checkbox"
