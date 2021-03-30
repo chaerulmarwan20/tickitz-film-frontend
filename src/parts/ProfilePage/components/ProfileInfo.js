@@ -24,13 +24,14 @@ export default function ProfileInfo(props) {
           </Col>
         </Row>
         <Row className="flex-column px-5 mt-4">
-          <Col className="d-flex justify-content-center">
+          <Col className="d-flex justify-content-center img-container">
             <img
               src={`${ImgUrl}${props.img}`}
               width="136"
               className="rounded-circle"
               alt="User"
             />
+            <input type="file" name="image" className="file-input" />
           </Col>
           <Col className="d-flex justify-content-center text-center mt-2">
             <h2>{props.user}</h2>

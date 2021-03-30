@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getUserUpdate, update } from "../../configs/redux/actions/user";
 import Swal from "sweetalert2";
 
 import Container from "../../components/Container";
@@ -12,10 +13,7 @@ import ProfileInfo from "./components/ProfileInfo";
 import Breadcrumbs from "./components/Breadcrumbs";
 
 export default function Profile() {
-  const Url = process.env.REACT_APP_API_URL;
-
-  const id = localStorage.getItem("id");
-  const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
 
   const [auth, setAuth] = useState({
     password: "",
@@ -31,51 +29,6 @@ export default function Profile() {
     },
   });
 
-  const putData = () => {
-    axios
-      .put(`${Url}/users/${id}`, data.user, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        Swal.fire({
-          title: "Success!",
-          text: res.data.message,
-          icon: "success",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            axios
-              .get(`${Url}/users/${id}`, {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              })
-              .then((res) => {
-                setData({
-                  user: res.data.data[0],
-                });
-                setAuth({
-                  password: "",
-                  confirmPassword: "",
-                });
-              });
-          }
-        });
-      })
-      .catch((err) => {
-        Swal.fire({
-          title: "Error!",
-          text: err.response.data.message,
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
-      });
-  };
-
   const handleFormChange = (event) => {
     const authNew = { ...auth };
     const userNew = { ...data.user };
@@ -90,7 +43,47 @@ export default function Profile() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (auth.password === auth.confirmPassword) {
-      putData();
+      dispatch(update(data.user))
+        .then((res) => {
+          Swal.fire({
+            title: "Success!",
+            text: res,
+            icon: "success",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              dispatch(getUserUpdate()).then((res) => {
+                setData({
+                  user: res,
+                });
+                setAuth({
+                  password: "",
+                  confirmPassword: "",
+                });
+              });
+            } else {
+              dispatch(getUserUpdate()).then((res) => {
+                setData({
+                  user: res,
+                });
+                setAuth({
+                  password: "",
+                  confirmPassword: "",
+                });
+              });
+            }
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "Error!",
+            text: err.message,
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        });
     } else {
       Swal.fire({
         title: "Error!",
@@ -103,18 +96,12 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    axios
-      .get(`${Url}/users/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setData({
-          user: res.data.data[0],
-        });
+    dispatch(getUserUpdate()).then((res) => {
+      setData({
+        user: res,
       });
-  }, [Url, id, token]);
+    });
+  }, [dispatch]);
 
   return (
     <Section className="profile">
