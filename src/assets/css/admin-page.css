@@ -30,9 +30,19 @@ section.description-premiere .movie-description .card.image {
 
 section.description-premiere .movie-description .card.image img {
   border-radius: 4px;
+  cursor: pointer;
 }
 
-section.description-premiere .movie-description .btn-add {
+section.description-premiere .movie-description .card.image .file-input {
+  width: 177px;
+  height: 275px;
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+section.description-premiere .movie-description .btn-add,
+section.description-premiere .movie-description .btn-add-movie {
   width: 249px;
   height: 40px;
   border-radius: 2px;
@@ -46,7 +56,8 @@ section.description-premiere .movie-description .btn-add {
   transition: 0.5s ease;
 }
 
-section.description-premiere .movie-description .btn-add:hover {
+section.description-premiere .movie-description .btn-add:hover,
+section.description-premiere .movie-description .btn-add-movie:hover {
   border: 1px solid transparent;
   color: white;
   background-color: #5f2eea;
@@ -128,7 +139,7 @@ section.description-premiere .movie-description textarea.form-control {
   letter-spacing: 0.75px;
   color: #4e4b66;
   padding-left: 24px;
-  padding-top: 20px;
+  padding-top: 15px;
   padding-bottom: 22px;
 }
 

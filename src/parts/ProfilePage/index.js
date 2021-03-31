@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { update, getUser } from "../../configs/redux/actions/user";
-import Swal from "sweetalert2";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";

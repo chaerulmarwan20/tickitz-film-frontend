@@ -12,7 +12,8 @@ class Input extends Component {
           className={className.join(" ")}
           id={this.props.name}
           name={this.props.name}
-          defaultValue={this.props.value}
+          value={this.props.value}
+          onChange={this.props.onChange}
         />
       );
     } else if (this.props.type === "checkbox") {
