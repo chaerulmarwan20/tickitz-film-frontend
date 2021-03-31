@@ -2,6 +2,7 @@ const initialState = {
   user: {},
   loading: false,
   error: "",
+  role: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -33,6 +34,7 @@ const userReducer = (state = initialState, action) => {
           ...state.user,
           ...action.payload,
         },
+        role: action.role,
       };
     case "RESET_REQUEST":
       return {
@@ -54,6 +56,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+        role: action.role,
       };
     default:
       return state;

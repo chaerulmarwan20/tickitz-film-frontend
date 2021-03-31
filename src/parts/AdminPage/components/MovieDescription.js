@@ -33,7 +33,6 @@ export default function MovieDescription() {
   const [select, setSelect] = useState("No choosen");
 
   const handleFormChange = (event) => {
-    console.log(event);
     const dataNew = { ...data };
     dataNew[event.target.name] = event.target.value;
     setData(dataNew);

@@ -64,7 +64,6 @@ export const login = (data) => (dispatch) => {
         dispatch({ type: "LOGIN", payload: res.data.data });
         localStorage.setItem("id", res.data.data.id);
         localStorage.setItem("token", res.data.data.token);
-        localStorage.setItem("role", res.data.data.role);
         resolve(res.data.message);
       })
       .catch((err) => {
@@ -108,7 +107,11 @@ export const getUser = () => {
         },
       })
       .then((res) => {
-        dispatch({ type: "GET_USER", payload: res.data.data[0] });
+        dispatch({
+          type: "GET_USER",
+          payload: res.data.data[0],
+          role: res.data.data[0].role,
+        });
       });
   };
 };

@@ -12,7 +12,7 @@ class Input extends Component {
           className={className.join(" ")}
           id={this.props.name}
           name={this.props.name}
-          value={this.props.value}
+          defaultValue={this.props.value}
           onChange={this.props.onChange}
         />
       );
