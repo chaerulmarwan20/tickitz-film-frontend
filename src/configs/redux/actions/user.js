@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosApiInstance from "../../../helpers/axios";
 
 const signUpRequest = () => {
   return { type: "SIGN_UP_REQUEST" };
@@ -62,7 +63,6 @@ export const login = (data) => (dispatch) => {
       .post(`${Url}/users/auth/login`, data)
       .then((res) => {
         dispatch({ type: "LOGIN", payload: res.data.data });
-        localStorage.setItem("id", res.data.data.id);
         localStorage.setItem("token", res.data.data.token);
         resolve(res.data.message);
       })
@@ -76,12 +76,8 @@ export const moviegoers = (data) => (dispatch) => {
   const Url = process.env.REACT_APP_API_URL;
   const token = localStorage.getItem("token");
   return new Promise((resolve, reject) => {
-    axios
-      .put(`${Url}/users/moviegoers/`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    axiosApiInstance
+      .put(`${Url}/users/moviegoers/`, data)
       .then((res) => {
         resolve(res.data.message);
       })
@@ -98,35 +94,30 @@ export const moviegoers = (data) => (dispatch) => {
 export const getUser = () => {
   return (dispatch) => {
     const Url = process.env.REACT_APP_API_URL;
-    const id = localStorage.getItem("id");
-    const token = localStorage.getItem("token");
-    axios
-      .get(`${Url}/users/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        dispatch({
-          type: "GET_USER",
-          payload: res.data.data[0],
-          role: res.data.data[0].role,
-        });
+    axiosApiInstance.get(`${Url}/users/find-one`).then((res) => {
+      dispatch({
+        type: "GET_USER",
+        payload: res.data.data[0],
+        role: res.data.data[0].role,
       });
+    });
   };
 };
 
-export const update = (data) => (dispatch) => {
+export const findUser = () => (dispatch) => {
   return new Promise((resolve, reject) => {
     const Url = process.env.REACT_APP_API_URL;
-    const id = localStorage.getItem("id");
-    const token = localStorage.getItem("token");
-    axios
-      .put(`${Url}/users/${id}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    axiosApiInstance.get(`${Url}/users/find-one`).then((res) => {
+      resolve(res.data.data[0]);
+    });
+  });
+};
+
+export const update = (data, id) => (dispatch) => {
+  return new Promise((resolve, reject) => {
+    const Url = process.env.REACT_APP_API_URL;
+    axiosApiInstance
+      .put(`${Url}/users/${id}`, data)
       .then((res) => {
         resolve(res.data.message);
       })

@@ -1,6 +1,6 @@
 import { React, useState, useRef } from "react";
-import axios from "axios";
 import Swal from "sweetalert2";
+import axiosApiInstance from "../../../helpers/axios";
 
 import Row from "../../../components/Row";
 import Col from "../../../components/Col";
@@ -13,9 +13,9 @@ import Image from "../../../assets/img/spider-admin.png";
 export default function MovieDescription() {
   const Url = process.env.REACT_APP_API_URL;
 
-  const token = localStorage.getItem("token");
-
   const imageRef = useRef(null);
+
+  const [imgUrl, setImgUrl] = useState(Image);
 
   const [data, setData] = useState({
     title: "",
@@ -38,6 +38,14 @@ export default function MovieDescription() {
     setData(dataNew);
   };
 
+  const handleChangeImage = (event) => {
+    setSelect(event.target.files[0].name);
+    setImgUrl(URL.createObjectURL(event.target.files[0]));
+    setDataImage({
+      image: event.target.files[0],
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -49,12 +57,8 @@ export default function MovieDescription() {
     formData.append("cast", data.cast);
     formData.append("synopsis", data.synopsis);
     formData.append("dateRealesed", data.dateRealesed);
-    axios
-      .post(`${Url}/movies/`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    axiosApiInstance
+      .post(`${Url}/movies/`, formData)
       .then((res) => {
         Swal.fire({
           title: "Success!",
@@ -65,6 +69,7 @@ export default function MovieDescription() {
         }).then(() => {
           imageRef.current.value = "";
           setSelect("No Choosen");
+          setImgUrl(Image);
           setData({
             title: "",
             genre: "",
@@ -88,19 +93,12 @@ export default function MovieDescription() {
       });
   };
 
-  const handleChangeImage = (event) => {
-    setSelect(event.target.files[0].name);
-    setDataImage({
-      image: event.target.files[0],
-    });
-  };
-
   return (
     <div className="movie-description d-flex justify-content-center pt-5 pb-5 pb-lg-4 px-4 mt-4">
       <Row>
         <Col className="col-12 col-lg-5">
           <Card className="image d-flex justify-content-center align-items-center">
-            <img src={Image} alt="ImageDescription" width="177" />
+            <img src={imgUrl} alt="ImageDescription" width="177" />
             <input
               type="file"
               name="image"

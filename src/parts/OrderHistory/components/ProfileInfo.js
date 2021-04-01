@@ -25,13 +25,17 @@ export default function ProfileInfo(props) {
         </Row>
         <Row className="flex-column px-5 mt-4">
           <Col className="d-flex justify-content-center">
-            <img
-              src={`${ImgUrl}${props.img}`}
-              width="136"
-              height="136"
-              className="rounded-circle"
-              alt="User"
-            />
+            {props.img === undefined ? (
+              ""
+            ) : (
+              <img
+                src={`${ImgUrl}${props.img}`}
+                width="136"
+                height="136"
+                className="rounded-circle"
+                alt="User"
+              />
+            )}
           </Col>
           <Col className="d-flex justify-content-center text-center mt-2">
             <h2>{props.user}</h2>

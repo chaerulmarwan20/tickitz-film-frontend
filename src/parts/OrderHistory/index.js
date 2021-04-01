@@ -64,21 +64,20 @@ export default function Order() {
   };
 
   useEffect(() => {
-    dispatch(getOrderHistory(sortBy, order));
-  }, [dispatch, sortBy, order]);
-
-  useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (user.id !== undefined) {
+      dispatch(getOrderHistory(sortBy, order, user.id));
+    }
+  }, [dispatch, sortBy, order, user.id]);
 
   return (
     <Section className="order-history">
       <Container>
         <Row>
-          <ProfileInfo
-            user={user.fullName}
-            img={user.image ? user.image : "images/avatar.png"}
-          ></ProfileInfo>
+          <ProfileInfo user={user.fullName} img={user.image}></ProfileInfo>
           <Col className="col-lg-7 col-xl-8">
             <Breadcrumbs></Breadcrumbs>
             <Container>

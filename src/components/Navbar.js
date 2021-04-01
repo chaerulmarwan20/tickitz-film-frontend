@@ -211,11 +211,7 @@ export default function Navbar(props) {
                     alt="User"
                   />
                 ) : (
-                  <img
-                    src={`${ImgUrl}images/avatar.png`}
-                    className="rounded-circle d-none d-lg-block img-user"
-                    alt="User"
-                  />
+                  ""
                 )}
               </Link>
               <div

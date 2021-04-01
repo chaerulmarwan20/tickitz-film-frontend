@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { update, getUser } from "../../configs/redux/actions/user";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { update, getUser, findUser } from "../../configs/redux/actions/user";
 import Swal from "sweetalert2";
 
 import Container from "../../components/Container";
@@ -16,12 +15,8 @@ import Breadcrumbs from "./components/Breadcrumbs";
 import Eye from "../../assets/img/eye.png";
 
 export default function Profile() {
-  const Url = process.env.REACT_APP_API_URL;
-
-  const id = localStorage.getItem("id");
-  const token = localStorage.getItem("token");
-
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
 
   const [auth, setAuth] = useState({
     password: "",
@@ -79,7 +74,7 @@ export default function Profile() {
     setStatus(true);
     setSelect("No Choosen");
     if (auth.password === auth.confirmPassword) {
-      dispatch(update(formData))
+      dispatch(update(formData, user.id))
         .then((res) => {
           Swal.fire({
             title: "Success!",
@@ -88,20 +83,14 @@ export default function Profile() {
             confirmButtonText: "Ok",
             confirmButtonColor: "#5f2eea",
           }).then(() => {
-            axios
-              .get(`${Url}/users/${id}`, {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              })
-              .then((res) => {
-                dispatch(getUser());
-                setData(res.data.data[0]);
-                setAuth({
-                  password: "",
-                  confirmPassword: "",
-                });
+            dispatch(findUser()).then((res) => {
+              dispatch(getUser());
+              setData(res);
+              setAuth({
+                password: "",
+                confirmPassword: "",
               });
+            });
           });
         })
         .catch((err) => {
@@ -132,24 +121,22 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    axios
-      .get(`${Url}/users/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setData(res.data.data[0]);
-      });
-  }, [Url, id, token]);
+    dispatch(getUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(findUser()).then((res) => {
+      setData(res);
+    });
+  }, [dispatch]);
 
   return (
     <Section className="profile">
       <Container>
         <Row>
           <ProfileInfo
-            user={data.fullName}
-            img={data.image ? data.image : "images/avatar.png"}
+            user={user.fullName}
+            img={user.image}
             changeImage={handleChangeImage}
             status={status}
           ></ProfileInfo>
@@ -168,7 +155,7 @@ export default function Profile() {
                         type="text"
                         name="firstName"
                         value={data.firstName}
-                        placeholder="Jonas"
+                        placeholder="Write First Name"
                         onChange={handleFormChange}
                       />
                     </div>
@@ -180,7 +167,7 @@ export default function Profile() {
                         type="text"
                         name="lastName"
                         value={data.lastName}
-                        placeholder="El Rodriguez"
+                        placeholder="Write Last Name"
                         onChange={handleFormChange}
                       />
                     </div>
@@ -194,7 +181,7 @@ export default function Profile() {
                         type="email"
                         name="email"
                         value={data.email}
-                        placeholder="jonasrodrigu123@gmail.com"
+                        placeholder="Write Email"
                         onChange={handleFormChange}
                       />
                     </div>
@@ -212,7 +199,7 @@ export default function Profile() {
                           type="number"
                           name="phoneNumber"
                           value={data.phoneNumber}
-                          placeholder="81445687121"
+                          placeholder="Write Phone Number"
                           onChange={handleFormChange}
                         />
                       </div>

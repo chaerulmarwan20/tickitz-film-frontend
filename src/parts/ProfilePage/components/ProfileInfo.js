@@ -1,4 +1,6 @@
-import { React, useRef } from "react";
+import { React, useRef, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../../../configs/redux/actions/user";
 
 import Row from "../../../components/Row";
 import Col from "../../../components/Col";
@@ -10,6 +12,12 @@ export default function ProfileInfo(props) {
 
   const imageRef = useRef(null);
 
+  const [imgUrl, setImgUrl] = useState(`${ImgUrl}${props.img}`);
+
+  const { user } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
   if (props.status) {
     imageRef.current.value = "";
   }
@@ -17,8 +25,14 @@ export default function ProfileInfo(props) {
   const handleChangeImage = (event) => {
     const imgFiles = event.target.files[0];
     const imgName = event.target.files[0].name;
+    setImgUrl(URL.createObjectURL(event.target.files[0]));
     props.changeImage(imgFiles, imgName);
   };
+
+  useEffect(() => {
+    dispatch(getUser());
+    setImgUrl(`${ImgUrl}${user.image}`);
+  }, [dispatch, ImgUrl, user.image]);
 
   return (
     <Col className="col-lg-5 col-xl-4">
@@ -37,13 +51,17 @@ export default function ProfileInfo(props) {
         </Row>
         <Row className="flex-column px-5 mt-4">
           <Col className="d-flex justify-content-center img-container">
-            <img
-              src={`${ImgUrl}${props.img}`}
-              width="136"
-              height="136"
-              className="rounded-circle"
-              alt="User"
-            />
+            {props.img === undefined ? (
+              ""
+            ) : (
+              <img
+                src={imgUrl}
+                width="136"
+                height="136"
+                className="rounded-circle"
+                alt="User"
+              />
+            )}
             <input
               type="file"
               name="image"
