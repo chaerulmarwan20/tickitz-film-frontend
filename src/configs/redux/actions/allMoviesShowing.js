@@ -13,6 +13,8 @@ export const getAllMoviesShowing = (page, perPage) => {
           payload: res.data.data,
           total: res.data.totalPage,
           current: res.data.currentPage,
+          previous: res.data.previousPage,
+          next: res.data.nextPage,
         });
       });
   };

@@ -20,6 +20,7 @@ export default function Index() {
   window.scrollTo(0, 0);
 
   const Url = process.env.REACT_APP_API_URL;
+  const ImgUrl = process.env.REACT_APP_API_IMG;
 
   const useQuery = () => new URLSearchParams(useLocation().search);
 
@@ -32,10 +33,10 @@ export default function Index() {
   const { allMoviesShowing, totalPage, currentPage } = useSelector(
     (state) => state.allMoviesShowing
   );
+  const [paginate, setPaginate] = useState(1);
 
   const [query, setQuery] = useState("");
   const [show, setShow] = useState(true);
-  const paginate = [];
 
   const handleFormChange = (event) => {
     setQuery(event.target.value);
@@ -73,11 +74,8 @@ export default function Index() {
 
   useEffect(() => {
     dispatch(getAllMoviesShowing(page, perPage));
-  }, [dispatch, page, perPage]);
-
-  for (let i = 0; i < totalPage; i++) {
-    paginate.push(i + 1);
-  }
+    setPaginate(totalPage < 6 ? totalPage : 5);
+  }, [dispatch, page, perPage, totalPage]);
 
   return (
     <Section className="all-movies">
@@ -100,7 +98,7 @@ export default function Index() {
               return (
                 <Card key={index} className="mt-5">
                   <div className="card-all-movie">
-                    <img src={data.image} alt="ImageAllMovies" />
+                    <img src={`${ImgUrl}${data.image}`} alt="ImageAllMovies" />
                     <p>{data.title}</p>
                     <span>{data.genre}</span>
                     <Link
@@ -120,16 +118,32 @@ export default function Index() {
             <Nav className="d-flex justify-content-center">
               {show === true && (
                 <ul className="pagination-custom">
-                  {paginate.map((data, index) => {
+                  {Array.from(Array(paginate).keys()).map((data, index) => {
                     return (
                       <li key={index}>
                         <Link
                           to={`/all-movies-showing?page=${
-                            index + 1
+                            currentPage >= 5 && currentPage < totalPage
+                              ? data + (currentPage - 3)
+                              : currentPage >= 5 && currentPage === totalPage
+                              ? data + (currentPage - 3) - 1
+                              : data + 1
                           }&perPage=${perPage}`}
-                          className={`${data === currentPage && "page-active"}`}
+                          className={`${
+                            currentPage >= 5 && currentPage < totalPage
+                              ? data + (currentPage - 3) === currentPage &&
+                                "page-active"
+                              : currentPage >= 5 && currentPage === totalPage
+                              ? data + (currentPage - 3) - 1 === currentPage &&
+                                "page-active"
+                              : data + 1 === currentPage && "page-active"
+                          }`}
                         >
-                          {data}
+                          {currentPage >= 5 && currentPage < totalPage
+                            ? data + (currentPage - 3)
+                            : currentPage >= 5 && currentPage === totalPage
+                            ? data + (currentPage - 3) - 1
+                            : data + 1}
                         </Link>
                       </li>
                     );

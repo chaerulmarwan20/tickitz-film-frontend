@@ -9,11 +9,17 @@ export const getShowingMovies = () => {
   };
 };
 
-export const getUpcomingMovies = () => {
-  return (dispatch) => {
+export const getUpcomingMovies = (date) => (dispatch) => {
+  return new Promise((resolve, reject) => {
     const Url = process.env.REACT_APP_API_URL;
-    axios.get(`${Url}/movies/realesed/?keyword=false`).then((res) => {
-      dispatch({ type: "GET_UPCOMING", payload: res.data.data });
-    });
-  };
+    axios
+      .get(`${Url}/movies/find-movies/by-date/?date=${date}`)
+      .then((res) => {
+        dispatch({ type: "GET_UPCOMING", payload: res.data.data });
+        resolve(res.data.data);
+      })
+      .catch((err) => {
+        reject(new Error(err.response.data.message));
+      });
+  });
 };

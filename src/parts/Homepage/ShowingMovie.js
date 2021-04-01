@@ -10,6 +10,8 @@ import Section from "../../components/Section";
 import Card from "../../components/Card";
 
 export default function ShowingMovie() {
+  const ImgUrl = process.env.REACT_APP_API_IMG;
+
   const dispatch = useDispatch();
   const { showingMovies } = useSelector((state) => state.homePage);
 
@@ -33,7 +35,7 @@ export default function ShowingMovie() {
                 <Card key={index}>
                   <div className="image-card">
                     <Link to={`movie-detail/${data.id}`}>
-                      <img src={data.image} alt="ImageCard" />
+                      <img src={`${ImgUrl}${data.image}`} alt="ImageCard" />
                     </Link>
                   </div>
                 </Card>

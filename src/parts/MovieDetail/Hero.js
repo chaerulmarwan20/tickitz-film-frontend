@@ -12,6 +12,8 @@ import Card from "../../components/Card";
 function Hero() {
   window.scrollTo(0, 0);
 
+  const ImgUrl = process.env.REACT_APP_API_IMG;
+
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -49,7 +51,7 @@ function Hero() {
             <Row key={index} className="mt-5">
               <Col className="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-start">
                 <Card className="movie-header">
-                  <img src={data.image} alt="MovieHeader" />
+                  <img src={`${ImgUrl}${data.image}`} alt="MovieHeader" />
                 </Card>
               </Col>
               <Col className="col-12 movie col-lg-7 mt-5 mt-lg-0 pl-0">
