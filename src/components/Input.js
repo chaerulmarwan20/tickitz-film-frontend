@@ -46,6 +46,7 @@ class Input extends Component {
             value={this.props.value}
             placeholder={this.props.placeholder}
             onChange={this.props.onChange}
+            autoFocus={this.props.autoFocus && true}
           />
         </Fragment>
       );
@@ -55,6 +56,7 @@ class Input extends Component {
 
 Input.propTypes = {
   className: propTypes.string,
+  autoFocus: propTypes.bool,
 };
 
 export default Input;
