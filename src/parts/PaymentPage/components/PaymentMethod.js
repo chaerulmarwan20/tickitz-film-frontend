@@ -23,7 +23,7 @@ export default function PaymentMethod() {
         <Link to="#" className="btn btn-payment">
           <img src={GoPay} alt="GoPay" width="106" />
         </Link>
-        <Link to="#" className="btn btn-payment d-none d-md-block">
+        <Link to="#" className="btn btn-payment d-none d-md-flex">
           <img src={Paypal} alt="Paypal" width="31" />
         </Link>
       </div>
@@ -34,10 +34,10 @@ export default function PaymentMethod() {
         <Link to="#" className="btn btn-payment">
           <img src={Dana} alt="Dana" width="108" />
         </Link>
-        <Link to="#" className="btn btn-payment d-none d-md-block">
+        <Link to="#" className="btn btn-payment d-none d-md-flex">
           <img src={BCA} alt="BCA" width="85" />
         </Link>
-        <Link to="#" className="btn btn-payment d-none d-md-block">
+        <Link to="#" className="btn btn-payment d-none d-md-flex">
           <img src={BRI} alt="BRI" width="45" />
         </Link>
         <Link to="#" className="btn btn-payment">

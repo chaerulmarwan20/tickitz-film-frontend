@@ -111,11 +111,18 @@ hr {
   box-sizing: border-box;
 }
 
+.date .form-inline input[type="date"]::-webkit-calendar-picker-indicator {
+  background: url(../img/calendar.png) no-repeat;
+  background-size: 18px;
+  display: block;
+  background-position-y: center;
+}
+
 .date .form-inline select {
   background-image: url(../img/location.png);
   background-repeat: no-repeat;
   background-size: 18px;
-  background-position-x: 94%;
+  background-position-x: 92%;
   background-position-y: center;
 }
 
@@ -182,10 +189,12 @@ hr {
   color: #4e4b66;
   text-align: center;
   margin-bottom: 0px;
+  cursor: pointer;
 }
 
 .cinema-card p.nav-link.empty {
   color: #a0a3bd;
+  cursor: unset;
 }
 
 .cinema-card p.nav-link.activated {

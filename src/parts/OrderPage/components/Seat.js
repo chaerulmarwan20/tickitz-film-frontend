@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Seat() {
   return (
-    <div className="d-flex justify-content-between mt-3">
+    <div className="d-flex justify-content-between mt-3 container-seat">
       <div className="number-seat-1">
         <span></span>
         <span>1</span>
@@ -12,8 +12,6 @@ export default function Seat() {
         <span>5</span>
         <span>6</span>
         <span>7</span>
-      </div>
-      <div className="number-seat-2">
         <span>8</span>
         <span>9</span>
         <span>10</span>

@@ -47,7 +47,7 @@ export default function Navbar(props) {
     },
     {
       title: "Buy Ticket",
-      href: "/order-page",
+      href: "/all-movies-showing",
     },
   ];
 
@@ -129,17 +129,6 @@ export default function Navbar(props) {
       dispatch(getUser());
     }
   }, [dispatch]);
-
-  useEffect(() => {
-    const params = new URLSearchParams();
-    if (query) {
-      params.append("keyword", query);
-    } else {
-      setShowResult(false);
-      params.delete("keyword");
-    }
-    history.push({ search: params.toString() });
-  }, [query, history]);
 
   return (
     <Fragment>
@@ -338,7 +327,7 @@ export default function Navbar(props) {
                 <Col className="col-8 pl-4">
                   <div className="details-movie-search">
                     <h2>Directed by</h2>
-                    <p>{`${item.cast.substring(0, 14)}...`}</p>
+                    <p>{`${item.director.substring(0, 14)}...`}</p>
                   </div>
                   <div className="details-movie-search">
                     <h2>Casts</h2>

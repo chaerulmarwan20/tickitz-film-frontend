@@ -13,6 +13,8 @@ import PaymentMethod from "./components/PaymentMethod";
 import Alert from "../../assets/img/warning.png";
 
 export default function index() {
+  window.scrollTo(0, 0);
+
   return (
     <Section className="payment-detail">
       <Container>

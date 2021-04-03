@@ -44,13 +44,13 @@ export default function Order() {
       "December",
     ];
     const day = [
+      "Sunday",
       "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
       "Saturday",
-      "Sunday",
     ];
 
     return `${day[date.getDay()]}, ${date.getDate()} ${
@@ -89,7 +89,7 @@ export default function Order() {
                   >
                     <div className="left pl-4 pl-md-5 order-1 order-md-0">
                       <p className="m-0">
-                        {setDate(data.date)} - {setTime(data.time)}
+                        {setDate(data.dateTransactions)} - {setTime(data.time)}
                       </p>
                       <h3 className="mt-1">{data.movieTitle}</h3>
                     </div>

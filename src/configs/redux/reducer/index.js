@@ -6,6 +6,8 @@ import movieDetailReducer from "./movieDetail";
 import allMoviesShowingReducer from "./allMoviesShowing";
 import allMoviesUpcomingReducer from "./allMoviesUpcoming";
 import orderHistoryReducer from "./orderHistory";
+import scheduleReducer from "./schedule";
+import orderReducer from "./order";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   allMoviesShowing: allMoviesShowingReducer,
   allMoviesUpcoming: allMoviesUpcomingReducer,
   orderHistory: orderHistoryReducer,
+  schedule: scheduleReducer,
+  order: orderReducer,
 });
 
 export default rootReducer;
