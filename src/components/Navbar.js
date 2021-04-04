@@ -32,9 +32,10 @@ export default function Navbar(props) {
   const { user } = useSelector((state) => state.user);
   const { allMoviesShowing } = useSelector((state) => state.allMoviesShowing);
 
-  const [showSearch, setShowSearch] = useState(false);
   const [showResult, setShowResult] = useState(false);
+  const [showResultMobile, setShowResultMobile] = useState(false);
   const [query, setQuery] = useState("");
+  const [queryMobile, setQueryMobile] = useState("");
 
   const menu = [
     {
@@ -50,14 +51,6 @@ export default function Navbar(props) {
       href: "/all-movies-showing",
     },
   ];
-
-  const handleIcClick = () => {
-    if (showSearch === false) {
-      setShowSearch(true);
-    } else {
-      setShowSearch(false);
-    }
-  };
 
   const handleFormChange = (event) => {
     setQuery(event.target.value);
@@ -91,6 +84,38 @@ export default function Navbar(props) {
       });
   };
 
+  const handleFormChangeMobile = (event) => {
+    setQueryMobile(event.target.value);
+    axios
+      .get(
+        `${Url}/movies/is-realese/?keyword=${event.target.value}&perPage=${perPage}`
+      )
+      .then((res) => {
+        if (event.target.value === "") {
+          setShowResultMobile(false);
+        } else {
+          setShowResultMobile(true);
+        }
+        dispatch(searchMoviesShowing(res.data.data));
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Info!",
+          text: err.response.data.message,
+          icon: "info",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        }).then((result) => {
+          setShowResultMobile(false);
+          if (result.isConfirmed) {
+            setQueryMobile("");
+          } else {
+            setQueryMobile("");
+          }
+        });
+      });
+  };
+
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure you want to logout?",
@@ -117,6 +142,10 @@ export default function Navbar(props) {
   };
 
   const handleClickMovie = (id) => {
+    setShowResult(false);
+    setShowResultMobile(false);
+    setQuery("");
+    setQueryMobile("");
     history.push(`/movie-detail/${id}`);
   };
 
@@ -152,7 +181,49 @@ export default function Navbar(props) {
                   props.isPayment ? "payment" : ""
                 } ${props.isProfile ? "profile" : ""}`}
               >
-                <Input type="text" name="search" placeholder="Search..." />
+                <Input
+                  type="text"
+                  name="search"
+                  placeholder="Search..."
+                  value={queryMobile}
+                  onChange={handleFormChangeMobile}
+                />
+                {showResultMobile === true && (
+                  <Row className="container-movie-search-mobile d-block d-lg-none flex-column pt-4 pl-3">
+                    {allMoviesShowing.map((item, index) => {
+                      return (
+                        <Row
+                          className="result-search"
+                          key={index}
+                          onClick={() => handleClickMovie(item.id)}
+                        >
+                          <Col className="col-4">
+                            <img
+                              src={`${ImgUrl}${item.image}`}
+                              alt="MovieSearch"
+                              width="104"
+                              height="152"
+                            />
+                          </Col>
+                          <Col className="col-8 pl-4">
+                            <div className="details-movie-search">
+                              <h2>Directed by</h2>
+                              <p>{`${item.director.substring(0, 14)}...`}</p>
+                            </div>
+                            <div className="details-movie-search">
+                              <h2>Casts</h2>
+                              <p>{`${item.cast.substring(0, 13)}...`}</p>
+                            </div>
+                            <div className="details-movie-search">
+                              <h2>Synopsis</h2>
+                              <p>{`${item.synopsis.substring(0, 20)}...`}</p>
+                            </div>
+                          </Col>
+                        </Row>
+                      );
+                    })}
+                  </Row>
+                )}
               </form>
               {menu.map((data, index) => {
                 return (
@@ -229,18 +300,6 @@ export default function Navbar(props) {
                 </Col>
               </Row>
             </ul>
-            {showSearch === true && (
-              <form className="form-inline d-none d-lg-block mb-4 mt-3 search">
-                <Input
-                  type="text"
-                  name="search"
-                  placeholder="Search..."
-                  value={query}
-                  onChange={handleFormChange}
-                  autoFocus
-                />
-              </form>
-            )}
             <div className="dropdown d-none d-lg-block">
               <div
                 className="nav-link link-location"
@@ -263,7 +322,8 @@ export default function Navbar(props) {
               src={Search}
               className="ic-search d-none d-lg-block mx-5"
               alt="Search"
-              onClick={handleIcClick}
+              data-target="#exampleModal"
+              data-toggle="modal"
             />
             {localStorage.getItem("token") ? (
               <div className="dropdown">
@@ -308,42 +368,89 @@ export default function Navbar(props) {
           </div>
         </Container>
       </Nav>
-      {showResult === true && (
-        <Row className="container-movie-search flex-column pt-4 pl-3">
-          {allMoviesShowing.map((item, index) => {
-            return (
-              <Row
-                className="result-search"
-                key={index}
-                onClick={() => handleClickMovie(item.id)}
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Search movie
+              </h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
               >
-                <Col className="col-4">
-                  <img
-                    src={`${ImgUrl}${item.image}`}
-                    alt="MovieSearch"
-                    width="104"
-                    height="152"
-                  />
-                </Col>
-                <Col className="col-8 pl-4">
-                  <div className="details-movie-search">
-                    <h2>Directed by</h2>
-                    <p>{`${item.director.substring(0, 14)}...`}</p>
-                  </div>
-                  <div className="details-movie-search">
-                    <h2>Casts</h2>
-                    <p>{`${item.cast.substring(0, 13)}...`}</p>
-                  </div>
-                  <div className="details-movie-search">
-                    <h2>Synopsis</h2>
-                    <p>{`${item.synopsis.substring(0, 20)}...`}</p>
-                  </div>
-                </Col>
-              </Row>
-            );
-          })}
-        </Row>
-      )}
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body text-center">
+              <form className="form-inline d-none d-lg-block mb-4 mt-3 search">
+                <Input
+                  type="text"
+                  name="search"
+                  placeholder="Search..."
+                  value={query}
+                  onChange={handleFormChange}
+                  autoComplete
+                />
+                {showResult === true && (
+                  <Row className="container-movie-search d-none d-lg-flex flex-column pt-4 pl-5 pr-5">
+                    {allMoviesShowing.map((item, index) => {
+                      return (
+                        <Row
+                          className="result-search justify-content-center"
+                          key={index}
+                          dismiss="modal"
+                          onClick={() => handleClickMovie(item.id)}
+                        >
+                          <Col className="col-4">
+                            <img
+                              src={`${ImgUrl}${item.image}`}
+                              alt="MovieSearch"
+                              width="104"
+                              height="152"
+                            />
+                          </Col>
+                          <Col className="col-7">
+                            <div className="details-movie-search">
+                              <h2>Directed by</h2>
+                              <p>{`${item.director.substring(0, 14)}...`}</p>
+                            </div>
+                            <div className="details-movie-search">
+                              <h2>Casts</h2>
+                              <p>{`${item.cast.substring(0, 13)}...`}</p>
+                            </div>
+                            <div className="details-movie-search">
+                              <h2>Synopsis</h2>
+                              <p>{`${item.synopsis.substring(0, 20)}...`}</p>
+                            </div>
+                          </Col>
+                        </Row>
+                      );
+                    })}
+                  </Row>
+                )}
+              </form>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-close"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </Fragment>
   );
 }
