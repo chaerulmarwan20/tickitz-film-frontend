@@ -124,9 +124,12 @@ export default function Cinema() {
   };
 
   const handleButtonClick = (schedule, movie) => {
-    history.push(
-      `/order-page?schedule=${schedule}&movie=${movie}&idTime=${selectTime[0].id}&time=${selectTime[0].time}`
-    );
+    history.push("/order-page", {
+      schedule: schedule,
+      movie: movie,
+      idTime: selectTime[0].id,
+      time: selectTime[0].time,
+    });
   };
 
   const setTime = (params) => {

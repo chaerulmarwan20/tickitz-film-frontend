@@ -8,6 +8,8 @@ import allMoviesUpcomingReducer from "./allMoviesUpcoming";
 import orderHistoryReducer from "./orderHistory";
 import scheduleReducer from "./schedule";
 import orderReducer from "./order";
+import paymentReducer from "./payment";
+import ticketResultReducer from "./ticketResult";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   orderHistory: orderHistoryReducer,
   schedule: scheduleReducer,
   order: orderReducer,
+  payment: paymentReducer,
+  ticketResult: ticketResultReducer,
 });
 
 export default rootReducer;

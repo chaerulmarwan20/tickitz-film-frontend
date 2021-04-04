@@ -43,7 +43,7 @@ export default function Navbar(props) {
     },
     {
       title: "Cinemas",
-      href: "#",
+      href: "/",
     },
     {
       title: "Buy Ticket",
@@ -164,39 +164,40 @@ export default function Navbar(props) {
                 );
               })}
               <li className="nav-item dropdown d-lg-none">
-                <Link
+                <div
                   className="nav-link mt-4 mb-2 my-lg-0"
-                  to="#"
                   id="navbarDropdown"
                   role="button"
                   data-toggle="dropdown"
                 >
                   Location <img src={Icon} width="18px" alt="Icon" />
-                </Link>
+                </div>
                 <div
                   className="dropdown-menu mb-3"
                   aria-labelledby="navbarDropdown"
                 >
                   {location.map((data, index) => {
                     return (
-                      <Link key={index} className="dropdown-item" to="#">
+                      <div
+                        key={index}
+                        className="dropdown-item location-content"
+                      >
                         {data.name}
-                      </Link>
+                      </div>
                     );
                   })}
                 </div>
               </li>
               {localStorage.getItem("token") ? (
                 <li className="nav-item dropdown d-lg-none">
-                  <Link
+                  <div
                     className="nav-link mt-4 mb-2 my-lg-0"
-                    to="#"
                     id="navbarDropdown"
                     role="button"
                     data-toggle="dropdown"
                   >
                     Account <img src={Icon} width="18px" alt="Icon" />
-                  </Link>
+                  </div>
                   <div
                     className="dropdown-menu mb-3"
                     aria-labelledby="navbarDropdown"
@@ -205,13 +206,12 @@ export default function Navbar(props) {
                       Settings
                     </Link>
                     <div className="dropdown-divider"></div>
-                    <Link
-                      className="dropdown-item"
-                      to="#"
+                    <div
+                      className="dropdown-item logout"
                       onClick={handleLogout}
                     >
                       Logout
-                    </Link>
+                    </div>
                   </div>
                 </li>
               ) : (
@@ -242,21 +242,19 @@ export default function Navbar(props) {
               </form>
             )}
             <div className="dropdown d-none d-lg-block">
-              <Link
-                className="nav-link"
-                to="#"
-                role="button"
+              <div
+                className="nav-link link-location"
                 id="dropdownMenuLink"
                 data-toggle="dropdown"
               >
                 Location <img src={Icon} width="18px" alt="Icon" />
-              </Link>
+              </div>
               <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {location.map((data, index) => {
                   return (
-                    <Link key={index} className="dropdown-item" to="#">
+                    <div key={index} className="dropdown-item location-content">
                       {data.name}
-                    </Link>
+                    </div>
                   );
                 })}
               </div>
@@ -269,9 +267,8 @@ export default function Navbar(props) {
             />
             {localStorage.getItem("token") ? (
               <div className="dropdown">
-                <Link
+                <div
                   className="nav-link"
-                  to="#"
                   role="button"
                   id="dropdownMenuLink"
                   data-toggle="dropdown"
@@ -285,7 +282,7 @@ export default function Navbar(props) {
                   ) : (
                     ""
                   )}
-                </Link>
+                </div>
                 <div
                   className="dropdown-menu user"
                   aria-labelledby="dropdownMenuLink"
@@ -294,9 +291,13 @@ export default function Navbar(props) {
                     Account Settings
                   </Link>
                   <div className="dropdown-divider"></div>
-                  <Link className="dropdown-item" to="#" onClick={handleLogout}>
+                  <div
+                    className="dropdown-item logout"
+                    to="#"
+                    onClick={handleLogout}
+                  >
                     Logout
-                  </Link>
+                  </div>
                 </div>
               </div>
             ) : (

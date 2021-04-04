@@ -1,5 +1,5 @@
 import { React, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderHistory } from "../../configs/redux/actions/orderHistory";
 import { getUser } from "../../configs/redux/actions/user";
@@ -9,11 +9,12 @@ import Row from "../../components/Row";
 import Col from "../../components/Col";
 import Section from "../../components/Section";
 import Button from "../../components/Button";
-import Select from "../../components/Select";
 import ProfileInfo from "./components/ProfileInfo";
 import Breadcrumbs from "./components/Breadcrumbs";
 
 export default function Order() {
+  const history = useHistory();
+
   const useQuery = () => new URLSearchParams(useLocation().search);
 
   const query = useQuery();
@@ -61,6 +62,10 @@ export default function Order() {
   const setTime = (params) => {
     const time = params.split(":");
     return `${time[0]}:${time[1]}`;
+  };
+
+  const handleDetails = (id) => {
+    history.push("/ticket-result", { idTicket: id });
   };
 
   useEffect(() => {
@@ -121,7 +126,13 @@ export default function Order() {
                       </Button>
                     </div>
                     <div className="pr-0 pr-md-5 pb-2 order-4 d-none d-md-block">
-                      <Select option={["Show Details"]}></Select>
+                      <select
+                        className="custom-select"
+                        onChange={() => handleDetails(data.id)}
+                      >
+                        <option value="Show Details">Show Details</option>
+                        <option value="Go to details">Go to details</option>
+                      </select>
                     </div>
                   </Row>
                 );

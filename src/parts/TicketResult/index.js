@@ -1,4 +1,7 @@
-import React from "react";
+import { React, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { getTicket } from "../../configs/redux/actions/ticketResult";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -13,7 +16,41 @@ import TicketDetailBitmap from "./components/TicketDetailBitmap";
 import Download from "../../assets/img/download 1.png";
 import Printer from "../../assets/img/printer 1.png";
 
-export default function index() {
+function Index(props) {
+  const dispatch = useDispatch();
+
+  const { ticket } = useSelector((state) => state.ticketResult);
+
+  const idTicket = props.location.state.idTicket;
+
+  const setDate = (params) => {
+    const date = new Date(params);
+    const month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return `${date.getDate()} ${month[date.getMonth()]}`;
+  };
+
+  const setTime = (params) => {
+    const time = params.split(":");
+    return `${time[0]}:${time[1]}`;
+  };
+
+  useEffect(() => {
+    dispatch(getTicket(idTicket));
+  }, [dispatch, idTicket]);
+
   return (
     <Container className="d-none d-lg-block mb-5">
       <Row className="justify-content-center">
@@ -33,22 +70,36 @@ export default function index() {
               <div className="left px-5 py-4">
                 <MovieTitle
                   heading="Movie"
-                  title="Spider-Man: Homecoming"
+                  title={ticket.movieTitle}
                 ></MovieTitle>
                 <Row>
-                  <TicketDetail heading="Date" title="07 July"></TicketDetail>
-                  <TicketDetail heading="Time" title="02:00pm"></TicketDetail>
-                  <TicketDetail heading="Category" title="PG-13"></TicketDetail>
+                  <TicketDetail
+                    heading="Date"
+                    title={setDate(ticket.dateTransactions)}
+                  ></TicketDetail>
+                  {ticket.time !== undefined && (
+                    <TicketDetail
+                      heading="Time"
+                      title={setTime(ticket.time)}
+                    ></TicketDetail>
+                  )}
+                  <TicketDetail
+                    heading="Category"
+                    title={ticket.category}
+                  ></TicketDetail>
                 </Row>
                 <Row>
-                  <TicketDetail heading="Count" title="3 pieces"></TicketDetail>
+                  <TicketDetail
+                    heading="Count"
+                    title={`${ticket.qty} pieces`}
+                  ></TicketDetail>
                   <TicketDetail
                     heading="Seats"
-                    title="C4, C5, C6"
+                    title={ticket.seat}
                   ></TicketDetail>
                   <TicketDetail
                     heading="Price"
-                    title="$30.00"
+                    title={`$${ticket.total}.00`}
                     className="price"
                   ></TicketDetail>
                 </Row>
@@ -57,7 +108,7 @@ export default function index() {
                 <div className="d-flex flex-row ml-3">
                   <MovieTitle
                     heading="Movie"
-                    title="Spider-Man: Home..."
+                    title={ticket.movieTitle}
                   ></MovieTitle>
                   <div className="d-flex flex-column bitmap">
                     <Bitmap></Bitmap>
@@ -68,29 +119,32 @@ export default function index() {
                     <TicketDetailBitmap
                       className="one"
                       heading="Date"
-                      title="07 Jul"
+                      title={setDate(ticket.dateTransactions)}
                     ></TicketDetailBitmap>
                     <TicketDetailBitmap
                       className="two"
                       heading="Count"
-                      title="3 pcs"
+                      title={`${ticket.qty} pcs`}
                     ></TicketDetailBitmap>
                   </div>
                   <div className="d-flex flex-column ml-4 ml-xl-5 px-0">
-                    <TicketDetailBitmap
-                      className="one"
-                      heading="Time"
-                      title="2:00pm"
-                    ></TicketDetailBitmap>
+                    {ticket.time !== undefined && (
+                      <TicketDetailBitmap
+                        className="one"
+                        heading="Time"
+                        title={setTime(ticket.time)}
+                      ></TicketDetailBitmap>
+                    )}
+
                     <TicketDetailBitmap
                       className="two"
                       heading="Seats"
-                      title="C4, C5, C6"
+                      title={ticket.seat}
                     ></TicketDetailBitmap>
                     <TicketDetailBitmap
                       className="three"
                       heading="Category"
-                      title="PG-13"
+                      title={ticket.category}
                     ></TicketDetailBitmap>
                   </div>
                 </div>
@@ -119,3 +173,5 @@ export default function index() {
     </Container>
   );
 }
+
+export default withRouter(Index);

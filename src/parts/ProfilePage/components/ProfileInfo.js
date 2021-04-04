@@ -86,17 +86,17 @@ export default function ProfileInfo(props) {
               <div></div>
               <h4>Moviegoers</h4>
               <p className="mt-4">
-                320 <span>points</span>
+                0 <span>points</span>
               </p>
               <img src={Star} width="51" alt="Star" />
             </div>
-            <h5 className="mt-4 text-center">180 points become a master</h5>
+            <h5 className="mt-4 text-center">400 points become a master</h5>
             <div className="progress">
               <div
                 className="progress-bar"
                 role="progressbar"
-                style={{ width: ` 45%` }}
-                aria-valuenow="45"
+                style={{ width: `0%` }}
+                aria-valuenow="0"
                 aria-valuemin="0"
                 aria-valuemax="100"
               ></div>

@@ -61,13 +61,12 @@ export default function Footer(props) {
             <Nav className="nav explore flex-row flex-md-column mt-1 mt-md-0">
               {menuFooter.map((data, index) => {
                 return (
-                  <Link
+                  <div
                     key={index}
                     className={`nav-link ${index === 0 ? "mt-md-0" : ""}`}
-                    to="#"
                   >
                     {data}
-                  </Link>
+                  </div>
                 );
               })}
             </Nav>
@@ -77,9 +76,9 @@ export default function Footer(props) {
             <Nav className="nav sponsor flex-row flex-md-column align-items-center align-items-md-start mt-1 mt-md-0">
               {sponsor.map((data, index) => {
                 return (
-                  <Link key={index} className="nav-link" to="#">
+                  <div key={index} className="nav-link">
                     <img src={data} alt="Sponsor" />
-                  </Link>
+                  </div>
                 );
               })}
             </Nav>
@@ -89,14 +88,13 @@ export default function Footer(props) {
             <Nav className="nav follow-us flex-row flex-md-column mt-1 mt-md-0">
               {social.map((data, index) => {
                 return (
-                  <Link
+                  <div
                     key={index}
                     className="nav-link d-flex align-items-center"
-                    to="#"
                   >
                     <img src={data.src} className={data.class} alt="Social" />
                     <span>{data.span}</span>
-                  </Link>
+                  </div>
                 );
               })}
             </Nav>

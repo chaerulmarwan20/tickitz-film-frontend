@@ -10,6 +10,7 @@ export default function Button(props) {
       data-target={props.target}
       onClick={props.onClick}
       disabled={props.disabled}
+      data-content={props.content}
     >
       {props.children}
     </button>

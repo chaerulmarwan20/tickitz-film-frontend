@@ -103,7 +103,6 @@ nav.total-payment p {
 }
 
 .payment-detail .personal-info {
-  height: 548px;
   border-radius: 6px;
   background-color: #fff;
   box-shadow: 0px 8px 24px rgba(17, 17, 17, 0.08);
@@ -124,19 +123,19 @@ nav.total-payment p {
   box-sizing: border-box;
   border-radius: 4px;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 23px;
   letter-spacing: 0.75px;
   color: #4e4b66;
   margin-bottom: 30px;
   margin-top: 14px;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 .payment-detail .personal-info form input.phone-number {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding-left: 25px;
+  padding-left: 20px;
 }
 
 .input-group-text.payment-page {
@@ -192,6 +191,74 @@ nav.total-payment p {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.payment-detail .payment-method .btn-payment.google-pay {
+  background-image: url(../img/logos_google-pay.png);
+  background-repeat: no-repeat;
+  background-size: 74px;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+.payment-detail .payment-method .btn-payment.visa {
+  background-image: url(../img/logos_visa.png);
+  background-repeat: no-repeat;
+  background-size: 80px;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+.payment-detail .payment-method .btn-payment.gopay {
+  background-image: url(../img/gopay.png);
+  background-repeat: no-repeat;
+  background-size: 106px;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+.payment-detail .payment-method .btn-payment.paypal {
+  background-image: url(../img/logos_paypal.png);
+  background-repeat: no-repeat;
+  background-size: 31px;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+.payment-detail .payment-method .btn-payment.dana {
+  background-image: url(../img/dana.png);
+  background-repeat: no-repeat;
+  background-size: 108px;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+.payment-detail .payment-method .btn-payment.bca {
+  background-image: url(../img/bca.png);
+  background-repeat: no-repeat;
+  background-size: 85px;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+.payment-detail .payment-method .btn-payment.bri {
+  background-image: url(../img/bri.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+.payment-detail .payment-method .btn-payment.ovo {
+  background-image: url(../img/ovo.png);
+  background-repeat: no-repeat;
+  background-size: 92px;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+.payment-detail .payment-method .btn-payment.active {
+  border: 2px solid #5f2eea;
 }
 
 .payment-detail .payment-method p.or {
@@ -305,40 +372,28 @@ nav.total-payment p {
     margin-bottom: 16px;
   }
 
-  .payment-detail .payment-method .btn-payment:first-of-type img {
-    width: 35px;
+  .payment-detail .payment-method .btn-payment.google-pay {
+    background-size: 35px;
   }
 
-  .payment-detail .payment-method .btn-payment:nth-of-type(2) img {
-    width: 38px;
+  .payment-detail .payment-method .btn-payment.visa {
+    background-size: 38px;
   }
 
-  .payment-detail .payment-method .btn-payment:nth-of-type(3) img {
-    width: 50px;
+  .payment-detail .payment-method .btn-payment.gopay {
+    background-size: 50px;
   }
 
-  .payment-detail
-    .payment-method
-    div:nth-of-type(2)
-    .btn-payment:first-of-type
-    img {
-    width: 15px;
+  .payment-detail .payment-method .btn-payment.paypal {
+    background-size: 15px;
   }
 
-  .payment-detail
-    .payment-method
-    div:nth-of-type(2)
-    .btn-payment:nth-of-type(2)
-    img {
-    width: 51px;
+  .payment-detail .payment-method .btn-payment.dana {
+    background-size: 51px;
   }
 
-  .payment-detail
-    .payment-method
-    div:nth-of-type(2)
-    .btn-payment:nth-of-type(5)
-    img {
-    width: 43px;
+  .payment-detail .payment-method .btn-payment.ovo {
+    background-size: 43px;
   }
 
   .payment-detail

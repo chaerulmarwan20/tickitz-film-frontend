@@ -51,6 +51,15 @@ nav.navbar {
 nav .nav-link:hover,
 .dropdown a.dropdown-toggle:hover {
   color: #757474;
+  cursor: pointer;
+}
+
+div.logout {
+  cursor: pointer;
+}
+
+div.location-content {
+  cursor: pointer;
 }
 
 nav .nav-link {
@@ -607,7 +616,7 @@ footer p.follow-us {
   margin-bottom: 30px;
 }
 
-footer nav a.nav-link {
+footer nav div.nav-link {
   margin-bottom: 14px;
   font-weight: 400;
   font-size: 14px;
@@ -617,11 +626,11 @@ footer nav a.nav-link {
   transition: 0.5s ease;
 }
 
-footer nav a.nav-link:hover {
+footer nav div.nav-link:hover {
   color: black;
 }
 
-footer nav.explore a.nav-link {
+footer nav.explore div.nav-link {
   margin-top: -10px;
 }
 
@@ -629,17 +638,17 @@ footer nav.sponsor {
   transform: translateY(-2px);
 }
 
-footer nav.sponsor a:first-of-type img {
+footer nav.sponsor div:first-of-type img {
   width: 122px;
   height: 45px;
 }
 
-footer nav.sponsor a:nth-of-type(2) img {
+footer nav.sponsor div:nth-of-type(2) img {
   width: 174px;
   height: 28px;
 }
 
-footer nav.sponsor a:last-of-type img {
+footer nav.sponsor div:last-of-type img {
   width: 80px;
   height: 26px;
 }
@@ -907,28 +916,28 @@ footer nav.follow-us span:hover {
     line-height: 24px;
   }
 
-  footer nav a.nav-link {
+  footer nav div.nav-link {
     margin-bottom: 0px;
     line-height: 26px;
     letter-spacing: 0.75px;
     color: #6e7191;
   }
 
-  footer nav.explore a:nth-of-type(3) {
+  footer nav.explore div:nth-of-type(3) {
     order: 4;
   }
 
-  footer nav.sponsor a:first-of-type img {
+  footer nav.sponsor div:first-of-type img {
     width: 81px;
     height: 30px;
   }
 
-  footer nav.sponsor a:nth-of-type(2) img {
+  footer nav.sponsor div:nth-of-type(2) img {
     width: 106px;
     height: 17px;
   }
 
-  footer nav.sponsor a:last-of-type img {
+  footer nav.sponsor div:last-of-type img {
     width: 77px;
     height: 25px;
   }
@@ -973,7 +982,7 @@ footer nav.follow-us span:hover {
 }
 
 @media screen and (max-width: 435px) {
-  footer nav.explore a.nav-link {
+  footer nav.explore div.nav-link {
     margin-top: 0px;
   }
 }

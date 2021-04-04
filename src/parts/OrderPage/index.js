@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { withRouter, useHistory, useLocation } from "react-router-dom";
+import { withRouter, useHistory } from "react-router-dom";
 
 import { getAllTicket, getSchedule } from "../../configs/redux/actions/order";
 
@@ -19,14 +19,10 @@ function Index(props) {
 
   const history = useHistory();
 
-  const useQuery = () => new URLSearchParams(useLocation().search);
-
-  const params = useQuery();
-
-  const idSchedule = params.get("schedule");
-  const idTime = params.get("idTime");
-  const movie = params.get("movie");
-  const time = params.get("time");
+  const idSchedule = props.location.state.schedule;
+  const idTime = props.location.state.idTime;
+  const movie = props.location.state.movie;
+  const time = props.location.state.time;
 
   const dispatch = useDispatch();
   const { schedule, ticket } = useSelector((state) => state.order);
@@ -36,7 +32,8 @@ function Index(props) {
       class: "",
     },
   ]);
-  const [seat, setSeat] = useState([]);
+  const [seat] = useState([]);
+  const [idSeat] = useState([]);
 
   const setDate = (params) => {
     const date = new Date(params);
@@ -78,13 +75,30 @@ function Index(props) {
     history.push("/all-movies-showing");
   };
 
-  const handleCheckout = () => {
-    history.push("/payment-page");
+  const handleCheckout = (
+    date,
+    idMovie,
+    idCinema,
+    seat,
+    idSeat,
+    total,
+    time
+  ) => {
+    history.push("/payment-page", {
+      date: date,
+      idMovie: idMovie,
+      idCinema: idCinema,
+      seat: seat,
+      idSeat: idSeat,
+      total: total,
+      time: time,
+    });
   };
 
-  const handleClickSeat = (params, id) => {
-    if (seat.includes(params) === false) {
+  const handleClickSeat = (params, id, event) => {
+    if (seat.includes(params) === false && seat.includes(id) === false) {
       seat.push(params);
+      idSeat.push(id);
     }
     setCss([
       {
@@ -138,8 +152,12 @@ function Index(props) {
                         key={index}
                         onClick={
                           data.available === 1
-                            ? () =>
-                                handleClickSeat(data.row + data.seat, data.id)
+                            ? (event) =>
+                                handleClickSeat(
+                                  data.row + data.seat,
+                                  data.id,
+                                  event
+                                )
                             : ""
                         }
                         className={
@@ -260,7 +278,17 @@ function Index(props) {
           <Col className="col-12 col-md-6 col-xl-3 ml-xl-5 d-flex justify-content-start justify-content-md-end d-xl-block">
             <Button
               className="btn btn-checkout"
-              onClick={() => handleCheckout()}
+              onClick={() =>
+                handleCheckout(
+                  schedule.date,
+                  schedule.idMovie,
+                  schedule.idCinema,
+                  seat,
+                  idSeat,
+                  schedule.price * seat.length,
+                  time
+                )
+              }
             >
               Checkout now
             </Button>
