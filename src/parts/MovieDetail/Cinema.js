@@ -3,7 +3,6 @@ import { Link, useParams, useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllSchedule,
-  getAllTime,
   getAllTicket,
 } from "../../configs/redux/actions/schedule";
 import { getLocation } from "../../configs/redux/actions/location";
@@ -34,27 +33,18 @@ export default function Cinema() {
 
   const dispatch = useDispatch();
   const { location } = useSelector((state) => state.location);
-  const { schedule, totalPage, currentPage, time } = useSelector(
+  const { schedule, totalPage, currentPage } = useSelector(
     (state) => state.schedule
   );
 
   const [city, setCity] = useState(1);
   const [date, setDate] = useState("2021-04-02");
   const [paginate, setPaginate] = useState(1);
-  const [idTime, setIdTime] = useState([]);
-  const [idSchedule, setIdSchedule] = useState([]);
-  const [css, setCss] = useState([
-    {
-      index: null,
-      class: "",
-    },
-  ]);
-  const [selectTime, setSelectTime] = useState([
-    {
-      id: null,
-      time: "",
-    },
-  ]);
+  const [time, setTime] = useState("");
+  const [css, setCss] = useState({
+    time: null,
+    class: "activated",
+  });
 
   const handleOptionChange = (event) => {
     setCity(event.target.value);
@@ -90,51 +80,20 @@ export default function Cinema() {
       });
   };
 
-  const handleTimeClick = (time, id) => {
-    if (selectTime[0].id === null) {
-      setSelectTime([
-        {
-          id: id,
-          time: time,
-        },
-      ]);
-    } else {
-      setSelectTime([
-        {
-          id: null,
-          time: "",
-        },
-      ]);
-    }
-    if (css[0].class === "") {
-      setCss([
-        {
-          index: id,
-          class: "activated",
-        },
-      ]);
-    } else {
-      setCss([
-        {
-          index: null,
-          class: "",
-        },
-      ]);
-    }
-  };
-
   const handleButtonClick = (schedule, movie) => {
     history.push("/order-page", {
       schedule: schedule,
       movie: movie,
-      idTime: selectTime[0].id,
-      time: selectTime[0].time,
+      time: time,
     });
   };
 
-  const setTime = (params) => {
-    const time = params.split(":");
-    return `${time[0]}:${time[1]}`;
+  const handleTimeClick = (time1, time2) => {
+    setTime(time1);
+    setCss({
+      time: time2,
+      class: "activated",
+    });
   };
 
   const showError = () => {
@@ -153,19 +112,7 @@ export default function Cinema() {
 
   useEffect(() => {
     setPaginate(totalPage < 6 ? totalPage : 5);
-    dispatch(getAllTime());
-    dispatch(getAllTicket()).then((res) => {
-      setIdTime(
-        res.map((item, index) => {
-          return item.idTime;
-        })
-      );
-      setIdSchedule(
-        res.map((item, index) => {
-          return item.idSchedule;
-        })
-      );
-    });
+    dispatch(getAllTicket()).then((res) => {});
     dispatch(getAllSchedule(date, id, city, page, perPage))
       .then((res) => {})
       .catch((err) => {
@@ -248,39 +195,83 @@ export default function Cinema() {
                     <Row>
                       <Col>
                         <nav className="nav pl-3 flex-row">
-                          {time.map((data, index) => {
-                            return (
-                              <p
-                                className={`nav-link ${
-                                  idTime.includes(data.id) === true &&
-                                  idSchedule.includes(item.id) &&
-                                  data.id === css[0].index
-                                    ? css[0].class
-                                    : idTime.includes(data.id) === true &&
-                                      idSchedule.includes(item.id)
-                                    ? ""
-                                    : "empty"
-                                }`}
-                                href="#"
-                                key={index}
-                                onClick={() =>
-                                  idTime.includes(data.id) === true &&
-                                  idSchedule.includes(item.id)
-                                    ? handleTimeClick(data.time, data.id)
-                                    : ""
-                                }
-                              >
-                                {setTime(data.time)}
-                              </p>
-                            );
-                          })}
+                          <p
+                            className={`nav-link ${
+                              item.time1 + item.id === css.time ? css.class : ""
+                            }`}
+                            onClick={() => {
+                              handleTimeClick(item.time1, item.time1 + item.id);
+                            }}
+                          >
+                            {item.time1}
+                          </p>
+                          <p
+                            className={`nav-link ${
+                              item.time2 + item.id === css.time ? css.class : ""
+                            }`}
+                            onClick={() => {
+                              handleTimeClick(item.time2, item.time2 + item.id);
+                            }}
+                          >
+                            {item.time2}
+                          </p>
+                          <p
+                            className={`nav-link ${
+                              item.time3 + item.id === css.time ? css.class : ""
+                            }`}
+                            onClick={() => {
+                              handleTimeClick(item.time3, item.time3 + item.id);
+                            }}
+                          >
+                            {item.time3}
+                          </p>
+                          <p
+                            className={`nav-link ${
+                              item.time4 + item.id === css.time ? css.class : ""
+                            }`}
+                            onClick={() => {
+                              handleTimeClick(item.time4, item.time4 + item.id);
+                            }}
+                          >
+                            {item.time4}
+                          </p>
+                          <p
+                            className={`nav-link ${
+                              item.time5 + item.id === css.time ? css.class : ""
+                            }`}
+                            onClick={() => {
+                              handleTimeClick(item.time5, item.time5 + item.id);
+                            }}
+                          >
+                            {item.time5}
+                          </p>
+                          <p
+                            className={`nav-link ${
+                              item.time6 + item.id === css.time ? css.class : ""
+                            }`}
+                            onClick={() => {
+                              handleTimeClick(item.time6, item.time6 + item.id);
+                            }}
+                          >
+                            {item.time6}
+                          </p>
+                          <p
+                            className={`nav-link ${
+                              item.time7 + item.id === css.time ? css.class : ""
+                            }`}
+                            onClick={() => {
+                              handleTimeClick(item.time7, item.time7 + item.id);
+                            }}
+                          >
+                            {item.time7}
+                          </p>
                         </nav>
                       </Col>
                     </Row>
                     <Row className="mt-2">
                       <Col className="px-5 d-flex justify-content-between align-items-center">
                         <h3>Price</h3>
-                        <p className="price">${item.price}/seat</p>
+                        <p className="price">{`$${item.price}.00/seat`}</p>
                       </Col>
                     </Row>
                     <Row className="mt-2">
@@ -289,16 +280,23 @@ export default function Cinema() {
                           type="button"
                           className="btn book-now"
                           onClick={
-                            selectTime[0].time !== ""
+                            time !== ""
                               ? () => handleButtonClick(item.id, id)
                               : () => showError()
                           }
                         >
                           Book now
                         </Button>
-                        <Link to="#" className="add-cart">
+                        <span
+                          onClick={
+                            time !== ""
+                              ? () => handleButtonClick(item.id, id)
+                              : () => showError()
+                          }
+                          className="add-cart"
+                        >
                           Add Cart
-                        </Link>
+                        </span>
                       </Col>
                     </Row>
                   </Card>

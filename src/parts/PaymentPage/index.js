@@ -36,6 +36,7 @@ function Index(props) {
   const time = props.location.state.time;
   const idUser = user.id;
   const category = movie.category;
+  const idSchedule = props.location.state.schedule;
 
   const [data, setData] = useState({
     firstName: "",
@@ -45,6 +46,10 @@ function Index(props) {
   });
   const [showAlert] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [css, setCss] = useState({
+    payment: "",
+    class: "active",
+  });
 
   const setDate = (params) => {
     const date = new Date(params);
@@ -101,11 +106,18 @@ function Index(props) {
   const handleClickButton = (event) => {
     event.preventDefault();
     setPaymentMethod(event.target.getAttribute("data-content"));
-    if (event.target.classList.contains("active") === true) {
-      event.target.classList.remove("active");
-    } else {
-      event.target.classList.add("active");
-    }
+    setCss({
+      payment: event.target.getAttribute("data-content"),
+      class: "active",
+    });
+  };
+
+  const handlePrevious = () => {
+    history.push("/order-page", {
+      schedule: idSchedule,
+      movie: idMovie,
+      time: time,
+    });
   };
 
   const handlePay = (event) => {
@@ -215,49 +227,67 @@ function Index(props) {
               <Row className="justify-content-center">
                 <div className="d-flex">
                   <Button
-                    className={`btn btn-payment google-pay`}
+                    className={`btn btn-payment google-pay ${
+                      "Google Pay" === css.payment ? css.class : ""
+                    }`}
                     onClick={(event) => handleClickButton(event)}
                     content="Google Pay"
                   ></Button>
                   <Button
-                    className={`btn btn-payment visa`}
+                    className={`btn btn-payment visa ${
+                      "Visa" === css.payment ? css.class : ""
+                    }`}
                     onClick={(event) => handleClickButton(event)}
                     content="Visa"
                   ></Button>
                   <Button
-                    className={`btn btn-payment gopay`}
+                    className={`btn btn-payment gopay ${
+                      "GoPay" === css.payment ? css.class : ""
+                    }`}
                     onClick={(event) => handleClickButton(event)}
                     content="GoPay"
                   ></Button>
                   <Button
-                    className={`btn btn-payment paypal d-none d-md-flex`}
+                    className={`btn btn-payment paypal d-none d-md-flex ${
+                      "PayPal" === css.payment ? css.class : ""
+                    }`}
                     onClick={(event) => handleClickButton(event)}
                     content="PayPal"
                   ></Button>
                 </div>
                 <div className="d-flex">
                   <Button
-                    className={`btn btn-payment paypal d-md-none`}
+                    className={`btn btn-payment paypal d-md-none ${
+                      "PayPal" === css.payment ? css.class : ""
+                    }`}
                     onClick={(event) => handleClickButton(event)}
                     content="PayPal"
                   ></Button>
                   <Button
-                    className={`btn btn-payment dana`}
+                    className={`btn btn-payment dana ${
+                      "Dana" === css.payment ? css.class : ""
+                    }`}
                     onClick={(event) => handleClickButton(event)}
                     content="Dana"
                   ></Button>
                   <Button
-                    className={`btn btn-payment bca d-none d-md-flex`}
+                    className={`btn btn-payment bca d-none d-md-flex ${
+                      "BCA" === css.payment ? css.class : ""
+                    }`}
                     onClick={(event) => handleClickButton(event)}
                     content="BCA"
                   ></Button>
                   <Button
-                    className={`btn btn-payment bri d-none d-md-flex`}
+                    className={`btn btn-payment bri d-none d-md-flex ${
+                      "BRI" === css.payment ? css.class : ""
+                    }`}
                     onClick={(event) => handleClickButton(event)}
                     content="BRI"
                   ></Button>
                   <Button
-                    className={`btn btn-payment ovo`}
+                    className={`btn btn-payment ovo ${
+                      "Ovo" === css.payment ? css.class : ""
+                    }`}
                     onClick={(event) => handleClickButton(event)}
                     content="Ovo"
                   ></Button>
@@ -327,7 +357,12 @@ function Index(props) {
         </Row>
         <Row className="pt-5 ml-auto">
           <Col className="col-lg-12 pl-0 col-xl-8 d-flex justify-content-between">
-            <Button className="btn btn-previous d-none d-md-block">
+            <Button
+              className="btn btn-previous d-none d-md-block"
+              onClick={() => {
+                handlePrevious();
+              }}
+            >
               Previous step
             </Button>
             <Button

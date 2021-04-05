@@ -326,7 +326,7 @@ export default function Navbar(props) {
               data-toggle="modal"
             />
             {localStorage.getItem("token") ? (
-              <div className="dropdown">
+              <div className="dropdown d-none d-lg-block">
                 <div
                   className="nav-link"
                   role="button"
@@ -371,7 +371,6 @@ export default function Navbar(props) {
       <div
         className="modal fade"
         id="exampleModal"
-        tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >

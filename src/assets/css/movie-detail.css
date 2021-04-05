@@ -240,16 +240,16 @@ button.book-now:hover {
   border: 1px solid #5f2eea;
 }
 
-a.add-cart {
+span.add-cart {
   font-weight: 700;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.75px;
   color: #5f2eea;
-  text-decoration: none;
+  cursor: pointer;
 }
 
-a.add-cart:hover {
+span.add-cart:hover {
   color: #a68af1;
 }
 

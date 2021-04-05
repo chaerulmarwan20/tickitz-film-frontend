@@ -1,11 +1,11 @@
 import axiosApiInstance from "../../../helpers/axios";
 
-export const getAllTicket = (idSchedule, idTime, idMovie) => (dispatch) => {
+export const getAllTicket = (idSchedule, time, idMovie) => (dispatch) => {
   return new Promise((resolve, reject) => {
     const Url = process.env.REACT_APP_API_URL;
     axiosApiInstance
       .get(
-        `${Url}/tickets/order?schedule=${idSchedule}&time=${idTime}&movie=${idMovie}`
+        `${Url}/tickets/order?schedule=${idSchedule}&time=${time}&movie=${idMovie}`
       )
       .then((res) => {
         dispatch({
