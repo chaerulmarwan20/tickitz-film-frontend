@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, useHistory } from "react-router-dom";
 
-function PrivateRoute({ component: Component, ...rest }) {
+function PublicRoute({ component: Component, ...rest }) {
   const history = useHistory();
   const isLogin = localStorage.getItem("token");
   return (
@@ -14,4 +14,4 @@ function PrivateRoute({ component: Component, ...rest }) {
   );
 }
 
-export default PrivateRoute;
+export default PublicRoute;
