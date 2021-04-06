@@ -2,12 +2,12 @@ import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getTicket } from "../../configs/redux/actions/ticketResult";
+import Barcode from "react-barcode";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
 import Col from "../../components/Col";
 import Section from "../../components/Section";
-import BitmapDetail from "./components/BitmapDetail";
 
 import CheckCircle from "../../assets/img/check-circle.png";
 
@@ -42,6 +42,20 @@ function Detail(props) {
     return `${time[0]}:${time[1]}`;
   };
 
+  const barCodeOptions = {
+    width: 0.7,
+    height: 40,
+    format: "CODE128",
+    displayValue: false,
+    background: "transparent",
+    lineColor: "#000000",
+    margin: 0,
+    marginTop: undefined,
+    marginBottom: undefined,
+    marginLeft: undefined,
+    marginRight: undefined,
+  };
+
   useEffect(() => {
     dispatch(getTicket(idTicket));
   }, [dispatch, idTicket]);
@@ -61,7 +75,43 @@ function Detail(props) {
                 />
                 <h1 className="mt-2">Thank You</h1>
                 <p>Your transaction was successful</p>
-                <BitmapDetail></BitmapDetail>
+                <div className="bitmap mt-2 mb-5 d-flex">
+                  <Barcode
+                    {...barCodeOptions}
+                    value={ticket.id}
+                    alt="barcode"
+                  />
+                  <Barcode
+                    {...barCodeOptions}
+                    value={ticket.id}
+                    alt="barcode"
+                  />
+                  <Barcode
+                    {...barCodeOptions}
+                    value={ticket.id}
+                    alt="barcode"
+                  />
+                  <Barcode
+                    {...barCodeOptions}
+                    value={ticket.id}
+                    alt="barcode"
+                  />
+                  <Barcode
+                    {...barCodeOptions}
+                    value={ticket.id}
+                    alt="barcode"
+                  />
+                  <Barcode
+                    {...barCodeOptions}
+                    value={ticket.id}
+                    alt="barcode"
+                  />
+                  <Barcode
+                    {...barCodeOptions}
+                    value={ticket.id}
+                    alt="barcode"
+                  />
+                </div>
               </Col>
               <Col className="col-12 d-flex flex-row justify-content-center detail mt-5">
                 <div className="d-flex flex-column">

@@ -47,6 +47,7 @@ class Input extends Component {
             placeholder={this.props.placeholder}
             onChange={this.props.onChange}
             autoComplete={this.props.autoComplete && "off"}
+            disabled={this.props.disabled ? true : false}
           />
         </Fragment>
       );
@@ -58,6 +59,7 @@ Input.propTypes = {
   className: propTypes.string,
   autoFocus: propTypes.bool,
   autoComplete: propTypes.bool,
+  disabled: propTypes.bool,
 };
 
 export default Input;

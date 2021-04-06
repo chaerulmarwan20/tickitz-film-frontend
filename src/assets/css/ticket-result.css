@@ -90,9 +90,10 @@ section.ticket-result .tickets .right {
 }
 
 section.ticket-result .tickets .bitmap {
-  transform: translateY(-10px);
+  transform: translateY(-10px) rotate(-90deg);
   position: absolute;
-  right: 0;
+  top: 135px;
+  right: -105px;
 }
 
 section.ticket-result

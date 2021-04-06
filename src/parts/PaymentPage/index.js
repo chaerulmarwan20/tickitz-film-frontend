@@ -317,6 +317,7 @@ function Index(props) {
                     placeholder="Write full name"
                     value={data.fullName}
                     onChange={handleFormChange}
+                    disabled
                   />
                 </div>
                 <div className="form-group">
@@ -327,6 +328,7 @@ function Index(props) {
                     placeholder="Write email"
                     value={data.email}
                     onChange={handleFormChange}
+                    disabled
                   />
                 </div>
                 <div className="form-group">
@@ -342,6 +344,7 @@ function Index(props) {
                       placeholder="Write phone number"
                       value={data.phoneNumber}
                       onChange={handleFormChange}
+                      disabled
                     />
                   </div>
                 </div>

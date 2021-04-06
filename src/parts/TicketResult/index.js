@@ -61,6 +61,7 @@ function Index(props) {
             {ticket.time !== undefined && (
               <Ticket
                 ref={componentRef}
+                id={ticket.id}
                 movie={ticket.movieTitle}
                 date={setDate(ticket.dateTransactions)}
                 time={setTime(ticket.time)}
@@ -75,7 +76,9 @@ function Index(props) {
                 <Button
                   className="btn btn-download"
                   onClick={() =>
-                    exportComponentAsJPEG(componentRef, { fileName: "ticket" })
+                    exportComponentAsJPEG(componentRef, {
+                      fileName: `ticket-${new Date().getTime()}`,
+                    })
                   }
                 >
                   <img
