@@ -80,7 +80,7 @@ function Index(props) {
   };
 
   const handleChangeMovie = () => {
-    history.push("/all-movies-showing");
+    history.push("/all-movies-showing", { css: css });
   };
 
   const handleCheckout = (
