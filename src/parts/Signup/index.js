@@ -191,7 +191,7 @@ export default function Index() {
               onClick={handleToggle}
             />
           </div>
-          <div className="d-flex checkbox mt-0">
+          <div className="d-flex checkbox mt-0 mb-4 mb-lg-0">
             <Input
               type="checkbox"
               name="agree"

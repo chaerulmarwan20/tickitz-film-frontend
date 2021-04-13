@@ -310,7 +310,12 @@ main aside.sign-up .btn-facebook::before {
   }
 
   main aside.sign-up form div.checkbox {
-    display: none !important;
+    transform: translateY(-5px);
+  }
+
+  main aside.sign-up form div.checkbox input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
   }
 
   main aside.sign-up img.tickitz {
