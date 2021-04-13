@@ -313,6 +313,13 @@ main aside.sign-up .btn-facebook::before {
     transform: translateY(-5px);
   }
 
+  main aside.sign-up form div.checkbox label {
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.75px;
+    color: #696f79;
+  }
+
   main aside.sign-up form div.checkbox input[type="checkbox"] {
     width: 15px;
     height: 15px;
