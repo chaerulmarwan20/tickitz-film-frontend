@@ -105,7 +105,7 @@ Download the ticket
 
 ![Tickitz-Film-Ticket](https://user-images.githubusercontent.com/76175402/115994692-41433100-a602-11eb-8971-dd3ae9190e3a.png)
 
-### # `#FINISH`
+### # FINISH
 
 ## Link: 
 - [Backend](https://github.com/chaerulmarwan20/tickitz-film-api)
