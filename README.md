@@ -4,6 +4,63 @@
 
 The Tickitz Film application is a web application created using node.js and its framework called express.js. This application will make it easier for users to order or purchase tickets to watch movies in their favorite cinemas. This application will also allow users to find out the details of a film, such as the players, the director and even the synopsis. So, you can see in advance who the players are, who is the director who made the film, and what the synopsis looks like.
 
+### # FEATURES
+
+- Authentication & Authorization
+
+- Reset Password
+
+- Realtime Movie Search
+
+- Order Ticket
+
+- Download Ticket with Barcode
+
+- Change Profile
+
+- Upload Image Profile
+
+
+### # TOOLS
+
+-  [React](https://reactjs.org/)
+
+-  [Redux](https://redux.js.org/)
+
+-  [Bootstrap](https://getbootstrap.com/)
+
+-  [ExpressJS](http://expressjs.com/)
+
+-  [MySQL](https://www.mysql.com/)
+
+-  [Redis](https://redis.io/)
+
+### # HOW TO RUN
+
+1. Clone the repo
+
+```
+
+~$ git clone https://github.com/chaerulmarwan20/tickitz-film-frontend.git
+
+```
+
+2. Open the project and run on terminal or command prompt
+
+```
+
+~$ npm install
+
+```
+
+3. Run on your terminal or command prompt
+
+```
+
+~$ npm start
+
+```
+
 ### `Home Page Tickitz Film`
 
 ![Tickitz-Film-Homepage](https://user-images.githubusercontent.com/76175402/115395746-6d2f7280-a20e-11eb-9c9e-ad9c0b1b08b9.png)
