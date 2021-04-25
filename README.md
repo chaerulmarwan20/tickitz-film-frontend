@@ -61,21 +61,51 @@ The Tickitz Film application is a web application created using node.js and its 
 
 ```
 
-### `Home Page Tickitz Film`
+### # HOW TO USE
+
+### #1 `Home Page`
+
+Cick the sign-up button
 
 ![Tickitz-Film-Homepage](https://user-images.githubusercontent.com/76175402/115395746-6d2f7280-a20e-11eb-9c9e-ad9c0b1b08b9.png)
 
-### `Login Tickitz Film`
+### #2 `Sign-Up`
+
+Build your account by filling in the required data. Then, verify your account via email
+
+![Tickitz-Film-Sign-Up](https://user-images.githubusercontent.com/76175402/115994683-3be5e680-a602-11eb-847a-3c9b8e875c13.png)
+
+### #3 `Sign-In`
+
+Login using a verified account
 
 ![Tickitz-Film-Login](https://user-images.githubusercontent.com/76175402/115395827-8506f680-a20e-11eb-9f61-3d691d48ef11.png)
 
-### `Movie Detail Tickitz Film`
+### #4 `Movie Detail Tickitz Film`
+
+Click one of the movie cards on the home page. Then, you will be directed to the movie detail page. Click one of the schedule in movie detail page.
 
 ![Tickitz-Film-Detail](https://user-images.githubusercontent.com/76175402/115395922-9d771100-a20e-11eb-8d27-8dd620585a0b.png)
 
-### `Order Page Tickitz Film`
+### #5 `Order Page`
+
+Choose your seat
 
 ![Tickitz-Film-Order-Page](https://user-images.githubusercontent.com/76175402/115395975-aec01d80-a20e-11eb-9187-a833d5419973.png)
+
+### #6 `Payment Page`
+
+Choose the payment method
+
+![Tickitz-Film-Payment](https://user-images.githubusercontent.com/76175402/115994694-42745e00-a602-11eb-8301-63677d694111.png)
+
+### #7 `Ticket Page`
+
+Download the ticket
+
+![Tickitz-Film-Ticket](https://user-images.githubusercontent.com/76175402/115994692-41433100-a602-11eb-8971-dd3ae9190e3a.png)
+
+### `#FINISH`
 
 ## Link: 
 - [Backend](https://github.com/chaerulmarwan20/tickitz-film-api)
