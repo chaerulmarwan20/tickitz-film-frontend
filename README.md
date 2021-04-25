@@ -81,31 +81,31 @@ Login using a verified account
 
 ![Tickitz-Film-Login](https://user-images.githubusercontent.com/76175402/115395827-8506f680-a20e-11eb-9f61-3d691d48ef11.png)
 
-### #4 `Movie Detail Tickitz Film`
+### #4 `Movie Detail`
 
 Click one of the movie cards on the home page. Then, you will be directed to the movie detail page. Click one of the schedule in movie detail page.
 
 ![Tickitz-Film-Detail](https://user-images.githubusercontent.com/76175402/115395922-9d771100-a20e-11eb-8d27-8dd620585a0b.png)
 
-### #5 `Order Page`
+### #5 `Order`
 
 Choose your seat
 
 ![Tickitz-Film-Order-Page](https://user-images.githubusercontent.com/76175402/115395975-aec01d80-a20e-11eb-9187-a833d5419973.png)
 
-### #6 `Payment Page`
+### #6 `Payment`
 
 Choose the payment method
 
 ![Tickitz-Film-Payment](https://user-images.githubusercontent.com/76175402/115994694-42745e00-a602-11eb-8301-63677d694111.png)
 
-### #7 `Ticket Page`
+### #7 `Ticket`
 
 Download the ticket
 
 ![Tickitz-Film-Ticket](https://user-images.githubusercontent.com/76175402/115994692-41433100-a602-11eb-8971-dd3ae9190e3a.png)
 
-### `#FINISH`
+### # `#FINISH`
 
 ## Link: 
 - [Backend](https://github.com/chaerulmarwan20/tickitz-film-api)
