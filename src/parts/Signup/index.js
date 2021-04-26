@@ -92,6 +92,16 @@ export default function Index() {
     }
   };
 
+  const handleClickAuth = () => {
+    Swal.fire({
+      title: "Info!",
+      text: "This feature is coming soon",
+      icon: "info",
+      confirmButtonText: "Ok",
+      confirmButtonColor: "#5f2eea",
+    });
+  };
+
   useEffect(() => {
     if (email !== null && token !== null) {
       dispatch(verify(email, token))
@@ -217,10 +227,18 @@ export default function Index() {
         </p>
         <p className="or">Or</p>
         <div className="btn-group">
-          <Button type="button" className="btn-google">
+          <Button
+            type="button"
+            className="btn-google"
+            onClick={() => handleClickAuth()}
+          >
             <span>Google</span>
           </Button>
-          <Button type="button" className="btn-facebook">
+          <Button
+            type="button"
+            className="btn-facebook"
+            onClick={() => handleClickAuth()}
+          >
             <span>Facebook</span>
           </Button>
         </div>

@@ -347,7 +347,7 @@
   .seat hr {
     background-color: #9570fe;
     border-radius: 3px;
-    height: 6px;
+    height: 5px;
   }
 
   .seat .container-seat-1 {
@@ -520,5 +520,12 @@
   .container-grid,
   .container-seat {
     transform: translateX(35px);
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .container-grid,
+  .container-seat {
+    transform: translateX(7px);
   }
 }

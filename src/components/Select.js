@@ -26,7 +26,7 @@ export default function Select(props) {
   );
 }
 
-Select.protoTypes = {
+Select.propTypes = {
   className: propTypes.string,
   option: propTypes.array,
 };

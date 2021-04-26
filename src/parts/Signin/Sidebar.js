@@ -65,6 +65,16 @@ export default function Sidebar() {
       });
   };
 
+  const handleClickAuth = () => {
+    Swal.fire({
+      title: "Info!",
+      text: "This feature is coming soon",
+      icon: "info",
+      confirmButtonText: "Ok",
+      confirmButtonColor: "#5f2eea",
+    });
+  };
+
   return (
     <Aside className="sign-in">
       <img src={Logo} alt="Tickitz" />
@@ -105,10 +115,18 @@ export default function Sidebar() {
       </p>
       <p className="or">Or</p>
       <div className="btn-group">
-        <Button type="button" className="btn-google">
+        <Button
+          type="button"
+          className="btn-google"
+          onClick={() => handleClickAuth()}
+        >
           <span>Google</span>
         </Button>
-        <Button type="button" className="btn-facebook">
+        <Button
+          type="button"
+          className="btn-facebook"
+          onClick={() => handleClickAuth()}
+        >
           <span>Facebook</span>
         </Button>
       </div>

@@ -72,7 +72,7 @@ function Index(props) {
   const showError = () => {
     Swal.fire({
       title: "Info!",
-      text: "Please choose ticket",
+      text: "Please choose seat",
       icon: "info",
       confirmButtonText: "Ok",
       confirmButtonColor: "#5f2eea",
@@ -182,19 +182,17 @@ function Index(props) {
                 </div>
                 <div className="container-seat-1">
                   {ticket.map((data, index) => {
-                    return (
+                    return data.available === 1 ? (
                       <div
                         key={index}
-                        onClick={
-                          data.available === 1
-                            ? (event) =>
-                                handleClickSeat(
-                                  data.row + data.seat,
-                                  data.id,
-                                  event
-                                )
-                            : ""
+                        onClick={(event) =>
+                          handleClickSeat(data.row + data.seat, data.id, event)
                         }
+                        className={data.available === 0 ? "sold" : ""}
+                      ></div>
+                    ) : (
+                      <div
+                        key={index}
                         className={data.available === 0 ? "sold" : ""}
                       ></div>
                     );

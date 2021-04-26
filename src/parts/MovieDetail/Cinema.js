@@ -88,6 +88,16 @@ export default function Cinema() {
     });
   };
 
+  const handleButtonCart = () => {
+    Swal.fire({
+      title: "Info!",
+      text: "This feature is coming soon",
+      icon: "info",
+      confirmButtonText: "Ok",
+      confirmButtonColor: "#5f2eea",
+    });
+  };
+
   const handleTimeClick = (time1, time2) => {
     setTime(time1);
     setCss({
@@ -288,11 +298,7 @@ export default function Cinema() {
                           Book now
                         </Button>
                         <span
-                          onClick={
-                            time !== ""
-                              ? () => handleButtonClick(item.id, id)
-                              : () => showError()
-                          }
+                          onClick={() => handleButtonCart()}
                           className="add-cart"
                         >
                           Add Cart

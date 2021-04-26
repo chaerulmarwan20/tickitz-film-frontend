@@ -7,6 +7,6 @@ export default function Container(props) {
   return <div className={className.join(" ")}>{props.children}</div>;
 }
 
-Container.protoTypes = {
+Container.propTypes = {
   className: propTypes.string,
 };

@@ -112,7 +112,7 @@ export default function Order() {
                           data.status === "SUCCESS"
                             ? "btn-ticket"
                             : data.status === "PENDING"
-                            ? "btn-ticket-used"
+                            ? "btn-ticket"
                             : "btn-ticket-canceled"
                         }`}
                       >
@@ -120,7 +120,7 @@ export default function Order() {
                           data.status === "SUCCESS"
                             ? "Ticket in active"
                             : data.status === "PENDING"
-                            ? "Ticket in not active"
+                            ? "Ticket in active"
                             : "Ticket in cancel"
                         }`}
                       </Button>

@@ -393,7 +393,7 @@ export default function Navbar(props) {
               <form className="form-inline d-none d-lg-block mb-4 mt-3 search">
                 <Input
                   type="text"
-                  name="search"
+                  name="keyword"
                   placeholder="Search..."
                   value={query}
                   onChange={handleFormChange}

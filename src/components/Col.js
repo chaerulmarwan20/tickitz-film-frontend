@@ -12,6 +12,6 @@ export default function Col(props) {
   return <div className={className.join(" ")}>{props.children}</div>;
 }
 
-Col.protoTypes = {
+Col.propTypes = {
   className: propTypes.string,
 };

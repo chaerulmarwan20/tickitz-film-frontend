@@ -5,6 +5,6 @@ export default function Aside(props) {
   return <aside className={props.className}>{props.children}</aside>;
 }
 
-Aside.protoTypes = {
+Aside.propTypes = {
   className: propTypes.string,
 };

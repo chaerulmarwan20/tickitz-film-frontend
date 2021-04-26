@@ -5,6 +5,6 @@ export default function Nav(props) {
   return <nav className={props.className}>{props.children}</nav>;
 }
 
-Nav.protoTypes = {
+Nav.propTypes = {
   className: propTypes.string,
 };

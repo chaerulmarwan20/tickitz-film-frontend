@@ -5,6 +5,6 @@ export default function Section(props) {
   return <section className={props.className}>{props.children}</section>;
 }
 
-Section.protoTypes = {
+Section.propTypes = {
   className: propTypes.string,
 };

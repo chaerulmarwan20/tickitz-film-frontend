@@ -15,6 +15,6 @@ export default function Row(props) {
   );
 }
 
-Row.protoTypes = {
+Row.propTypes = {
   className: propTypes.string,
 };
