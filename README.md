@@ -65,7 +65,7 @@ The Tickitz Film application is a web application created using node.js and its 
 
 ### `Home Page`
 
-Cick the sign-up button
+Click the sign-up button
 
 ![Tickitz-FilmHome](https://user-images.githubusercontent.com/76175402/115995246-b7e12e00-a604-11eb-9d30-b267aba67e2b.png)
 
