@@ -131,19 +131,35 @@ function Index(props) {
     dispatch(getAllTicket(idSchedule, time, movie))
       .then((res) => {})
       .catch((err) => {
-        Swal.fire({
-          title: "Info!",
-          text: err.message,
-          icon: "info",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            history.goBack();
-          } else {
-            history.goBack();
-          }
-        });
+        if (err.message === "Tickets not found") {
+          Swal.fire({
+            title: "Info!",
+            text: "Tickets sold out",
+            icon: "info",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              history.goBack();
+            } else {
+              history.goBack();
+            }
+          });
+        } else {
+          Swal.fire({
+            title: "Info!",
+            text: err.message,
+            icon: "info",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              history.goBack();
+            } else {
+              history.goBack();
+            }
+          });
+        }
       });
   }, [dispatch, idSchedule, time, movie, history]);
 

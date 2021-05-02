@@ -103,12 +103,12 @@ nav .nav-link {
   border: 0;
 }
 
-.container-movie-search-mobile {
+.navbar-nav .container-movie-search-mobile {
   background-color: transparent;
   border: 0;
 }
 
-.container-movie-search-mobile h2 {
+.navbar-nav .container-movie-search-mobile h2 {
   font-weight: 400;
   font-size: 13px;
   line-height: 24px;
@@ -117,7 +117,7 @@ nav .nav-link {
   text-align: left;
 }
 
-.container-movie-search-mobile h1 {
+.navbar-nav .container-movie-search-mobile h1 {
   font-weight: 400;
   font-size: 30px;
   line-height: 24px;
@@ -126,7 +126,7 @@ nav .nav-link {
   text-align: left;
 }
 
-.container-movie-search-mobile p {
+.navbar-nav .container-movie-search-mobile p {
   margin-top: -15px;
   font-weight: 400;
   font-size: 13px;

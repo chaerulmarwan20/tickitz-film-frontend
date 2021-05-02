@@ -128,13 +128,23 @@ export default function Cinema() {
       .catch((err) => {
         setCity(1);
         setDate("2021-04-02");
-        Swal.fire({
-          title: "Info!",
-          text: err.message,
-          icon: "info",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
+        if (err.message === "Schedule not found") {
+          Swal.fire({
+            title: "Info!",
+            text: "The schedule is not yet available",
+            icon: "info",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        } else {
+          Swal.fire({
+            title: "Info!",
+            text: err.message,
+            icon: "info",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        }
       });
   }, [dispatch, date, id, city, page, perPage, totalPage]);
 
