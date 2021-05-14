@@ -76,20 +76,20 @@ $ npm start
 ## Screenshots
 
 <div align="center">
-    <img width="300" src="./src/assets/screenshots/Sign-In.png">   
-    <img width="300" src="./src/assets/screenshots/Homepage.png">   
+    <img width="500" height="500" src="./src/assets/screenshots/Sign-In.png">   
+    <img width="500" height="500" src="./src/assets/screenshots/Homepage.png">   
 </div>
 <div align="center">
-    <img width="300" src="./src/assets/screenshots/Movie-Detail.png">   
-    <img width="300" src="./src/assets/screenshots/Order.png">
+    <img width="500" height="500" src="./src/assets/screenshots/Movie-Detail.png">   
+    <img width="500" height="500" src="./src/assets/screenshots/Order.png">
 </div>
 <div align="center">
-    <img width="300" src="./src/assets/screenshots/Payment.png">   
-    <img width="300" src="./src/assets/screenshots/Ticket.png">
+    <img width="500" height="500" src="./src/assets/screenshots/Payment.png">   
+    <img width="500" height="500" src="./src/assets/screenshots/Ticket.png">
 </div>
 <div align="center">
-    <img width="300" src="./src/assets/screenshots/Profile.png">   
-    <img width="300" src="./src/assets/screenshots/Order-History.png">
+    <img width="500" height="500" src="./src/assets/screenshots/Profile.png">   
+    <img width="500" height="500" src="./src/assets/screenshots/Order-History.png">
 </div>
 
 ## Related Project
