@@ -27,7 +27,7 @@ The Tickitz Film application is a web application created using node.js and its 
 
 - Order Ticket
 
-- Download Ticket with Barcode
+- Download Ticket
 
 - Change Profile
 
@@ -54,20 +54,20 @@ This is an example of how to list things you need to use the software and how to
 $ git clone https://github.com/chaerulmarwan20/tickitz-film-frontend.git
 ```
 
-2. To open a project type the command below.
+2. Open this project.
 
 ```
 $ cd tickitz-film-frontend
 $ npm install
 ```
 
-3. Create Environment Variable.
+3. Create environment variable.
 
 ```
 $ cp .env.example .env
 ```
 
-4. Type below command to run this application.
+4. Run this application.
 
 ```
 $ npm start
