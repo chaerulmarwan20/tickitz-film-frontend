@@ -1,6 +1,6 @@
 <h1 align="center">Tickitz Film</h1>
 <p align="center">
-  <a href="https://booking-tickitz-film.netlify.app/" target="_blank"><img src="https://i.ibb.co/tzSzq4x/Tickitz-2.png" alt="Tickitz-2" border="0" /></a>
+  <a href="https://booking-tickitz-film.netlify.app/" target="_blank"><image src="https://i.ibb.co/tzSzq4x/Tickitz-2.png" alt="Tickitz-2" border="0" /></a>
 </p>
 
 ## Table of Contents
@@ -77,14 +77,14 @@ $ npm start
 
 <p align="center">
   <span>
-    <img width="200" src="./src/assets/screenshots/Sign-In.png">   
-    <img width="200" src="./src/assets/screenshots/Homepage.png">   
-    <img width="200" src="./src/assets/screenshots/Movie-Detail.png">   
-    <img width="200" src="./src/assets/screenshots/Order.png">
-    <img width="200" src="./src/assets/screenshots/Payment.png">   
-    <img width="200" src="./src/assets/screenshots/Profile.png">   
-    <img width="200" src="./src/assets/screenshots/Order-History.png">
-    <img width="200" src="./src/assets/screenshots/Ticket.png">
+    <image width="200" src="./src/assets/screenshots/Sign-In.png">   
+    <image width="200" src="./src/assets/screenshots/Homepage.png">   
+    <image width="200" src="./src/assets/screenshots/Movie-Detail.png">   
+    <image width="200" src="./src/assets/screenshots/Order.png">
+    <image width="200" src="./src/assets/screenshots/Payment.png">   
+    <image width="200" src="./src/assets/screenshots/Profile.png">   
+    <image width="200" src="./src/assets/screenshots/Order-History.png">
+    <image width="200" src="./src/assets/screenshots/Ticket.png">
   </span>
 </p>
 
