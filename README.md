@@ -19,19 +19,21 @@ The Tickitz application is a web application created using node.js and its frame
 
 ## Features
 
-- Authentication & Authorization
+- Authentication
 
-- Reset Password
+- Authorization
 
-- Realtime Movie Search
+- Reset password
 
-- Order Ticket
+- Realtime movie search
 
-- Download Ticket
+- Order ticket
 
-- Change Profile
+- Download ticket
 
-- Upload img Profile
+- Change profile
+
+- Upload image profile
 
 ## Built With
 
