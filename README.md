@@ -90,5 +90,5 @@ $ npm start
 
 ## Related Project
 
-- [`Backend Tickitz`](https://github.com/chaerulmarwan20/tickitz-film-api)
-- [`Production`](https://booking-tickitz-film.netlify.app/)
+- :white_check_mark: [`Backend Tickitz`](https://github.com/chaerulmarwan20/tickitz-film-api)
+- :rocket: [`Production`](https://booking-tickitz-film.netlify.app/)
