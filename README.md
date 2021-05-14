@@ -1,3 +1,4 @@
+<h1 align="center">Tickitz Film</h1>
 <p align="center">
   <a href="https://booking-tickitz-film.netlify.app/" target="_blank"><img src="https://i.ibb.co/tzSzq4x/Tickitz-2.png" alt="Tickitz-2" border="0" /></a>
 </p>
@@ -42,8 +43,8 @@ The Tickitz Film application is a web application created using node.js and its 
 
 This is an example of how to list things you need to use the software and how to install them.
 
-- [nodejs](https://nodejs.org/en/download/)
-- [tickitz-backend](https://github.com/chaerulmarwan20/tickitz-film-api)
+- [NodeJs](https://nodejs.org/en/download/)
+- [Backend Tickitz](https://github.com/chaerulmarwan20/tickitz-film-api)
 
 ## Installation
 
@@ -75,20 +76,20 @@ $ npm start
 ## Screenshots
 
 <div align="center">
-    <img width="250" src="./src/assets/screenshots/Sign-In.png">   
-    <img width="250" src="./src/assets/screenshots/Homepage.png">   
+    <img width="300" height="300" src="./src/assets/screenshots/Sign-In.png">   
+    <img width="300" height="300" src="./src/assets/screenshots/Homepage.png">   
 </div>
 <div align="center">
-    <img width="250" src="./src/assets/screenshots/Movie-Detail.png">   
-    <img width="250" src="./src/assets/screenshots/Order.png">
+    <img width="300" height="300" src="./src/assets/screenshots/Movie-Detail.png">   
+    <img width="300" height="300" src="./src/assets/screenshots/Order.png">
 </div>
 <div align="center">
-    <img width="250" src="./src/assets/screenshots/Payment.png">   
-    <img width="250" src="./src/assets/screenshots/Ticket.png">
+    <img width="300" height="300" src="./src/assets/screenshots/Payment.png">   
+    <img width="300" height="300" src="./src/assets/screenshots/Ticket.png">
 </div>
 <div align="center">
-    <img width="250" src="./src/assets/screenshots/Profile.png">   
-    <img width="250" src="./src/assets/screenshots/Order-History.png">
+    <img width="300" height="300" src="./src/assets/screenshots/Profile.png">   
+    <img width="300" height="300" src="./src/assets/screenshots/Order-History.png">
 </div>
 
 ## Related Project
