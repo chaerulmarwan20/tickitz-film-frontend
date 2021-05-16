@@ -77,14 +77,14 @@ $ npm start
 
 <p align="center">
   <span>
-    <img width="500" height="500" src="./src/assets/screenshots/Sign-In.png">   
-    <img width="500" height="500" src="./src/assets/screenshots/Homepage.png">   
-    <img width="500" height="500" src="./src/assets/screenshots/Movie-Detail.png">   
-    <img width="500" height="500" src="./src/assets/screenshots/Order.png">
-    <img width="500" height="500" src="./src/assets/screenshots/Payment.png">   
-    <img width="500" height="500" src="./src/assets/screenshots/Ticket.png">
-    <img width="500" height="500" src="./src/assets/screenshots/Profile.png">   
-    <img width="500" height="500" src="./src/assets/screenshots/Order-History.png">
+    <img width="250" height="250" src="./src/assets/screenshots/Sign-In.png">   
+    <img width="250" height="250" src="./src/assets/screenshots/Homepage.png">   
+    <img width="250" height="250" src="./src/assets/screenshots/Movie-Detail.png">   
+    <img width="250" height="250" src="./src/assets/screenshots/Order.png">
+    <img width="250" height="250" src="./src/assets/screenshots/Payment.png">   
+    <img width="250" height="250" src="./src/assets/screenshots/Ticket.png">
+    <img width="250" height="250" src="./src/assets/screenshots/Profile.png">   
+    <img width="250" height="250" src="./src/assets/screenshots/Order-History.png">
   </span>
 </p>
 
