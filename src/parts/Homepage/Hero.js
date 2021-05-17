@@ -1,4 +1,5 @@
-import React from "react";
+import { React, useEffect } from "react";
+import { animateScroll as scroll } from "react-scroll";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -11,6 +12,10 @@ import Image3 from "../../assets/img/image-3.png";
 
 export default function Hero() {
   const cardMovie = [Image1, Image2, Image3];
+
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
 
   return (
     <Header className="homepage">

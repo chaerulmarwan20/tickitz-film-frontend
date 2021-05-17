@@ -5,7 +5,7 @@ export const getAllMoviesShowing = (page, perPage) => {
     const Url = process.env.REACT_APP_API_URL;
     axios
       .get(
-        `${Url}/movies/realesed/?keyword=true&page=${page}&perPage=${perPage}`
+        `${Url}/movies/is-realese/keyword=${""}?page=${page}&perPage=${perPage}`
       )
       .then((res) => {
         dispatch({

@@ -1,8 +1,11 @@
 import { React, Fragment, useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { confirm, activate, reset } from "../../configs/redux/actions/user";
+import { animateScroll as scroll } from "react-scroll";
 import Swal from "sweetalert2";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { confirm, activate, reset } from "../../configs/redux/actions/user";
 
 import Row from "../../components/Row";
 import Col from "../../components/Col";
@@ -13,6 +16,7 @@ import Button from "../../components/Button";
 
 import Logo1 from "../../assets/img/tickitz-sign-in.png";
 import Logo2 from "../../assets/img/Tickitz-mobile-sign-in.png";
+import Eye from "../../assets/img/eye.png";
 
 export default function Index() {
   const useQuery = () => new URLSearchParams(useLocation().search);
@@ -27,83 +31,29 @@ export default function Index() {
 
   const { loading } = useSelector((state) => state.user);
 
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
+  const [type, setType] = useState("password");
   const [step, setStep] = useState("fill");
 
-  const handleFormChange = (event) => {
-    const dataNew = { ...data };
-    dataNew[event.target.name] = event.target.value;
-    setData(dataNew);
-  };
+  let validate;
 
-  const handleConfirm = (event) => {
-    event.preventDefault();
-    dispatch(confirm(data))
-      .then((res) => {
-        setData({
-          email: "",
-          password: "",
-        });
-        setStep("activate");
-        Swal.fire({
-          title: "Success!",
-          text: res,
-          icon: "success",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
-      })
-      .catch((err) => {
-        Swal.fire({
-          title: "Error!",
-          text: err.message,
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
-      });
-  };
+  if (step === "fill" || step === "activate") {
+    validate = {
+      email: Yup.string().email("Invalid email format").required("Required!"),
+    };
+  } else if (step === "reset" || step === "done") {
+    validate = {
+      password: Yup.string()
+        .min(8, "Minimum 8 characters")
+        .required("Required!"),
+    };
+  }
 
-  const handleActivate = (event) => {
-    event.preventDefault();
-    dispatch(activate(data))
-      .then((res) => {
-        setData({
-          email: "",
-          password: "",
-        });
-        Swal.fire({
-          title: "Success!",
-          text: res,
-          icon: "success",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
-      })
-      .catch((err) => {
-        Swal.fire({
-          title: "Error!",
-          text: err.message,
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
-      });
-  };
-
-  const handleReset = (event) => {
-    event.preventDefault();
-    if (email !== null && token !== null) {
-      dispatch(reset(email, token, data))
+  const action = (params) => {
+    if (step === "fill") {
+      dispatch(confirm(params))
         .then((res) => {
-          setData({
-            email: "",
-            password: "",
-          });
-          setStep("done");
+          formik.resetForm();
+          setStep("activate");
           Swal.fire({
             title: "Success!",
             text: res,
@@ -121,15 +71,83 @@ export default function Index() {
             confirmButtonColor: "#5f2eea",
           });
         });
-    } else {
-      Swal.fire({
-        title: "Error!",
-        text: "Something wrong",
-        icon: "error",
-        confirmButtonText: "Ok",
-        confirmButtonColor: "#5f2eea",
-      });
+    } else if (step === "activate") {
+      dispatch(activate(params))
+        .then((res) => {
+          formik.resetForm();
+          Swal.fire({
+            title: "Success!",
+            text: res,
+            icon: "success",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "Error!",
+            text: err.message,
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        });
+    } else if (step === "reset") {
+      if (email !== null && token !== null) {
+        dispatch(reset(email, token, params))
+          .then((res) => {
+            formik.resetForm();
+            setStep("done");
+            Swal.fire({
+              title: "Success!",
+              text: res,
+              icon: "success",
+              confirmButtonText: "Ok",
+              confirmButtonColor: "#5f2eea",
+            });
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Error!",
+              text: err.message,
+              icon: "error",
+              confirmButtonText: "Ok",
+              confirmButtonColor: "#5f2eea",
+            });
+          });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Something wrong",
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      }
     }
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object(validate),
+    onSubmit: (values) => {
+      action(values);
+    },
+  });
+
+  const handleToggle = () => {
+    if (type === "text") {
+      setType("password");
+    } else {
+      setType("text");
+    }
+  };
+
+  const handleClickLogo = () => {
+    history.push("/");
   };
 
   useEffect(() => {
@@ -137,6 +155,10 @@ export default function Index() {
       setStep("reset");
     }
   }, [dispatch, email, token]);
+
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
 
   return (
     <Fragment>
@@ -159,7 +181,7 @@ export default function Index() {
             <span className={`two ${step === "activate" ? "main" : ""}`}>
               2
             </span>
-            <p className="ml-5 mt-2">Activate your email</p>
+            <p className="ml-5 mt-2">Send link</p>
           </Col>
         </Row>
         <Row>
@@ -176,12 +198,17 @@ export default function Index() {
         </Row>
       </Section>
       <Aside className="forgot-password">
-        <img src={Logo2} alt="Tickitz" />
+        <img
+          src={Logo2}
+          alt="Tickitz"
+          style={{ cursor: "pointer" }}
+          onClick={() => handleClickLogo()}
+        />
         <h1 className="d-none d-lg-block">
           {step === "fill"
             ? "Fill your complete email"
             : step === "activate"
-            ? "Activate your email"
+            ? "Send link"
             : step === "reset"
             ? "Enter your new password"
             : "Done"}
@@ -196,48 +223,85 @@ export default function Index() {
             ? "reset password is almost complete"
             : "reset password has been completed"}
         </p>
-        <form>
+        <form onSubmit={formik.handleSubmit}>
           {(step === "fill" || step === "activate") && (
-            <Input
-              label="Email"
-              type="email"
-              name="email"
-              value={data.email}
-              placeholder="Write your email"
-              onChange={handleFormChange}
-            />
+            <>
+              <Input
+                label="Email"
+                type="text"
+                name="email"
+                placeholder="Write your email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                className={`${
+                  formik.errors.email && formik.touched.email
+                    ? "error mb-0"
+                    : "mb-5"
+                }`}
+              />
+              {formik.errors.email && formik.touched.email && (
+                <small className="error">{formik.errors.email}</small>
+              )}
+            </>
           )}
           {(step === "reset" || step === "done") && (
-            <Input
-              label="New Password"
-              type="password"
-              name="password"
-              value={data.password}
-              placeholder="Write new password"
-              onChange={handleFormChange}
-            />
+            <>
+              <div
+                className={`password-container ${
+                  formik.errors.email && formik.touched.email && "mt-3"
+                }`}
+              >
+                <Input
+                  label="New Password"
+                  type={type}
+                  name="password"
+                  placeholder="Write new password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  className={`${
+                    formik.errors.password && formik.touched.password
+                      ? "error mb-0"
+                      : "mb-5"
+                  }`}
+                />
+                <img
+                  src={Eye}
+                  alt="Eye"
+                  width="20"
+                  className="img-eye"
+                  onClick={handleToggle}
+                />
+              </div>
+              {formik.errors.password && formik.touched.password && (
+                <small className="error">{formik.errors.password}</small>
+              )}
+            </>
           )}
+          <br />
           {step === "fill" ? (
             <Button
               type="submit"
-              className="btn-activate"
-              onClick={handleConfirm}
+              className={`btn-activate ${
+                formik.errors.email && formik.touched.email && "mt-5"
+              }`}
             >
               {!loading ? "Confirm now" : "Please wait..."}
             </Button>
           ) : step === "activate" ? (
             <Button
               type="submit"
-              className="btn-activate"
-              onClick={handleActivate}
+              className={`btn-activate ${
+                formik.errors.email && formik.touched.email && "mt-5"
+              }`}
             >
-              {!loading ? "Activate now" : "Please wait..."}
+              {!loading ? "Send link now" : "Please wait..."}
             </Button>
           ) : step === "reset" ? (
             <Button
               type="submit"
-              className="btn-activate"
-              onClick={handleReset}
+              className={`btn-activate ${
+                formik.errors.password && formik.touched.password && "mt-5"
+              }`}
             >
               {!loading ? "Reset now" : "Please wait..."}
             </Button>

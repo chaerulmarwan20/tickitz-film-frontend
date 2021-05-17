@@ -1,9 +1,12 @@
-import { React, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
-import { getTicket } from "../../configs/redux/actions/ticketResult";
+import { useSelector, useDispatch } from "react-redux";
+import { animateScroll as scroll } from "react-scroll";
 import ReactToPrint from "react-to-print";
+import Swal from "sweetalert2";
 import { exportComponentAsJPEG } from "react-component-export-image";
+import { getTicket } from "../../configs/redux/actions/ticketResult";
+import Rupiah from "../../helpers/rupiah";
 
 import { Ticket } from "./Ticket";
 
@@ -49,8 +52,22 @@ function Index(props) {
   };
 
   useEffect(() => {
-    dispatch(getTicket(idTicket));
+    dispatch(getTicket(idTicket))
+      .then((res) => {})
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      });
   }, [dispatch, idTicket]);
+
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
 
   return (
     <Container className="d-none d-lg-block mb-5">
@@ -68,7 +85,7 @@ function Index(props) {
                 category={ticket.category}
                 qty={`${ticket.qty} pieces`}
                 seat={ticket.seat}
-                total={`$${ticket.total}.00`}
+                total={Rupiah(ticket.total)}
               />
             )}
             <Row className="mt-5">
@@ -77,7 +94,7 @@ function Index(props) {
                   className="btn btn-download"
                   onClick={() =>
                     exportComponentAsJPEG(componentRef, {
-                      fileName: `ticket-${new Date().getTime()}`,
+                      fileName: `tickitz-${new Date().getTime()}`,
                     })
                   }
                 >

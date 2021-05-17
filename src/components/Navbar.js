@@ -36,21 +36,7 @@ export default function Navbar(props) {
   const [showResultMobile, setShowResultMobile] = useState(false);
   const [query, setQuery] = useState("");
   const [queryMobile, setQueryMobile] = useState("");
-
-  const menu = [
-    {
-      title: "Movies",
-      href: "/",
-    },
-    {
-      title: "Cinemas",
-      href: "/",
-    },
-    {
-      title: "Buy Ticket",
-      href: "/all-movies-showing",
-    },
-  ];
+  const [empty, setEmpty] = useState(false);
 
   const handleFormChange = (event) => {
     setQuery(event.target.value);
@@ -60,27 +46,18 @@ export default function Navbar(props) {
       )
       .then((res) => {
         if (event.target.value === "") {
+          setEmpty(false);
           setShowResult(false);
         } else {
+          setEmpty(false);
           setShowResult(true);
         }
+        setEmpty(false);
         dispatch(searchMoviesShowing(res.data.data));
       })
       .catch((err) => {
-        Swal.fire({
-          title: "Error!",
-          text: err.response.data.message,
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        }).then((result) => {
-          setShowResult(false);
-          if (result.isConfirmed) {
-            setQuery("");
-          } else {
-            setQuery("");
-          }
-        });
+        setShowResult(false);
+        setEmpty(true);
       });
   };
 
@@ -92,28 +69,40 @@ export default function Navbar(props) {
       )
       .then((res) => {
         if (event.target.value === "") {
+          setEmpty(false);
           setShowResultMobile(false);
         } else {
+          setEmpty(false);
           setShowResultMobile(true);
         }
+        setEmpty(false);
         dispatch(searchMoviesShowing(res.data.data));
       })
       .catch((err) => {
-        Swal.fire({
-          title: "Info!",
-          text: err.response.data.message,
-          icon: "info",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        }).then((result) => {
-          setShowResultMobile(false);
-          if (result.isConfirmed) {
-            setQueryMobile("");
-          } else {
-            setQueryMobile("");
-          }
-        });
+        setShowResultMobile(false);
+        setEmpty(true);
       });
+  };
+
+  const handleClickCinemas = () => {
+    history.push("/cinemas");
+  };
+
+  const handleClickMovies = () => {
+    Swal.fire({
+      title: "What do yo want?",
+      showDenyButton: true,
+      confirmButtonText: `Now Showing`,
+      confirmButtonColor: "#5f2eea",
+      denyButtonText: "Upcoming Movies",
+      denyButtonColor: `#5f2eea`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        history.push("/all-movies-showing");
+      } else if (!result.isConfirmed && result.dismiss !== "backdrop") {
+        history.push("/all-movies-upcoming");
+      }
+    });
   };
 
   const handleLogout = () => {
@@ -128,7 +117,7 @@ export default function Navbar(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.clear();
-        history.push("/");
+        history.push("/sign-in");
       } else {
         Swal.fire({
           title: "Logout canceled",
@@ -146,16 +135,51 @@ export default function Navbar(props) {
     setShowResultMobile(false);
     setQuery("");
     setQueryMobile("");
+    setEmpty(false);
     history.push(`/movie-detail/${id}`);
   };
 
+  const handleClickBuy = () => {
+    Swal.fire({
+      title: "Please choose a movie!",
+      text: "Redirect to the movie page",
+      icon: "info",
+      confirmButtonText: "Ok",
+      confirmButtonColor: "#5f2eea",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        history.push("/all-movies-showing");
+      }
+    });
+  };
+
   useEffect(() => {
-    dispatch(getLocation());
+    dispatch(getLocation())
+      .then((res) => {})
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      });
   }, [dispatch]);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      dispatch(getUser());
+      dispatch(getUser())
+        .then((res) => {})
+        .catch((err) => {
+          Swal.fire({
+            title: "Error!",
+            text: err.message,
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        });
     }
   }, [dispatch]);
 
@@ -188,7 +212,7 @@ export default function Navbar(props) {
                   value={queryMobile}
                   onChange={handleFormChangeMobile}
                 />
-                {showResultMobile === true && (
+                {showResultMobile === true && empty === false && (
                   <Row className="container-movie-search-mobile d-block d-lg-none flex-column pt-4 pl-3">
                     {allMoviesShowing.map((item, index) => {
                       return (
@@ -224,16 +248,34 @@ export default function Navbar(props) {
                     })}
                   </Row>
                 )}
+                {showResultMobile === false && empty === true && (
+                  <p className="empty-mobile mt-4">Movie not found</p>
+                )}
               </form>
-              {menu.map((data, index) => {
-                return (
-                  <li key={index} className="nav-item">
-                    <Link className="nav-link my-2 my-lg-0" to={data.href}>
-                      {data.title}
-                    </Link>
-                  </li>
-                );
-              })}
+              <li className="nav-item">
+                <div
+                  className="nav-link my-2 my-lg-0"
+                  onClick={() => handleClickMovies()}
+                >
+                  Movies
+                </div>
+              </li>
+              <li className="nav-item">
+                <div
+                  className="nav-link my-2 my-lg-0"
+                  onClick={() => handleClickCinemas()}
+                >
+                  Cinemas
+                </div>
+              </li>
+              <li className="nav-item">
+                <div
+                  className="nav-link my-2 my-lg-0"
+                  onClick={() => handleClickBuy()}
+                >
+                  Buy Ticket
+                </div>
+              </li>
               <li className="nav-item dropdown d-lg-none">
                 <div
                   className="nav-link mt-4 mb-2 my-lg-0"
@@ -273,6 +315,14 @@ export default function Navbar(props) {
                     className="dropdown-menu mb-3"
                     aria-labelledby="navbarDropdown"
                   >
+                    {user.role === 1 && (
+                      <>
+                        <Link className="dropdown-item" to="/admin-page">
+                          Admin Page
+                        </Link>
+                        <div className="dropdown-divider"></div>
+                      </>
+                    )}
                     <Link className="dropdown-item" to="/profile-page">
                       Settings
                     </Link>
@@ -347,6 +397,14 @@ export default function Navbar(props) {
                   className="dropdown-menu user"
                   aria-labelledby="dropdownMenuLink"
                 >
+                  {user.role === 1 && (
+                    <>
+                      <Link className="dropdown-item" to="/admin-page">
+                        Admin Page
+                      </Link>
+                      <div className="dropdown-divider"></div>
+                    </>
+                  )}
                   <Link className="dropdown-item" to="/profile-page">
                     Account Settings
                   </Link>
@@ -399,7 +457,7 @@ export default function Navbar(props) {
                   onChange={handleFormChange}
                   autoComplete
                 />
-                {showResult === true && (
+                {showResult === true && empty === false && (
                   <Row className="container-movie-search d-none d-lg-flex flex-column pt-4 pl-5 pr-5">
                     {allMoviesShowing.map((item, index) => {
                       return (
@@ -435,6 +493,9 @@ export default function Navbar(props) {
                       );
                     })}
                   </Row>
+                )}
+                {showResult === false && empty === true && (
+                  <p className="empty mt-4">Movie not found</p>
                 )}
               </form>
             </div>

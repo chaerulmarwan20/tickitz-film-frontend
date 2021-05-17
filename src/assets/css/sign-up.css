@@ -131,7 +131,6 @@ main aside.sign-up form label {
 main aside.sign-up form input.form-control {
   font-family: "Mulish", sans-serif;
   margin-top: 12px;
-  margin-bottom: 48px;
   background-color: #fcfdfe;
   border: 1px solid #dedede;
   border-radius: 16px;
@@ -145,6 +144,14 @@ main aside.sign-up form input.form-control {
   font-weight: 400;
   color: #a0a3bd;
   transition: 0.5s ease;
+}
+
+main aside.sign-up form input.form-control.error {
+  border: 1px solid #ea2e57;
+}
+
+main aside.sign-up form small.error {
+  color: #ea2e57;
 }
 
 main aside.sign-up form input:focus {
@@ -211,7 +218,7 @@ main aside.sign-up .btn-join {
   border: 1px solid #5f2eea !important;
 }
 
-main aside.sign-up p.forgot-password {
+main aside.sign-up p.login {
   font-weight: 500;
   font-size: 16px;
   margin: auto;
@@ -219,14 +226,16 @@ main aside.sign-up p.forgot-password {
   color: #8692a6;
 }
 
-main aside.sign-up p.forgot-password a {
+main aside.sign-up p.login a {
   font-weight: 500;
   font-size: 16px;
   color: #5f2eea;
+  transition: 0.5s ease;
 }
 
-main aside.sign-up p.forgot-password a:hover {
+main aside.sign-up p.login a:hover {
   color: #8692a6;
+  text-decoration: none;
 }
 
 main aside.sign-up p.or {
@@ -270,6 +279,12 @@ main aside.sign-up .btn-facebook {
   font-size: 18px;
   border: 1px solid transparent;
   cursor: pointer;
+  transition: 0.5 ease;
+}
+
+main aside.sign-up .btn-google:hover,
+main aside.sign-up .btn-facebook:hover {
+  opacity: 0.6;
 }
 
 main aside.sign-up .btn-google {
@@ -347,15 +362,22 @@ main aside.sign-up .btn-facebook::before {
     margin-bottom: 39px;
   }
 
-  main aside.sign-up p.forgot-password,
-  main aside.sign-up p.forgot-password a {
+  main aside.sign-up p.login,
+  main aside.sign-up p.login a {
     font-family: "Mulish", sans-serif;
     font-weight: 600;
   }
 
-  main aside.sign-up p.forgot-password,
+  main aside.sign-up p.login,
   main aside.sign-up p.or {
     display: block;
+  }
+
+  .pointer:hover {
+    background-color: #5f2eea !important;
+    color: #f7f7fc !important;
+    border: 1px solid transparent !important;
+    opacity: 0.7;
   }
 }
 

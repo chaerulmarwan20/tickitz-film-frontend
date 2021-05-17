@@ -1,8 +1,9 @@
 import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getTicket } from "../../configs/redux/actions/ticketResult";
 import Barcode from "react-barcode";
+import Rupiah from "../../helpers/rupiah";
+import { getTicket } from "../../configs/redux/actions/ticketResult";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -136,7 +137,7 @@ function Detail(props) {
               <Col className="col-12 d-flex justify-content-center mt-4">
                 <div className="total d-flex justify-content-between pt-2 px-3">
                   <h3>Total</h3>
-                  <p>{`$${ticket.total}.00`}</p>
+                  {ticket.total !== undefined && <p>{Rupiah(ticket.total)}</p>}
                 </div>
               </Col>
             </Row>

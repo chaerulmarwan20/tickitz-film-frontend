@@ -218,9 +218,7 @@
 }
 
 .order-history .detail-order .btn-ticket:hover {
-  border: 1px solid #00ba88;
-  background-color: #f7f7fc;
-  color: #00ba88;
+  opacity: 0.7;
 }
 
 .order-history .detail-order select {
@@ -256,9 +254,7 @@
 }
 
 .order-history .detail-order .btn-ticket-used:hover {
-  border: 1px solid#6E7191;
-  background-color: #f7f7fc;
-  color: #6e7191;
+  opacity: 0.7;
 }
 
 .order-history .detail-order .btn-ticket-canceled {
@@ -277,14 +273,153 @@
 }
 
 .order-history .detail-order .btn-ticket-canceled:hover {
-  border: 1px solid#ea2e57;
-  background-color: #f7f7fc;
-  color: #ea2e57;
+  opacity: 0.7;
+}
+
+.order-history .paginate .btn-order {
+  height: 50px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  transition: 0.5s ease;
+  color: #5f2eea;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 25px;
+  border: 0.5px solid #dedede;
+  box-sizing: border-box;
+  transition: 0.5s ease;
+}
+
+.order-history .paginate .btn-order:hover {
+  color: #ffffff;
+  background-color: #5f2eea;
+  border: 0.5px solid transparent;
+}
+
+.order-history .paginate .btn-order.active {
+  color: #ffffff;
+  background-color: #5f2eea;
+  border: 0.5px solid transparent;
+}
+
+.order-history .paginate .btn-order.active:hover {
+  color: #5f2eea;
+  background-color: #ffffff;
+  border: 0.5px solid #dedede;
+}
+
+.order-history .paginate select.custom-select {
+  width: 200px;
+  height: 50px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 25px;
+  color: #5f2eea;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.order-history .paginate select.custom-select:hover {
+  opacity: 0.6;
+}
+
+.order-history .paginate select.custom-select option {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 25px;
+  color: #5f2eea;
+}
+
+.order-history .paginate ul.pagination-custom {
+  list-style: none;
+  display: flex;
+  transform: translateX(-22px);
+}
+
+.order-history .paginate ul.pagination-custom li button {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 0.5px solid #dedede;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 0.75px;
+  color: #4e4b66;
+  text-decoration: none;
+  transition: 0.5s ease;
+}
+
+.order-history .paginate ul.pagination-custom li button:hover {
+  background-color: #5f2eea;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border: 0.5px solid transparent;
+  color: #fff;
+}
+
+.order-history .paginate ul.pagination-custom li button.page-active {
+  background-color: #5f2eea;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border: 0.5px solid transparent;
+  color: #fff;
+}
+
+.order-history .paginate ul.pagination-custom li button.page-active:hover {
+  background-color: #ffffff;
+  border: 0.5px solid #dedede;
+  color: #4e4b66;
+  box-shadow: inherit;
+}
+
+.order-history h6.empty {
+  font-size: 20px;
+  font-weight: 700;
+  color: #14142b;
 }
 
 @media screen and (max-width: 991px) {
   .order-history {
     margin-top: 190px;
+  }
+
+  .order-history .paginate .btn-order:hover {
+    color: #5f2eea;
+    background-color: #ffffff;
+    border: 0.5px solid #dedede;
+    opacity: 0.6;
+  }
+
+  .order-history .paginate .btn-order.active:hover {
+    color: #ffffff;
+    background-color: #5f2eea;
+    border: 0.5px solid transparent;
+    opacity: 0.7;
+  }
+
+  .order-history .paginate ul.pagination-custom li button:hover {
+    background-color: #ffffff;
+    box-shadow: inherit;
+    border: 0.5px solid #dedede;
+    color: #4e4b66;
+    opacity: 0.6;
+  }
+
+  .order-history .paginate ul.pagination-custom li button.page-active:hover {
+    background-color: #5f2eea;
+    border: 0.5px solid transparent;
+    color: #ffffff;
+    box-shadow: inherit;
+    opacity: 0.7;
   }
 }
 
@@ -293,5 +428,9 @@
   .order-history .detail-order .btn-ticket-used,
   .order-history .detail-order .btn-ticket-canceled {
     width: 279px;
+  }
+
+  .order-history h6.empty {
+    font-size: 18px;
   }
 }

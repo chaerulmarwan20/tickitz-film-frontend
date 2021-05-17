@@ -91,25 +91,35 @@ export const moviegoers = (data) => (dispatch) => {
   });
 };
 
-export const getUser = () => {
-  return (dispatch) => {
+export const getUser = () => (dispatch) => {
+  return new Promise((resolve, reject) => {
     const Url = process.env.REACT_APP_API_URL;
-    axiosApiInstance.get(`${Url}/users/find-one`).then((res) => {
-      dispatch({
-        type: "GET_USER",
-        payload: res.data.data[0],
-        role: res.data.data[0].role,
+    axiosApiInstance
+      .get(`${Url}/users/find-one`)
+      .then((res) => {
+        dispatch({
+          type: "GET_USER",
+          payload: res.data.data[0],
+          role: res.data.data[0].role,
+        });
+      })
+      .catch((err) => {
+        reject(new Error(err.response.data.message));
       });
-    });
-  };
+  });
 };
 
 export const findUser = () => (dispatch) => {
   return new Promise((resolve, reject) => {
     const Url = process.env.REACT_APP_API_URL;
-    axiosApiInstance.get(`${Url}/users/find-one`).then((res) => {
-      resolve(res.data.data[0]);
-    });
+    axiosApiInstance
+      .get(`${Url}/users/find-one`)
+      .then((res) => {
+        resolve(res.data.data[0]);
+      })
+      .catch((err) => {
+        reject(new Error(err.response.data.message));
+      });
   });
 };
 
@@ -127,49 +137,58 @@ export const update = (data, id) => (dispatch) => {
   });
 };
 
-export const confirm = ({ email }) => (dispatch) => {
-  return new Promise((resolve, reject) => {
-    const Url = process.env.REACT_APP_API_URL;
-    axios
-      .post(`${Url}/users/auth/check-email`, { email })
-      .then((res) => {
-        resolve(res.data.message);
-      })
-      .catch((err) => {
-        reject(new Error(err.response.data.message));
-      });
-  });
-};
+export const confirm =
+  ({ email }) =>
+  (dispatch) => {
+    return new Promise((resolve, reject) => {
+      const Url = process.env.REACT_APP_API_URL;
+      axios
+        .post(`${Url}/users/auth/check-email`, { email })
+        .then((res) => {
+          resolve(res.data.message);
+        })
+        .catch((err) => {
+          reject(new Error(err.response.data.message));
+        });
+    });
+  };
 
-export const activate = ({ email }) => (dispatch) => {
-  return new Promise((resolve, reject) => {
-    const Url = process.env.REACT_APP_API_URL;
-    dispatch(resetRequest());
-    axios
-      .post(`${Url}/users/auth/forgot-password`, { email })
-      .then((res) => {
-        dispatch(resetSuccess());
-        resolve(res.data.message);
-      })
-      .catch((err) => {
-        dispatch(resetFailure(err.response.data.message));
-        reject(err.response.data.message);
-      });
-  });
-};
+export const activate =
+  ({ email }) =>
+  (dispatch) => {
+    return new Promise((resolve, reject) => {
+      const Url = process.env.REACT_APP_API_URL;
+      dispatch(resetRequest());
+      axios
+        .post(`${Url}/users/auth/forgot-password`, { email })
+        .then((res) => {
+          dispatch(resetSuccess());
+          resolve(res.data.message);
+        })
+        .catch((err) => {
+          dispatch(resetFailure(new Error(err.response.data.message)));
+          reject(new Error(err.response.data.message));
+        });
+    });
+  };
 
-export const reset = (email, token, { password }) => (dispatch) => {
-  return new Promise((resolve, reject) => {
-    const Url = process.env.REACT_APP_API_URL;
-    axios
-      .put(`${Url}/users/auth/reset-password/?email=${email}&token=${token}`, {
-        password,
-      })
-      .then((res) => {
-        resolve(res.data.message);
-      })
-      .catch((err) => {
-        reject(err.response.data.message);
-      });
-  });
-};
+export const reset =
+  (email, token, { password }) =>
+  (dispatch) => {
+    return new Promise((resolve, reject) => {
+      const Url = process.env.REACT_APP_API_URL;
+      axios
+        .put(
+          `${Url}/users/auth/reset-password/?email=${email}&token=${token}`,
+          {
+            password,
+          }
+        )
+        .then((res) => {
+          resolve(res.data.message);
+        })
+        .catch((err) => {
+          reject(new Error(err.response.data.message));
+        });
+    });
+  };

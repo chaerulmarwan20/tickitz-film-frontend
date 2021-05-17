@@ -1,4 +1,6 @@
 import { React, Fragment } from "react";
+import { Helmet } from "react-helmet";
+
 import "../assets/css/payment-page.css";
 
 import Nav from "../components/Nav";
@@ -12,6 +14,10 @@ export default function PaymentPage(props) {
 
   return (
     <Fragment>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Tickitz Film - Payment</title>
+      </Helmet>
       <Navbar isPayment></Navbar>
       <Nav className="navbar pt-4 fixed-top pl-1 total-payment d-flex d-md-none justify-content-between">
         <Container>

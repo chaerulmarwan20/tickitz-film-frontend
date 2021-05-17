@@ -1,13 +1,15 @@
 import { React, useState, useEffect } from "react";
 import { withRouter, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { animateScroll as scroll } from "react-scroll";
+import Swal from "sweetalert2";
 import {
   getMovie,
   getCinema,
   createTransactions,
 } from "../../configs/redux/actions/payment";
 import { findUser } from "../../configs/redux/actions/user";
-import Swal from "sweetalert2";
+import Rupiah from "../../helpers/rupiah";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -174,15 +176,49 @@ function Index(props) {
   };
 
   useEffect(() => {
-    dispatch(getMovie(idMovie));
-    dispatch(getCinema(idCinema));
+    dispatch(getMovie(idMovie))
+      .then((res) => {})
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      });
+    dispatch(getCinema(idCinema))
+      .then((res) => {})
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      });
   }, [dispatch, idMovie, idCinema]);
 
   useEffect(() => {
-    dispatch(findUser()).then((res) => {
-      setData(res);
-    });
+    dispatch(findUser())
+      .then((res) => {
+        setData(res);
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      });
   }, [dispatch]);
+
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
 
   return (
     <Section className="payment-detail">
@@ -214,7 +250,7 @@ function Index(props) {
                 </Row>
                 <Row className="justify-content-between align-items-center">
                   <h2>Total payment</h2>
-                  <p>{`$${total},00`}</p>
+                  <p>{Rupiah(total)}</p>
                   <hr />
                 </Row>
               </Container>

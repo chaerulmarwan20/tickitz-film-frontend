@@ -1,6 +1,8 @@
 import { React, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { animateScroll as scroll } from "react-scroll";
+import Swal from "sweetalert2";
 import { getMovieDetail } from "../../configs/redux/actions/movieDetail";
 
 import Container from "../../components/Container";
@@ -10,18 +12,12 @@ import Header from "../../components/Header";
 import Card from "../../components/Card";
 
 function Hero() {
-  window.scrollTo(0, 0);
-
   const ImgUrl = process.env.REACT_APP_API_IMG;
 
   const { id } = useParams();
 
   const dispatch = useDispatch();
   const { movieDetail } = useSelector((state) => state.movieDetail);
-
-  useEffect(() => {
-    dispatch(getMovieDetail(id));
-  }, [dispatch, id]);
 
   const setDate = (params) => {
     const date = new Date(params);
@@ -42,6 +38,24 @@ function Hero() {
 
     return `${month[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   };
+
+  useEffect(() => {
+    dispatch(getMovieDetail(id))
+      .then((res) => {})
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      });
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
 
   return (
     <Header className="movies-details mb-5">
@@ -78,10 +92,7 @@ function Hero() {
                   </Col>
                   <Col className="col-6 col-lg-12">
                     <h2>Casts</h2>
-                    <p>
-                      {data.cast}., <span className="d-none">etc.</span>
-                      <span>...</span>
-                    </p>
+                    <p>{`${data.cast.substring(0, 48)}...`}</p>
                   </Col>
                 </Row>
               </Col>

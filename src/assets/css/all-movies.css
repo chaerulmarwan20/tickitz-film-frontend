@@ -1,6 +1,21 @@
 section.all-movies {
   margin-top: 80px;
-  padding-bottom: 70px;
+  padding-bottom: 50px;
+}
+
+section.all-movies .title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #14142b;
+}
+
+section.all-movies .title::after {
+  content: "";
+  display: block;
+  width: 100px;
+  border: 2px solid #5f2eea;
+  border-radius: 2px;
+  margin: 10px auto 0 auto;
 }
 
 section.all-movies .container-all-movie {
@@ -10,8 +25,6 @@ section.all-movies .container-all-movie {
 }
 
 section.all-movies .card-all-movie {
-  width: 212px;
-  height: 420px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -21,13 +34,12 @@ section.all-movies .card-all-movie {
 
 section.all-movies .container-all-movie .card {
   display: inline-block;
-  width: 212px;
-  height: 420px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0px 8px 32px rgba(186, 186, 186, 0.24);
   border: 0;
   margin-right: 16px;
+  cursor: pointer;
 }
 
 section.all-movies .container-all-movie .card img {
@@ -55,26 +67,68 @@ section.all-movies .container-all-movie .card span {
   text-align: center;
 }
 
-section.all-movies .container-all-movie .card .btn-details {
-  width: 159px;
-  height: 33px;
-  border-radius: 4px;
-  color: #5f2eea;
-  background-color: #fff;
-  border: 1px solid #5f2eea;
-  font-size: 14px;
-  font-weight: 400;
-  transition: 0.5s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+section.all-movies h4.empty {
+  font-size: 24px;
+  font-weight: 700;
+  color: #14142b;
 }
 
-section.all-movies .container-all-movie .card .btn-details:hover {
-  color: #fff;
+section.all-movies .btn-order {
+  height: 50px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  transition: 0.5s ease;
+  color: #5f2eea;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 25px;
+  border: 0.5px solid #dedede;
+  box-sizing: border-box;
+  transition: 0.5s ease;
+}
+
+section.all-movies .btn-order:hover {
+  color: #ffffff;
   background-color: #5f2eea;
-  border: 1px solid transparent;
+  border: 0.5px solid transparent;
+}
+
+section.all-movies .btn-order.active {
+  color: #ffffff;
+  background-color: #5f2eea;
+  border: 0.5px solid transparent;
+}
+
+section.all-movies .btn-order.active:hover {
+  color: #5f2eea;
+  background-color: #ffffff;
+  border: 0.5px solid #dedede;
+}
+
+section.all-movies select.custom-select {
+  width: 200px;
+  height: 50px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 25px;
+  color: #5f2eea;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+section.all-movies select.custom-select:hover {
+  opacity: 0.6;
+}
+
+section.all-movies select.custom-select option {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 25px;
+  color: #5f2eea;
 }
 
 section.all-movies ul.pagination-custom {
@@ -83,10 +137,10 @@ section.all-movies ul.pagination-custom {
   transform: translateX(-22px);
 }
 
-section.all-movies ul.pagination-custom li a {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+section.all-movies ul.pagination-custom li button {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
   background-color: #ffffff;
   border: 0.5px solid #dedede;
   box-sizing: border-box;
@@ -103,21 +157,21 @@ section.all-movies ul.pagination-custom li a {
   transition: 0.5s ease;
 }
 
-section.all-movies ul.pagination-custom li a:hover {
+section.all-movies ul.pagination-custom li button:hover {
   background-color: #5f2eea;
-  box-shadow: 0px 8px 16px rgba(95, 46, 234, 0.24);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   border: 0.5px solid transparent;
   color: #fff;
 }
 
-section.all-movies ul.pagination-custom li a.page-active {
+section.all-movies ul.pagination-custom li button.page-active {
   background-color: #5f2eea;
-  box-shadow: 0px 8px 16px rgba(95, 46, 234, 0.24);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   border: 0.5px solid transparent;
   color: #fff;
 }
 
-section.all-movies ul.pagination-custom li a.page-active:hover {
+section.all-movies ul.pagination-custom li button.page-active:hover {
   background-color: #ffffff;
   border: 0.5px solid #dedede;
   color: #4e4b66;
@@ -172,10 +226,17 @@ section.all-movies .form-search-movie::-webkit-input-placeholder {
 }
 
 @media screen and (max-width: 767px) {
-  section.all-movies .container-all-movie .card,
-  section.all-movies .card-all-movie {
-    width: 175px;
-    height: 330px;
+  section.all-movies .title {
+    font-size: 22px;
+  }
+
+  section.all-movies .title::after {
+    content: "";
+    display: none;
+  }
+
+  section.all-movies h4.empty {
+    font-size: 18px;
   }
 
   section.all-movies .container-all-movie .card img {
@@ -200,20 +261,37 @@ section.all-movies .form-search-movie::-webkit-input-placeholder {
     text-align: center;
     white-space: normal;
   }
+}
 
-  section.all-movies .container-all-movie .card .btn-details {
-    width: 120px;
-    height: 25px;
-    border: 0.5px solid #5f2eea;
-    font-size: 10px;
-    font-weight: 300;
-    margin-top: 24px;
-    text-align: center;
-    letter-spacing: 0.25px;
+@media screen and (max-width: 991px) {
+  section.all-movies .btn-order:hover {
+    color: #5f2eea;
+    background-color: #ffffff;
+    border: 0.5px solid #dedede;
+    opacity: 0.6;
   }
 
-  section.all-movies .container-all-movie .card .btn-details:hover {
+  section.all-movies .btn-order.active:hover {
+    color: #ffffff;
+    background-color: #5f2eea;
     border: 0.5px solid transparent;
+    opacity: 0.7;
+  }
+
+  section.all-movies ul.pagination-custom li button:hover {
+    background-color: #ffffff;
+    box-shadow: inherit;
+    border: 0.5px solid #dedede;
+    color: #4e4b66;
+    opacity: 0.6;
+  }
+
+  section.all-movies ul.pagination-custom li button.page-active:hover {
+    background-color: #5f2eea;
+    border: 0.5px solid transparent;
+    color: #ffffff;
+    box-shadow: inherit;
+    opacity: 0.7;
   }
 }
 

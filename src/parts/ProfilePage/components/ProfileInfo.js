@@ -1,4 +1,6 @@
 import { React, useRef, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../../configs/redux/actions/user";
 
@@ -17,6 +19,25 @@ export default function ProfileInfo(props) {
   const { user } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
+
+  const history = useHistory();
+
+  const handleClickMenu = () => {
+    Swal.fire({
+      title: "What do yo want?",
+      showDenyButton: true,
+      confirmButtonText: `Account Settings`,
+      confirmButtonColor: "#5f2eea",
+      denyButtonText: "Order History",
+      denyButtonColor: `#5f2eea`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        history.push("/profile-page");
+      } else if (!result.isConfirmed && result.dismiss !== "backdrop") {
+        history.push("/order-history");
+      }
+    });
+  };
 
   if (props.status) {
     imageRef.current.value = "";
@@ -42,7 +63,7 @@ export default function ProfileInfo(props) {
             <h1>Info</h1>
           </Col>
           <Col className="d-flex align-items-center justify-content-end pr-0 ml-auto dot">
-            <div className="d-flex">
+            <div className="d-flex" onClick={() => handleClickMenu()}>
               <span></span>
               <span></span>
               <span></span>
@@ -51,17 +72,16 @@ export default function ProfileInfo(props) {
         </Row>
         <Row className="flex-column px-5 mt-4">
           <Col className="d-flex justify-content-center img-container">
-            {props.img === undefined ? (
-              ""
-            ) : (
-              <img
-                src={imgUrl}
-                width="136"
-                height="136"
-                className="rounded-circle"
-                alt="User"
-              />
-            )}
+            {props.img !== undefined &&
+              imgUrl !== "http://localhost:8080/undefined" && (
+                <img
+                  src={imgUrl}
+                  width="136"
+                  height="136"
+                  className="rounded-circle"
+                  alt="User"
+                />
+              )}
             <input
               type="file"
               name="image"
@@ -71,7 +91,11 @@ export default function ProfileInfo(props) {
             />
           </Col>
           <Col className="d-flex justify-content-center text-center mt-2">
-            <h2>{props.user}</h2>
+            <h2>
+              {props.user === "firstName lastName"
+                ? "Your full name"
+                : props.user}
+            </h2>
           </Col>
           <Col className="d-flex justify-content-center text-center">
             <p>Moviegoers</p>

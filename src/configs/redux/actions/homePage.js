@@ -1,12 +1,18 @@
 import axios from "axios";
 
-export const getShowingMovies = () => {
-  return (dispatch) => {
+export const getShowingMovies = () => (dispatch) => {
+  return new Promise((resolve, reject) => {
     const Url = process.env.REACT_APP_API_URL;
-    axios.get(`${Url}/movies/realesed/?keyword=true`).then((res) => {
-      dispatch({ type: "GET_SHOWING", payload: res.data.data });
-    });
-  };
+    axios
+      .get(`${Url}/movies/realesed/?keyword=true`)
+      .then((res) => {
+        dispatch({ type: "GET_SHOWING", payload: res.data.data });
+        resolve(res.data.data);
+      })
+      .catch((err) => {
+        reject(new Error(err.response.data.message));
+      });
+  });
 };
 
 export const getUpcomingMovies = (date) => (dispatch) => {

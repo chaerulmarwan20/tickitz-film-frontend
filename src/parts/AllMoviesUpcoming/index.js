@@ -1,92 +1,126 @@
 import { React, useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 import axios from "axios";
-import Swal from "sweetalert2";
-import {
-  getAllMoviesUpcoming,
-  searchMoviesUpcoming,
-} from "../../configs/redux/actions/allMoviesUpcoming";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
 import Col from "../../components/Col";
-import Nav from "../../components/Nav";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import Input from "../../components/Input";
 
 export default function Index() {
-  window.scrollTo(0, 0);
-
   const Url = process.env.REACT_APP_API_URL;
   const ImgUrl = process.env.REACT_APP_API_IMG;
 
-  const useQuery = () => new URLSearchParams(useLocation().search);
+  const history = useHistory();
 
-  const params = useQuery();
-
-  const page = params.get("page") ? params.get("page") : 1;
-  const perPage = params.get("perPage") ? params.get("perPage") : 5;
-
-  const dispatch = useDispatch();
-  const { allMoviesUpcoming, totalPage, currentPage } = useSelector(
-    (state) => state.allMoviesUpcoming
-  );
-
-  const [query, setQuery] = useState("");
-  const [show, setShow] = useState(true);
+  const [movies, setMovies] = useState([]);
+  const [empty, setEmpty] = useState(false);
+  const [order, setOrder] = useState("ASC");
+  const [sort, setSort] = useState("id");
+  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(null);
+  const [totalPage, setTotalPage] = useState(null);
+  const [limit, setLimit] = useState(5);
   const [paginate, setPaginate] = useState(1);
+  const [query, setQuery] = useState("");
+
+  const handleChangeSort = (event) => {
+    setSort(event.target.value);
+  };
+
+  const handleClickOrder = (params) => {
+    setOrder(params);
+  };
+
+  const handleChangeLimit = (event) => {
+    if (page > 1) {
+      setPage(1);
+    }
+    setLimit(event.target.value);
+  };
+
+  const handleClickPaginate = (params) => {
+    setPage(params);
+  };
 
   const handleFormChange = (event) => {
     setQuery(event.target.value);
     axios
       .get(
-        `${Url}/movies/is-not-realese/?keyword=${event.target.value}&perPage=${perPage}`
+        `${Url}/movies/is-not-realese/?keyword=${event.target.value}&order=${order}&sortBy=${sort}&page=${page}&perPage=${limit}`
       )
       .then((res) => {
         if (event.target.value === "") {
-          setShow(true);
-        } else {
-          setShow(false);
+          axios
+            .get(
+              `${Url}/movies/is-not-realese/?keyword=${event.target.value}&order=${order}&sortBy=${sort}&page=${page}&perPage=${limit}`
+            )
+            .then((res) => {
+              setCurrentPage(res.data.currentPage);
+              setTotalPage(res.data.totalPage);
+              setPaginate(res.data.totalPage < 6 ? res.data.totalPage : 5);
+              setEmpty(false);
+              setMovies(res.data.data);
+            })
+            .catch((err) => {
+              setEmpty(true);
+            });
+          setEmpty(false);
         }
-        dispatch(searchMoviesUpcoming(res.data.data));
+        setCurrentPage(res.data.currentPage);
+        setTotalPage(res.data.totalPage);
+        setPaginate(res.data.totalPage < 6 ? res.data.totalPage : 5);
+        setEmpty(false);
+        setMovies(res.data.data);
       })
       .catch((err) => {
-        Swal.fire({
-          title: "Error!",
-          text: err.response.data.message,
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        }).then((result) => {
-          setShow(true);
-          if (result.isConfirmed) {
-            setQuery("");
-            dispatch(getAllMoviesUpcoming(page, perPage));
-          } else {
-            setQuery("");
-            dispatch(getAllMoviesUpcoming(page, perPage));
-          }
-        });
+        setEmpty(true);
       });
   };
 
+  const handleClickCard = (id) => {
+    history.push(`/movie-detail/${id}`);
+  };
+
   useEffect(() => {
-    dispatch(getAllMoviesUpcoming(page, perPage));
-    setPaginate(totalPage < 6 ? totalPage : 5);
-  }, [dispatch, page, perPage, totalPage]);
+    axios
+      .get(
+        `${Url}/movies/is-not-realese/?keyword=${query}&order=${order}&sortBy=${sort}&page=${page}&perPage=${limit}`
+      )
+      .then((res) => {
+        setCurrentPage(res.data.currentPage);
+        setTotalPage(res.data.totalPage);
+        setPaginate(res.data.totalPage < 6 ? res.data.totalPage : 5);
+        setEmpty(false);
+        setMovies(res.data.data);
+      })
+      .catch((err) => {
+        setEmpty(true);
+      });
+  }, [page, limit, totalPage, Url, query, order, sort]);
+
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
 
   return (
     <Section className="all-movies">
       <Container>
+        <Row>
+          <Col className="col-12 d-flex justify-content-center justify-content-md-start mt-4 mt-lg-5">
+            <h1 className="title">Upcoming Movies</h1>
+          </Col>
+        </Row>
         <Row className="justify-content-center">
-          <Col className="mt-5 col-6 d-flex justify-content-center">
+          <Col className="mt-4 col-6 d-flex justify-content-center">
             <Input
               type="text"
               className="form-search-movie"
               placeholder="Search..."
-              name="keyword"
+              name="searchMovie"
               value={query}
               onChange={handleFormChange}
             />
@@ -94,63 +128,118 @@ export default function Index() {
         </Row>
         <Row className="pl-2 pl-lg-0">
           <Col className="col-12 px-0 container-all-movie">
-            {allMoviesUpcoming.map((data, index) => {
-              return (
-                <Card key={index} className="mt-5">
-                  <div className="card-all-movie">
-                    <img src={`${ImgUrl}${data.image}`} alt="ImageAllMovies" />
-                    <p>{data.title}</p>
-                    <span>{data.genre}</span>
-                    <Link
-                      to={`movie-detail/${data.id}`}
-                      className="btn btn-details"
+            {empty === true && (
+              <h4 className="empty text-center mt-5">Movie not found</h4>
+            )}
+            {empty === false &&
+              movies.map((data, index) => {
+                return (
+                  <Card
+                    key={index}
+                    className="mt-5 p-4"
+                    onClick={() => handleClickCard(data.id)}
+                  >
+                    <div
+                      className="card-all-movie"
+                      onClick={() => handleClickCard(data.id)}
                     >
-                      Details
-                    </Link>
-                  </div>
-                </Card>
-              );
-            })}
+                      <img
+                        src={`${ImgUrl}${data.image}`}
+                        alt="ImageAllMovies"
+                      />
+                      <p>{data.title}</p>
+                      <span>{data.genre}</span>
+                    </div>
+                  </Card>
+                );
+              })}
           </Col>
         </Row>
         <Row className="pl-2 pl-lg-0 mt-5">
           <Col className="col-12 px-0">
-            <Nav className="d-flex justify-content-center">
-              {show === true && (
-                <ul className="pagination-custom">
-                  {Array.from(Array(paginate).keys()).map((data, index) => {
-                    return (
-                      <li key={index}>
-                        <Link
-                          to={`/all-movies-upcoming?page=${
-                            currentPage >= 5 && currentPage < totalPage
+            {empty === false && (
+              <>
+                <div className="d-flex justify-content-center">
+                  <ul className="pagination-custom">
+                    {Array.from(Array(paginate).keys()).map((data, index) => {
+                      return (
+                        <li key={index}>
+                          <button
+                            className={`${
+                              currentPage >= 5 && currentPage < totalPage
+                                ? data + (currentPage - 3) === currentPage &&
+                                  "page-active"
+                                : currentPage >= 5 && currentPage === totalPage
+                                ? data + (currentPage - 3) - 1 ===
+                                    currentPage && "page-active"
+                                : data + 1 === currentPage && "page-active"
+                            }`}
+                            onClick={() =>
+                              handleClickPaginate(
+                                `${
+                                  currentPage >= 5 && currentPage < totalPage
+                                    ? data + (currentPage - 3)
+                                    : currentPage >= 5 &&
+                                      currentPage === totalPage
+                                    ? data + (currentPage - 3) - 1
+                                    : data + 1
+                                }`
+                              )
+                            }
+                          >
+                            {currentPage >= 5 && currentPage < totalPage
                               ? data + (currentPage - 3)
                               : currentPage >= 5 && currentPage === totalPage
                               ? data + (currentPage - 3) - 1
-                              : data + 1
-                          }&perPage=${perPage}`}
-                          className={`${
-                            currentPage >= 5 && currentPage < totalPage
-                              ? data + (currentPage - 3) === currentPage &&
-                                "page-active"
-                              : currentPage >= 5 && currentPage === totalPage
-                              ? data + (currentPage - 3) - 1 === currentPage &&
-                                "page-active"
-                              : data + 1 === currentPage && "page-active"
-                          }`}
-                        >
-                          {currentPage >= 5 && currentPage < totalPage
-                            ? data + (currentPage - 3)
-                            : currentPage >= 5 && currentPage === totalPage
-                            ? data + (currentPage - 3) - 1
-                            : data + 1}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </Nav>
+                              : data + 1}
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div className="d-flex flex-column flex-md-row justify-content-md-center align-items-center mt-1 mt-md-3">
+                  <div className="btn-container d-flex">
+                    <button
+                      type="button"
+                      className={`btn btn-order mr-3 d-flex justify-content-center align-items-center ${
+                        order === "ASC" ? "active" : ""
+                      }`}
+                      onClick={() => handleClickOrder("ASC")}
+                    >
+                      Ascending
+                    </button>
+                    <button
+                      type="button"
+                      className={`btn btn-order mr-3 d-flex justify-content-center align-items-center ${
+                        order === "DESC" ? "active" : ""
+                      }`}
+                      onClick={() => handleClickOrder("DESC")}
+                    >
+                      Descending
+                    </button>
+                  </div>
+                  <div className="select-container d-flex flex-column flex-md-row mt-3 mt-md-0">
+                    <select
+                      className="custom-select mr-3"
+                      onChange={handleChangeSort}
+                    >
+                      <option value="id">Sort by id</option>
+                      <option value="title">Sort by title</option>
+                      <option value="genre">Sort by genre</option>
+                    </select>
+                    <select
+                      className="custom-select mt-3 mt-md-0"
+                      onChange={handleChangeLimit}
+                    >
+                      <option value="5">Limit 5</option>
+                      <option value="10">Limit 10</option>
+                      <option value="15">Limit 15</option>
+                    </select>
+                  </div>
+                </div>
+              </>
+            )}
           </Col>
         </Row>
       </Container>

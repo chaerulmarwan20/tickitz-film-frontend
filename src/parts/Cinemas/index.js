@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
 import axios from "axios";
 
@@ -7,16 +6,12 @@ import Container from "../../components/Container";
 import Row from "../../components/Row";
 import Col from "../../components/Col";
 import Section from "../../components/Section";
-import Card from "../../components/Card";
-import Input from "../../components/Input";
 
 export default function Index() {
   const Url = process.env.REACT_APP_API_URL;
   const ImgUrl = process.env.REACT_APP_API_IMG;
 
-  const history = useHistory();
-
-  const [movies, setMovies] = useState([]);
+  const [cinemas, setCinemas] = useState([]);
   const [empty, setEmpty] = useState(false);
   const [order, setOrder] = useState("ASC");
   const [sort, setSort] = useState("id");
@@ -25,7 +20,6 @@ export default function Index() {
   const [totalPage, setTotalPage] = useState(null);
   const [limit, setLimit] = useState(5);
   const [paginate, setPaginate] = useState(1);
-  const [query, setQuery] = useState("");
 
   const handleChangeSort = (event) => {
     setSort(event.target.value);
@@ -46,116 +40,67 @@ export default function Index() {
     setPage(params);
   };
 
-  const handleFormChange = (event) => {
-    setQuery(event.target.value);
-    axios
-      .get(
-        `${Url}/movies/is-realese/?keyword=${event.target.value}&order=${order}&sortBy=${sort}&page=${page}&perPage=${limit}`
-      )
-      .then((res) => {
-        if (event.target.value === "") {
-          axios
-            .get(
-              `${Url}/movies/is-realese/?keyword=${event.target.value}&order=${order}&sortBy=${sort}&page=${page}&perPage=${limit}`
-            )
-            .then((res) => {
-              setCurrentPage(res.data.currentPage);
-              setTotalPage(res.data.totalPage);
-              setPaginate(res.data.totalPage < 6 ? res.data.totalPage : 5);
-              setEmpty(false);
-              setMovies(res.data.data);
-            })
-            .catch((err) => {
-              setEmpty(true);
-            });
-          setEmpty(false);
-        }
-        setCurrentPage(res.data.currentPage);
-        setTotalPage(res.data.totalPage);
-        setPaginate(res.data.totalPage < 6 ? res.data.totalPage : 5);
-        setEmpty(false);
-        setMovies(res.data.data);
-      })
-      .catch((err) => {
-        setEmpty(true);
-      });
-  };
-
-  const handleClickCard = (id) => {
-    history.push(`/movie-detail/${id}`);
-  };
-
   useEffect(() => {
     axios
       .get(
-        `${Url}/movies/is-realese/?keyword=${query}&order=${order}&sortBy=${sort}&page=${page}&perPage=${limit}`
+        `${Url}/cinemas/?order=${order}&sortBy=${sort}&page=${page}&perPage=${limit}`
       )
       .then((res) => {
         setCurrentPage(res.data.currentPage);
         setTotalPage(res.data.totalPage);
         setPaginate(res.data.totalPage < 6 ? res.data.totalPage : 5);
         setEmpty(false);
-        setMovies(res.data.data);
+        setCinemas(res.data.data);
       })
       .catch((err) => {
         setEmpty(true);
       });
-  }, [page, limit, totalPage, Url, query, order, sort]);
+  }, [page, limit, totalPage, Url, order, sort]);
 
   useEffect(() => {
     scroll.scrollToTop();
   }, []);
 
   return (
-    <Section className="all-movies">
+    <Section className="cinemas">
       <Container>
         <Row>
           <Col className="col-12 d-flex justify-content-center justify-content-md-start mt-4 mt-lg-5">
-            <h1 className="title">Now Showing</h1>
+            <h1 className="title">Cinemas</h1>
           </Col>
         </Row>
-        <Row className="justify-content-center">
-          <Col className="mt-4 col-6 d-flex justify-content-center">
-            <Input
-              type="text"
-              className="form-search-movie"
-              placeholder="Search..."
-              name="searchMovie"
-              value={query}
-              onChange={handleFormChange}
-            />
-          </Col>
-        </Row>
-        <Row className="pl-2 pl-lg-0">
-          <Col className="col-12 px-0 container-all-movie">
-            {empty === true && (
-              <h4 className="empty text-center mt-5">Movie not found</h4>
-            )}
-            {empty === false &&
-              movies.map((data, index) => {
-                return (
-                  <Card
-                    key={index}
-                    className="mt-5 p-4"
-                    onClick={() => handleClickCard(data.id)}
-                  >
+        <Row className="justify-content-center mt-4">
+          {empty === true && (
+            <h4 className="empty text-center mt-5">Movie not found</h4>
+          )}
+          {empty === false &&
+            cinemas.map((data, index) => {
+              return (
+                <Col
+                  className="col-12 col-md-6 col-lg-4 d-flex justify-content-center"
+                  key={index}
+                >
+                  <div className="card bg-light mb-3">
                     <div
-                      className="card-all-movie"
-                      onClick={() => handleClickCard(data.id)}
+                      className="card-header p-3 d-flex justify-content-center align-items-center"
+                      style={{ minHeight: "100px", maxHeight: "100px" }}
                     >
                       <img
                         src={`${ImgUrl}${data.image}`}
-                        alt="ImageAllMovies"
+                        width={150}
+                        alt="Cinemas"
                       />
-                      <p>{data.title}</p>
-                      <span>{data.genre}</span>
                     </div>
-                  </Card>
-                );
-              })}
-          </Col>
+                    <div className="card-body">
+                      <h5 className="card-title">{data.name}</h5>
+                      <p className="card-text">{data.description}</p>
+                    </div>
+                  </div>
+                </Col>
+              );
+            })}
         </Row>
-        <Row className="pl-2 pl-lg-0 mt-5">
+        <Row className="pl-2 pl-lg-0 mt-4">
           <Col className="col-12 px-0">
             {empty === false && (
               <>
@@ -225,8 +170,7 @@ export default function Index() {
                       onChange={handleChangeSort}
                     >
                       <option value="id">Sort by id</option>
-                      <option value="title">Sort by title</option>
-                      <option value="genre">Sort by genre</option>
+                      <option value="name">Sort by name</option>
                     </select>
                     <select
                       className="custom-select mt-3 mt-md-0"

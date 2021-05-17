@@ -1,6 +1,7 @@
 import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import { getShowingMovies } from "../../configs/redux/actions/homePage";
 
 import Container from "../../components/Container";
@@ -16,7 +17,17 @@ export default function ShowingMovie() {
   const { showingMovies } = useSelector((state) => state.homePage);
 
   useEffect(() => {
-    dispatch(getShowingMovies());
+    dispatch(getShowingMovies())
+      .then((res) => {})
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      });
   }, [dispatch]);
 
   return (

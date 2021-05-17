@@ -1,4 +1,5 @@
 import { React, Fragment } from "react";
+import { Helmet } from "react-helmet";
 
 import "../assets/css/movie-detail.css";
 
@@ -9,9 +10,13 @@ import Synopsis from "../parts/MovieDetail/Synopsis";
 import Cinema from "../parts/MovieDetail/Cinema";
 import Footer from "../components/Footer";
 
-export default function MovieDetail(props) {
+export default function MovieDetail() {
   return (
     <Fragment>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Tickitz Film - Movie Detail</title>
+      </Helmet>
       <Navbar></Navbar>
       <Hero></Hero>
       <Container>

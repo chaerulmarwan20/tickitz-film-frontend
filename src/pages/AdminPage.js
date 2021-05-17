@@ -1,6 +1,8 @@
 import { React, Fragment, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
+
 import { getUser } from "../configs/redux/actions/user";
 
 import "../assets/css/admin-page.css";
@@ -29,6 +31,10 @@ export default function AdminPage() {
   return (
     role === 1 && (
       <Fragment>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Tickitz Film - Admin</title>
+        </Helmet>
         <Navbar></Navbar>
         <Main></Main>
         <Footer className="pt-5 mt-5 mt-md-4"></Footer>

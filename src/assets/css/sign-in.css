@@ -93,7 +93,6 @@ main aside.sign-in form label {
 main aside.sign-in form input.form-control {
   font-family: "Mulish", sans-serif;
   margin-top: 12px;
-  margin-bottom: 48px;
   background-color: #fcfdfe;
   border: 1px solid #dedede;
   border-radius: 16px;
@@ -107,6 +106,14 @@ main aside.sign-in form input.form-control {
   font-weight: 400;
   color: #a0a3bd;
   transition: 0.5s ease;
+}
+
+main aside.sign-in form input.form-control.error {
+  border: 1px solid #ea2e57;
+}
+
+main aside.sign-in form small.error {
+  color: #ea2e57;
 }
 
 main aside.sign-in form div.password-container {
@@ -169,10 +176,12 @@ main aside.sign-in p.forgot-password a {
   font-weight: 500;
   font-size: 16px;
   color: #5f2eea;
+  transition: 0.5s ease;
 }
 
 main aside.sign-in p.forgot-password a:hover {
   color: #8692a6;
+  text-decoration: none;
 }
 
 main aside.sign-in p.or {
@@ -299,6 +308,14 @@ main aside.sign-in .btn-facebook::before {
   main aside.sign-in p.forgot-password,
   main aside.sign-in p.or {
     display: block;
+  }
+
+  main aside.sign-in .btn-sign-in:hover {
+    cursor: pointer;
+    background-color: #5f2eea;
+    color: #f7f7fc;
+    border: 1px solid transparent;
+    opacity: 0.7;
   }
 }
 

@@ -241,6 +241,11 @@ section.description-premiere .showtimes .btn-plus {
   box-sizing: border-box;
   border-radius: 4px;
   margin-right: 22px;
+  transition: 0.5s ease;
+}
+
+section.description-premiere .showtimes .btn-plus:hover {
+  opacity: 0.6;
 }
 
 section.description-premiere .showtimes span {
@@ -434,5 +439,13 @@ section.description-premiere .view-more a:hover {
     font-size: 14px;
     line-height: 26px;
     white-space: nowrap;
+  }
+
+  section.description-premiere .movie-description .btn-add:hover,
+  section.description-premiere .movie-description .btn-add-movie:hover {
+    border: 1px solid #5f2eea;
+    color: #5f2eea;
+    background-color: #fff;
+    opacity: 0.6;
   }
 }

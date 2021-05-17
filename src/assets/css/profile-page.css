@@ -253,6 +253,19 @@ nav.details-order a:hover {
   border-bottom: 1px solid #dedede;
 }
 
+.profile .details-information form input.error,
+.profile .account-privacy form input.error {
+  border: 1px solid #ea2e57;
+}
+
+.profile .details-information small.error {
+  color: #ea2e57;
+}
+
+.profile .account-privacy small.error {
+  color: #ea2e57;
+}
+
 .profile .details-information form input,
 .profile .account-privacy form input {
   height: 64px;
@@ -280,6 +293,10 @@ nav.details-order a:hover {
 .profile .details-information form .input-group-text {
   background-color: #fcfdfe;
   border: 1px solid #dedede;
+}
+
+.profile .details-information form .input-group-text.error {
+  border: 1px solid #ea2e57;
 }
 
 .profile .account-privacy form input,
@@ -368,6 +385,13 @@ nav.details-order a:hover {
 
   .profile .account-privacy form input {
     background-position-x: 96%;
+  }
+
+  .profile .btn-update:hover {
+    border: 1px solid transparent;
+    background-color: #5f2eea;
+    color: #f7f7fc;
+    opacity: 0.7;
   }
 }
 

@@ -2,7 +2,6 @@ import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUpcomingMovies } from "../../configs/redux/actions/homePage";
-import Swal from "sweetalert2";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -76,6 +75,7 @@ export default function UpcomingMovies() {
     },
   ]);
   const [date, setDate] = useState("01");
+  const [empty, setEmpty] = useState(false);
 
   const dispatch = useDispatch();
   const { upcomingMovies } = useSelector((state) => state.homePage);
@@ -95,80 +95,11 @@ export default function UpcomingMovies() {
 
   useEffect(() => {
     dispatch(getUpcomingMovies(date))
-      .then((res) => {})
+      .then((res) => {
+        setEmpty(false);
+      })
       .catch((err) => {
-        Swal.fire({
-          title: "Info!",
-          text: err.message,
-          icon: "info",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        }).then(() => {
-          setDate("01");
-          dispatch(getUpcomingMovies("01"));
-          setMonth([
-            {
-              index: "01",
-              name: "January",
-              active: true,
-            },
-            {
-              index: "02",
-              name: "February",
-              active: false,
-            },
-            {
-              index: "03",
-              name: "March",
-              active: false,
-            },
-            {
-              index: "04",
-              name: "April",
-              active: false,
-            },
-            {
-              index: "05",
-              name: "May",
-              active: false,
-            },
-            {
-              index: "06",
-              name: "June",
-              active: false,
-            },
-            {
-              index: "07",
-              name: "July",
-              active: false,
-            },
-            {
-              index: "08",
-              name: "August",
-              active: false,
-            },
-            {
-              index: "09",
-              name: "September",
-              active: false,
-            },
-            {
-              index: "10",
-              name: "October",
-              active: false,
-            },
-            {
-              index: "11",
-              name: "November",
-              active: false,
-            },
-            {
-              index: "12",
-              name: "December",
-              active: false,
-            },
-          ]);
-        });
+        setEmpty(true);
       });
   }, [dispatch, date, month]);
 
@@ -197,26 +128,32 @@ export default function UpcomingMovies() {
         </div>
         <Row className="pl-2 pl-lg-0">
           <Col className="col-12 px-0 container-upcoming-movie">
-            {upcomingMovies.map((data, index) => {
-              return (
-                <Card key={index}>
-                  <div className="card-upcoming-movie">
-                    <img
-                      src={`${ImgUrl}${data.image}`}
-                      alt="ImageUpcomingMovie"
-                    />
-                    <p>{data.title}</p>
-                    <span>{data.genre}</span>
-                    <Link
-                      to={`movie-detail/${data.id}`}
-                      className="btn btn-details"
-                    >
-                      Details
-                    </Link>
-                  </div>
-                </Card>
-              );
-            })}
+            {empty === false &&
+              upcomingMovies.map((data, index) => {
+                return (
+                  <Card key={index}>
+                    <div className="card-upcoming-movie">
+                      <img
+                        src={`${ImgUrl}${data.image}`}
+                        alt="ImageUpcomingMovie"
+                      />
+                      <p>{data.title}</p>
+                      <span>{data.genre}</span>
+                      <Link
+                        to={`movie-detail/${data.id}`}
+                        className="btn btn-details"
+                      >
+                        Details
+                      </Link>
+                    </div>
+                  </Card>
+                );
+              })}
+            {empty === true && (
+              <h6 className="empty text-center">
+                There are no films that will air this month
+              </h6>
+            )}
           </Col>
         </Row>
       </Container>

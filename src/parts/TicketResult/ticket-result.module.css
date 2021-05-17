@@ -15,7 +15,7 @@ section.ticket-result h1 {
   color: #14142b;
 }
 
-section.ticket-result .admit-one {
+.admit-one {
   height: 77px;
   background-color: #5f2eea;
   border-top-left-radius: 16px;
@@ -24,17 +24,17 @@ section.ticket-result .admit-one {
   justify-content: space-between;
 }
 
-section.ticket-result .admit-one .left {
+.left {
   flex: 2;
 }
 
-section.ticket-result .admit-one .right {
+.right {
   flex: 1.3;
   border-left: 1px dashed #dedede;
   box-sizing: border-box;
 }
 
-section.ticket-result .admit-one .left h2 {
+.heading-two {
   font-weight: 600;
   font-size: 18px;
   line-height: 34px;
@@ -42,7 +42,7 @@ section.ticket-result .admit-one .left h2 {
   color: #fff;
 }
 
-section.ticket-result .tickets {
+.tickets {
   background-color: #fff;
   box-sizing: border-box;
   border: 1px solid #dedede;
@@ -53,11 +53,7 @@ section.ticket-result .tickets {
   position: relative;
 }
 
-section.ticket-result .tickets .left {
-  flex: 2;
-}
-
-section.ticket-result .tickets h3 {
+.heading-three {
   font-weight: 400;
   font-size: 12px;
   line-height: 24px;
@@ -65,7 +61,7 @@ section.ticket-result .tickets h3 {
   color: #aaa;
 }
 
-section.ticket-result .tickets p {
+.paragraf {
   font-weight: 600;
   font-size: 16px;
   line-height: 38px;
@@ -74,7 +70,7 @@ section.ticket-result .tickets p {
   transform: translateY(-10px);
 }
 
-section.ticket-result .tickets p.price {
+.price {
   font-weight: 700;
   font-size: 24px;
   line-height: 30px;
@@ -83,58 +79,36 @@ section.ticket-result .tickets p.price {
   transform: translateY(-5px) translateX(-1px);
 }
 
-section.ticket-result .tickets .right {
+.right {
   flex: 1.3;
   border-left: 1px dashed #dedede;
   box-sizing: border-box;
 }
 
-section.ticket-result .tickets .bitmap {
+.bitmap {
   transform: translateY(-10px) rotate(-90deg);
   position: absolute;
   top: 135px;
   right: -105px;
 }
 
-section.ticket-result
-  .tickets
-  .d-flex:nth-of-type(2)
-  .d-flex:first-of-type
-  .one {
-  transform: translateY(-20px);
-  background-color: red;
-}
-
-section.ticket-result
-  .tickets
-  .d-flex:nth-of-type(2)
-  .d-flex:first-of-type
-  .two {
-  transform: translateY(-40px);
-  background-color: blue;
-}
-
-section.ticket-result
-  .tickets
-  .d-flex:nth-of-type(2)
-  .d-flex:last-of-type
-  .one {
+.one {
   transform: translateY(-20px);
 }
 
-section.ticket-result
-  .tickets
-  .d-flex:nth-of-type(2)
-  .d-flex:last-of-type
-  .two {
+.two {
   transform: translateY(-40px);
 }
 
-section.ticket-result
-  .tickets
-  .d-flex:nth-of-type(2)
-  .d-flex:last-of-type
-  .three {
+.three {
+  transform: translateY(-20px);
+}
+
+.four {
+  transform: translateY(-40px);
+}
+
+.five {
   margin-top: -60px;
 }
 

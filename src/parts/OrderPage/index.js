@@ -1,9 +1,10 @@
 import { React, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { withRouter, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { animateScroll as scroll } from "react-scroll";
 import Swal from "sweetalert2";
-
 import { getAllTicket, getSchedule } from "../../configs/redux/actions/order";
+import Rupiah from "../../helpers/rupiah";
 
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -129,7 +130,9 @@ function Index(props) {
 
   useEffect(() => {
     dispatch(getAllTicket(idSchedule, time, movie))
-      .then((res) => {})
+      .then((res) => {
+        scroll.scrollToTop();
+      })
       .catch((err) => {
         if (err.message === "Tickets not found") {
           Swal.fire({
@@ -164,7 +167,17 @@ function Index(props) {
   }, [dispatch, idSchedule, time, movie, history]);
 
   useEffect(() => {
-    dispatch(getSchedule(idSchedule));
+    dispatch(getSchedule(idSchedule))
+      .then((res) => {})
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      });
   }, [dispatch, idSchedule]);
 
   return (
@@ -262,7 +275,9 @@ function Index(props) {
               </Row>
               <Row className="px-5 mt-3 justify-content-between">
                 <h3>One ticket price</h3>
-                <p>{`$${schedule.price}`}</p>
+                {schedule.price !== undefined && (
+                  <p>{Rupiah(schedule.price)}</p>
+                )}
               </Row>
               <Row className="px-5 mt-3 justify-content-between">
                 <h3>Seat choosed</h3>
@@ -277,7 +292,7 @@ function Index(props) {
               <hr />
               <Row className="px-5 mt-3 justify-content-between">
                 <h4>Total Payment</h4>
-                <h5>{`$${schedule.price * seat.length}`}</h5>
+                <h5>{Rupiah(schedule.price * seat.length)}</h5>
               </Row>
             </div>
           </Col>
@@ -295,24 +310,17 @@ function Index(props) {
               </p>
             </div>
           </Col>
-          <Col className="col-12 d-none">
-            <div className="input-choosed d-flex align-items-center justify-content-around mt-3 py-3 px-3">
-              <Select option={["C", "D", "E"]}></Select>
-              <Select option={["4", "5", "6"]}></Select>
-            </div>
-          </Col>
-          <Col className="col-12 d-none">
-            <div className="input-choosed d-flex align-items-center justify-content-around mt-3 py-3 px-3">
-              <Select option={["C", "D", "E"]}></Select>
-              <Select option={["4", "5", "6"]}></Select>
-            </div>
-          </Col>
-          <Col className="col-12 d-none">
-            <div className="input-choosed d-flex align-items-center justify-content-around mt-3 py-3 px-3">
-              <Select option={["C", "D", "E"]}></Select>
-              <Select option={["4", "5", "6"]}></Select>
-            </div>
-          </Col>
+          {seat.length > 0 &&
+            seat.map((data, index) => {
+              return (
+                <Col className="col-12" key={index}>
+                  <div className="input-choosed d-flex align-items-center justify-content-around mt-3 py-3 px-3">
+                    <Select option={[data.slice(0, 1)]}></Select>
+                    <Select option={[data.slice(1)]}></Select>
+                  </div>
+                </Col>
+              );
+            })}
         </Row>
         <Row className="mt-5 pb-4">
           <Col className="col-12 col-md-6 col-xl-3">

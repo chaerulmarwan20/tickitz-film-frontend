@@ -1,8 +1,10 @@
 import { React, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../../configs/redux/actions/user";
 import Swal from "sweetalert2";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { login } from "../../configs/redux/actions/user";
 
 import Aside from "../../components/Aside";
 import Input from "../../components/Input";
@@ -16,11 +18,48 @@ export default function Sidebar() {
 
   const dispatch = useDispatch();
 
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
   const [type, setType] = useState("password");
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Invalid email format").required("Required!"),
+      password: Yup.string()
+        .min(8, "Minimum 8 characters")
+        .required("Required!"),
+    }),
+    onSubmit: (values) => {
+      dispatch(login(values))
+        .then((res) => {
+          formik.resetForm();
+          Swal.fire({
+            title: "Success!",
+            text: res,
+            icon: "success",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              history.push("/");
+            } else {
+              history.push("/");
+            }
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "Error!",
+            text: err,
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        });
+    },
+  });
 
   const handleToggle = () => {
     if (type === "text") {
@@ -28,41 +67,6 @@ export default function Sidebar() {
     } else {
       setType("text");
     }
-  };
-
-  const handleFormChange = (event) => {
-    const dataNew = { ...data };
-    dataNew[event.target.name] = event.target.value;
-    setData(dataNew);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(login(data))
-      .then((res) => {
-        Swal.fire({
-          title: "Success!",
-          text: res,
-          icon: "success",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            history.push("/");
-          } else {
-            history.push("/");
-          }
-        });
-      })
-      .catch((err) => {
-        Swal.fire({
-          title: "Error!",
-          text: err,
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
-      });
   };
 
   const handleClickAuth = () => {
@@ -75,28 +79,54 @@ export default function Sidebar() {
     });
   };
 
+  const handleClickLogo = () => {
+    history.push("/");
+  };
+
   return (
     <Aside className="sign-in">
-      <img src={Logo} alt="Tickitz" />
+      <img
+        src={Logo}
+        alt="Tickitz"
+        style={{ cursor: "pointer" }}
+        onClick={() => handleClickLogo()}
+      />
       <h1>Sign In</h1>
       <p>
         Sign in with your data that you entered during <br /> your registration
       </p>
-      <form>
+      <form onSubmit={formik.handleSubmit}>
         <Input
           label="Email"
-          type="email"
+          type="text"
           name="email"
           placeholder="Write your email"
-          onChange={handleFormChange}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          className={`${
+            formik.errors.email && formik.touched.email ? "error mb-0" : "mb-5"
+          }`}
         />
-        <div className="password-container">
+        {formik.errors.email && formik.touched.email && (
+          <small className="error">{formik.errors.email}</small>
+        )}
+        <div
+          className={`password-container ${
+            formik.errors.email && formik.touched.email && "mt-3"
+          }`}
+        >
           <Input
             label="Password"
             type={type}
             name="password"
             placeholder="Write your password"
-            onChange={handleFormChange}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            className={`${
+              formik.errors.password && formik.touched.password
+                ? "error mb-0"
+                : "mb-5"
+            }`}
           />
           <img
             src={Eye}
@@ -106,7 +136,16 @@ export default function Sidebar() {
             onClick={handleToggle}
           />
         </div>
-        <Button type="submit" className="btn-sign-in" onClick={handleSubmit}>
+        {formik.errors.password && formik.touched.password && (
+          <small className="error">{formik.errors.password}</small>
+        )}
+        <br />
+        <Button
+          type="submit"
+          className={`btn-sign-in ${
+            formik.errors.password && formik.touched.password && "mt-4"
+          }`}
+        >
           Sign In
         </Button>
       </form>

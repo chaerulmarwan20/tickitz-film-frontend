@@ -17,6 +17,7 @@ import ProfilePage from "../../pages/ProfilePage";
 import OrderHistory from "../../pages/OrderHistory";
 import TicketResult from "../../pages/TicketResult";
 import AdminPage from "../../pages/AdminPage";
+import Cinemas from "../../pages/Cinemas";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/" component={Homepage} />
         <Route path="/all-movies-showing" component={AllMoviesShowing} />
         <Route path="/all-movies-upcoming" component={AllMoviesUpcoming} />
+        <Route path="/cinemas" component={Cinemas} />
         <PrivateRoute path="/movie-detail/:id" component={MovieDetail} />
         <PrivateRoute path="/order-page" component={OrderPage} />
         <PrivateRoute path="/payment-page" component={PaymentPage} />

@@ -108,6 +108,18 @@ nav .nav-link {
   border: 0;
 }
 
+p.empty {
+  font-size: 20px;
+  font-weight: 700;
+  color: #14142b;
+}
+
+p.empty-mobile {
+  font-size: 16px;
+  font-weight: 700;
+  color: #14142b;
+}
+
 .navbar-nav .container-movie-search-mobile h2 {
   font-weight: 400;
   font-size: 13px;
@@ -205,8 +217,9 @@ nav .nav-link {
 }
 
 .btn-close:hover {
-  background-color: #5f2eea;
-  color: #f7f7fc;
+  background-color: #f7f7fc;
+  color: #5f2eea;
+  border: 1px solid #5f2eea;
 }
 
 .search input::-webkit-input-placeholder {
@@ -323,7 +336,8 @@ section.showing-movie {
 }
 
 section.showing-movie .now-showing,
-section.upcoming-movies .upcoming {
+section.upcoming-movies .upcoming,
+section.upcoming-movies h6.empty {
   font-size: 24px;
   font-weight: 700;
   color: #14142b;
@@ -551,6 +565,14 @@ section.join-member .jumbotron .join-now input {
   font-weight: 600;
   transition: 0.5s ease;
   margin-top: 48px;
+}
+
+section.join-member .jumbotron .join-now input.error {
+  border: 2px solid #ea2e57;
+}
+
+section.join-member .jumbotron .join-now small.error {
+  color: #ea2e57;
 }
 
 section.join-member .jumbotron .join-now input::-webkit-input-placeholder {
@@ -806,6 +828,34 @@ footer nav.follow-us span:hover {
     left: 0;
     right: 0;
   }
+
+  section.upcoming-movies .btn-month:hover {
+    color: #5f2eea;
+    background-color: #fff;
+    border: 1px solid #5f2eea;
+    opacity: 0.6;
+  }
+
+  section.upcoming-movies .btn-month.main:hover {
+    color: #fff;
+    background-color: #5f2eea;
+    border: 1px solid transparent;
+    opacity: 0.7;
+  }
+
+  section.upcoming-movies .container-upcoming-movie .card .btn-details:hover {
+    color: #5f2eea;
+    background-color: #fff;
+    border: 1px solid #5f2eea;
+    opacity: 0.6;
+  }
+
+  section.join-member .jumbotron .btn-join-now:hover {
+    border: 1px solid transparent;
+    background-color: #5f2eea;
+    color: #fff;
+    opacity: 0.7;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -816,6 +866,10 @@ footer nav.follow-us span:hover {
   section.showing-movie .now-showing,
   section.upcoming-movies .upcoming {
     font-size: 18px;
+  }
+
+  section.upcoming-movies h6.empty {
+    font-size: 16px;
   }
 
   section.showing-movie .now-showing::after {
@@ -895,7 +949,10 @@ footer nav.follow-us span:hover {
   }
 
   section.upcoming-movies .container-upcoming-movie .card .btn-details:hover {
-    border: 0.5px solid transparent;
+    color: #5f2eea;
+    background-color: #fff;
+    border: 0.5px solid #5f2eea;
+    opacity: 0.6;
   }
 
   section.join-member .jumbotron {

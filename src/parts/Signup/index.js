@@ -1,8 +1,11 @@
 import { React, Fragment, useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signUp, verify } from "../../configs/redux/actions/user";
+import { animateScroll as scroll } from "react-scroll";
 import Swal from "sweetalert2";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { signUp, verify } from "../../configs/redux/actions/user";
 
 import Aside from "../../components/Aside";
 import Input from "../../components/Input";
@@ -16,6 +19,8 @@ import Logo2 from "../../assets/img/Tickitz-mobile-sign-in.png";
 import Eye from "../../assets/img/eye.png";
 
 export default function Index() {
+  const history = useHistory();
+
   const useQuery = () => new URLSearchParams(useLocation().search);
 
   const query = useQuery();
@@ -26,16 +31,44 @@ export default function Index() {
 
   const { loading } = useSelector((state) => state.user);
 
-  const [data, setData] = useState({
-    firstName: "firstName",
-    lastName: "lastName",
-    phoneNumber: "000000000000",
-    email: "",
-    password: "",
-  });
   const [checked, setChecked] = useState(false);
   const [step, setStep] = useState("fill");
   const [type, setType] = useState("password");
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Invalid email format").required("Required!"),
+      password: Yup.string()
+        .min(8, "Minimum 8 characters")
+        .required("Required!"),
+    }),
+    onSubmit: (values) => {
+      dispatch(signUp(values))
+        .then((res) => {
+          formik.resetForm();
+          Swal.fire({
+            title: "Success!",
+            text: res,
+            icon: "success",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "Error!",
+            text: err.message,
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          });
+        });
+    },
+  });
 
   const handleToggle = () => {
     if (type === "text") {
@@ -43,45 +76,6 @@ export default function Index() {
     } else {
       setType("text");
     }
-  };
-
-  const handleFormChange = (event) => {
-    const dataNew = { ...data };
-    dataNew[event.target.name] = event.target.value;
-    setData(dataNew);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(signUp(data))
-      .then((res) => {
-        setData({
-          firstName: "firstName",
-          lastName: "lastName",
-          phoneNumber: "000000000000",
-          email: "",
-          password: "",
-        });
-        setChecked(false);
-        setStep("activate");
-        Swal.fire({
-          title: "Success!",
-          text: res,
-          icon: "success",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
-      })
-      .catch((err) => {
-        setChecked(false);
-        Swal.fire({
-          title: "Error!",
-          text: err.message,
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
-      });
   };
 
   const handleChecked = () => {
@@ -100,6 +94,10 @@ export default function Index() {
       confirmButtonText: "Ok",
       confirmButtonColor: "#5f2eea",
     });
+  };
+
+  const handleClickLogo = () => {
+    history.push("/");
   };
 
   useEffect(() => {
@@ -127,6 +125,10 @@ export default function Index() {
         });
     }
   }, [dispatch, email, token]);
+
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
 
   return (
     <Fragment>
@@ -160,7 +162,13 @@ export default function Index() {
         </Row>
       </Section>
       <Aside className="sign-up">
-        <img src={Logo2} alt="Tickitz" className="tickitz" />
+        <img
+          src={Logo2}
+          alt="Tickitz"
+          className="tickitz"
+          style={{ cursor: "pointer" }}
+          onClick={() => handleClickLogo()}
+        />
         <h1 className="my-5 d-none d-lg-block">
           {step === "fill"
             ? "Fill your additional details"
@@ -175,23 +183,40 @@ export default function Index() {
             ? "Activate"
             : "Done"}
         </h1>
-        <form>
+        <form onSubmit={formik.handleSubmit}>
           <Input
             label="Email"
-            type="email"
+            type="text"
             name="email"
-            value={data.email}
             placeholder="Write your email"
-            onChange={handleFormChange}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            className={`${
+              formik.errors.email && formik.touched.email
+                ? "error mb-0"
+                : "mb-5"
+            }`}
           />
-          <div className="password-container">
+          {formik.errors.email && formik.touched.email && (
+            <small className="error">{formik.errors.email}</small>
+          )}
+          <div
+            className={`password-container ${
+              formik.errors.email && formik.touched.email && "mt-3"
+            }`}
+          >
             <Input
               label="Password"
               type={type}
               name="password"
-              value={data.password}
               placeholder="Write your password"
-              onChange={handleFormChange}
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              className={`${
+                formik.errors.password && formik.touched.password
+                  ? "error mb-0"
+                  : "mb-5"
+              }`}
             />
             <img
               src={Eye}
@@ -201,7 +226,10 @@ export default function Index() {
               onClick={handleToggle}
             />
           </div>
-          <div className="d-flex checkbox mt-0 mb-3 mb-lg-0">
+          {formik.errors.password && formik.touched.password && (
+            <small className="error">{formik.errors.password}</small>
+          )}
+          <div className="d-flex checkbox mt-4 mb-3 mb-lg-0">
             <Input
               type="checkbox"
               name="agree"
@@ -216,13 +244,12 @@ export default function Index() {
             className={`btn-join mt-0 mt-lg-4 ${
               checked === true ? "pointer" : "no-drop"
             }`}
-            onClick={handleSubmit}
             disabled={checked === true ? false : true}
           >
             {!loading ? "Join for free now" : "Please wait..."}
           </Button>
         </form>
-        <p className="forgot-password">
+        <p className="login">
           Do you already have an account? <Link to="/sign-in">Log in</Link>
         </p>
         <p className="or">Or</p>
