@@ -74,13 +74,15 @@ export default function ProfileInfo(props) {
           <Col className="d-flex justify-content-center img-container">
             {props.img !== undefined &&
               imgUrl !== "http://localhost:8080/undefined" && (
-                <img
-                  src={imgUrl}
-                  width="136"
-                  height="136"
-                  className="rounded-circle"
-                  alt="User"
-                />
+                <div className="image">
+                  <img
+                    src={imgUrl}
+                    width="136"
+                    height="136"
+                    className="rounded-circle"
+                    alt="User"
+                  />
+                </div>
               )}
             <input
               type="file"
@@ -89,6 +91,7 @@ export default function ProfileInfo(props) {
               ref={imageRef}
               onChange={(event) => handleChangeImage(event)}
             />
+            <div className="shadow">Edit</div>
           </Col>
           <Col className="d-flex justify-content-center text-center mt-2">
             <h2>

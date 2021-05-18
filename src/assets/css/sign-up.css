@@ -84,6 +84,18 @@ main section.sign-up span.three {
   color: #ffffff;
 }
 
+main section.sign-up span.one::after,
+main section.sign-up span.two::after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 99999;
+  border: 2px solid #ffffff;
+  width: 50px;
+  transform: rotate(90deg);
+  top: 73px;
+}
+
 main aside.sign-up img.tickitz {
   display: none;
 }

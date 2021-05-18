@@ -1,5 +1,6 @@
 import { React, Fragment } from "react";
 import { Helmet } from "react-helmet";
+import Rupiah from "../helpers/rupiah";
 
 import "../assets/css/payment-page.css";
 
@@ -22,7 +23,7 @@ export default function PaymentPage(props) {
       <Nav className="navbar pt-4 fixed-top pl-1 total-payment d-flex d-md-none justify-content-between">
         <Container>
           <h2>Total Payment</h2>
-          <p>{`$${total}.00`}</p>
+          <p>{Rupiah(total)}</p>
         </Container>
       </Nav>
       <PaymentDetail></PaymentDetail>

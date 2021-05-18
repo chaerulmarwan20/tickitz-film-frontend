@@ -25,7 +25,6 @@ export default function Profile() {
     image: {},
   });
   const [password, setPassword] = useState("");
-  const [select, setSelect] = useState("No choosen");
   const [status, setStatus] = useState(false);
   const [typePassword, setTypePassword] = useState("password");
   const [typeConfirmPassword, setTypeConfirmPassword] = useState("password");
@@ -73,7 +72,6 @@ export default function Profile() {
       );
       formData.append("image", dataImage.image);
       setStatus(true);
-      setSelect("No Choosen");
       dispatch(update(formData, user.id))
         .then((res) => {
           formik.resetForm();
@@ -106,8 +104,7 @@ export default function Profile() {
     },
   });
 
-  const handleChangeImage = (file, name) => {
-    setSelect(name);
+  const handleChangeImage = (file) => {
     setDataImage({
       image: file,
     });
@@ -270,7 +267,6 @@ export default function Profile() {
                     </div>
                   </Col>
                 </Row>
-                Change image: Click your image <br /> Selected: {select}
               </form>
             </div>
             <div className="account-privacy mt-4 py-5 px-4">

@@ -1,6 +1,5 @@
 const axios = require("axios");
 const axiosApiInstance = axios.create();
-const Swal = require("sweetalert2");
 
 axiosApiInstance.interceptors.request.use(
   async (config) => {
@@ -20,18 +19,14 @@ axiosApiInstance.interceptors.response.use(
   },
   async function (error) {
     if (error.response.status === 401) {
-      if (error.response.data.message === "Token expired") {
-        localStorage.removeItem("token");
+      if (error.response.data.message === "Token is expired") {
+        localStorage.clear();
+      }
+      if (error.response.data.message === "Token is not active") {
+        localStorage.clear();
       }
       if (error.response.data.message === "Invalid signature") {
-        localStorage.removeItem("token");
-        Swal.fire({
-          title: "Warning!",
-          text: "Do not change the token",
-          icon: "warning",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
+        localStorage.clear();
       }
     }
     return Promise.reject(error);
