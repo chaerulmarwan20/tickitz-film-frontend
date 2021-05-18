@@ -53,7 +53,8 @@ export default function Profile() {
       email: Yup.string().email("Invalid email format").required("Required!"),
       phoneNumber: Yup.number()
         .typeError("Invalid phone number")
-        .min(11, "Mininum 11 characters")
+        .positive("A phone number can't start with a minus")
+        .integer("A phone number can't include a decimal point")
         .required("Required!"),
       password: Yup.string().min(8, "Minimum 8 characters"),
       confirmPassword: Yup.string()
@@ -82,14 +83,34 @@ export default function Profile() {
             confirmButtonText: "Ok",
             confirmButtonColor: "#5f2eea",
           }).then(() => {
-            dispatch(findUser()).then((res) => {
-              dispatch(getUser());
-              const result = res;
-              result.confirmPassword = "";
-              setPassword(result.password);
-              result.password = "";
-              formik.setValues(result);
-            });
+            dispatch(findUser())
+              .then((res) => {
+                dispatch(getUser())
+                  .then((res) => {})
+                  .catch((err) => {
+                    Swal.fire({
+                      title: "Error!",
+                      text: err.message,
+                      icon: "error",
+                      confirmButtonText: "Ok",
+                      confirmButtonColor: "#5f2eea",
+                    });
+                  });
+                const result = res;
+                result.confirmPassword = "";
+                setPassword(result.password);
+                result.password = "";
+                formik.setValues(result);
+              })
+              .catch((err) => {
+                Swal.fire({
+                  title: "Error!",
+                  text: err.message,
+                  icon: "error",
+                  confirmButtonText: "Ok",
+                  confirmButtonColor: "#5f2eea",
+                });
+              });
           });
         })
         .catch((err) => {
