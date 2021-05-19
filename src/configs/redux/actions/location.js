@@ -7,6 +7,7 @@ export const getLocation = () => (dispatch) => {
       .get(`${Url}/cities`)
       .then((res) => {
         dispatch({ type: "GET_LOCATION", payload: res.data.data });
+        resolve(res.data.data);
       })
       .catch((err) => {
         reject(new Error(err.response.data.message));

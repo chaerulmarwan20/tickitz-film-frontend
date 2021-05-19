@@ -12,23 +12,6 @@ export default function PremiereLocation() {
           option={["Purwokerto", "Jakarta", "Bandung", "Surabaya"]}
         ></Select>
       </div>
-      <div className="image-cinemas d-flex justify-content-center justify-content-xl-between align-items-center mt-4">
-        <div className="not-active d-flex justify-content-center align-items-center mr-4 mr-xl-0">
-          <div>
-            <img src={Ebv} alt="Ebv" width="80" />
-          </div>
-        </div>
-        <div className="not-active d-flex justify-content-center align-items-center mr-4 mr-xl-0">
-          <div>
-            <img src={Hiflix} alt="Hiflix" width="80" />
-          </div>
-        </div>
-        <div className="not-active d-flex justify-content-center align-items-center mr-4 mr-xl-0">
-          <div>
-            <img src={CineOne} alt="CineOne" width="80" />
-          </div>
-        </div>
-      </div>
       <div className="image-cinemas d-flex justify-content-center justify-content-xl-between align-items-center">
         <div className="not-active d-flex justify-content-center align-items-center mr-4 mr-xl-0">
           <div>
@@ -36,23 +19,6 @@ export default function PremiereLocation() {
           </div>
         </div>
         <div className="active d-flex justify-content-center align-items-center mr-4 mr-xl-0">
-          <div>
-            <img src={Hiflix} alt="Hiflix" width="80" />
-          </div>
-        </div>
-        <div className="not-active d-flex justify-content-center align-items-center mr-4 mr-xl-0">
-          <div>
-            <img src={CineOne} alt="CineOne" width="80" />
-          </div>
-        </div>
-      </div>
-      <div className="image-cinemas d-none d-lg-flex justify-content-center justify-content-xl-between align-items-center">
-        <div className="not-active d-flex justify-content-center align-items-center mr-4 mr-xl-0">
-          <div>
-            <img src={Ebv} alt="Ebv" width="80" />
-          </div>
-        </div>
-        <div className="not-active d-flex justify-content-center align-items-center mr-4 mr-xl-0">
           <div>
             <img src={Hiflix} alt="Hiflix" width="80" />
           </div>

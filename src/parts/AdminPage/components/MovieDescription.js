@@ -19,11 +19,12 @@ export default function MovieDescription() {
 
   const [data, setData] = useState({
     title: "",
-    genre: "",
+    category: "",
     hour: "",
     minute: "",
     director: "",
     cast: "",
+    genre: "",
     synopsis: "",
     dateRealesed: "",
   });
@@ -51,6 +52,7 @@ export default function MovieDescription() {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("genre", data.genre);
+    formData.append("category", data.category);
     formData.append("image", dataImage.image);
     formData.append("duration", `${data.hour} hours ${data.minute} minutes`);
     formData.append("director", data.director);
@@ -137,8 +139,8 @@ export default function MovieDescription() {
             <Input
               label="Category"
               type="text"
-              name="genre"
-              value={data.genre}
+              name="category"
+              value={data.category}
               placeholder="Write category"
               onChange={handleFormChange}
             ></Input>
@@ -182,6 +184,18 @@ export default function MovieDescription() {
               name="cast"
               placeholder="Write casts"
               value={data.cast}
+              onChange={handleFormChange}
+            ></Input>
+          </div>
+        </Col>
+        <Col className="col-12 d-none d-lg-block mt-2">
+          <div className="form-group">
+            <Input
+              label="Genre"
+              type="text"
+              name="genre"
+              placeholder="Write genre"
+              value={data.genre}
               onChange={handleFormChange}
             ></Input>
           </div>

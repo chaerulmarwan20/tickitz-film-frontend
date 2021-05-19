@@ -24,6 +24,7 @@ export default function Profile() {
   const [dataImage, setDataImage] = useState({
     image: {},
   });
+  const [point, setPoint] = useState(null);
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState(false);
   const [typePassword, setTypePassword] = useState("password");
@@ -100,6 +101,16 @@ export default function Profile() {
                 result.confirmPassword = "";
                 setPassword(result.password);
                 result.password = "";
+                setPoint(result.point);
+                if (result.firstName === "firstName") {
+                  result.firstName = "";
+                }
+                if (result.lastName === "lastName") {
+                  result.lastName = "";
+                }
+                if (result.phoneNumber === "000000000000") {
+                  result.phoneNumber = "";
+                }
                 formik.setValues(result);
               })
               .catch((err) => {
@@ -152,6 +163,16 @@ export default function Profile() {
         result.confirmPassword = "";
         setPassword(result.password);
         result.password = "";
+        setPoint(result.point);
+        if (result.firstName === "firstName") {
+          result.firstName = "";
+        }
+        if (result.lastName === "lastName") {
+          result.lastName = "";
+        }
+        if (result.phoneNumber === "000000000000") {
+          result.phoneNumber = "";
+        }
         formik.setValues(result);
       })
       .catch((err) => {
@@ -178,6 +199,7 @@ export default function Profile() {
             img={user.image}
             changeImage={handleChangeImage}
             status={status}
+            point={point}
           ></ProfileInfo>
           <Col className="col-lg-7 col-xl-8">
             <Breadcrumbs></Breadcrumbs>

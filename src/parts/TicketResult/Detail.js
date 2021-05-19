@@ -118,7 +118,11 @@ function Detail(props) {
                 <div className="d-flex flex-column">
                   <h2>Movie</h2>
                   {ticket.movieTitle !== undefined && (
-                    <p>{`${ticket.movieTitle.substring(0, 16)}...`}</p>
+                    <p>
+                      {ticket.movieTitle.length >= 16
+                        ? `${ticket.movieTitle.substring(0, 16)}...`
+                        : ticket.movieTitle}
+                    </p>
                   )}
                   <h2>Date</h2>
                   <p>{setDate(ticket.dateTransactions)}</p>
@@ -131,7 +135,7 @@ function Detail(props) {
                   <h2>Time</h2>
                   {ticket.time !== undefined && <p>{setTime(ticket.time)}</p>}
                   <h2>Seats</h2>
-                  <p>{ticket.seat}</p>
+                  <p style={{ whiteSpace: "normal" }}>{ticket.seat}</p>
                 </div>
               </Col>
               <Col className="col-12 d-flex justify-content-center mt-4">

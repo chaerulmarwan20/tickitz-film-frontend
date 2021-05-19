@@ -88,7 +88,11 @@ export class Ticket extends React.PureComponent {
             <div className="d-flex flex-row ml-3">
               <div className="d-flex flex-column">
                 <h3 className={style["heading-three"]}>Movie</h3>
-                <p className={style["paragraf"]}>{this.props.movie}</p>
+                <p className={style["paragraf"]}>
+                  {this.props.movie.length >= 20
+                    ? `${this.props.movie.substring(0, 20)}...`
+                    : this.props.movie}
+                </p>
               </div>
               <div className={[style["bitmap"], ["d-flex"]].join(" ")}>
                 <Barcode
@@ -153,7 +157,11 @@ export class Ticket extends React.PureComponent {
                 )}
                 <div className={style["four"]}>
                   <h3 className={style["heading-three"]}>Seats</h3>
-                  <p className={style["paragraf"]}>{this.props.seat}</p>
+                  <p className={style["paragraf"]}>
+                    {this.props.seat.length >= 8
+                      ? `${this.props.seat.substring(0, 8)}...`
+                      : this.props.seat}
+                  </p>
                 </div>
                 <div className={style["five"]}>
                   <h3 className={style["heading-three"]}>Category</h3>

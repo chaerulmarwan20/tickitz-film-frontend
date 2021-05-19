@@ -765,6 +765,13 @@ footer nav.follow-us span:hover {
     margin-left: 0px;
   }
 
+  .btn-close:hover {
+    background-color: #5f2eea;
+    color: #f7f7fc;
+    border: 1px solid transparent;
+    opacity: 0.6;
+  }
+
   nav.navbar ul.navbar-nav li:first-of-type {
     order: 2 !important;
   }

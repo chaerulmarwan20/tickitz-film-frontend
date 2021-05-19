@@ -101,7 +101,7 @@ export default function ProfileInfo(props) {
             </h2>
           </Col>
           <Col className="d-flex justify-content-center text-center">
-            <p>Moviegoers</p>
+            <p>{props.point >= 70 ? "Master" : "Moviegoers"}</p>
           </Col>
         </Row>
         <hr className="mt-4" />
@@ -111,18 +111,20 @@ export default function ProfileInfo(props) {
             <div className="moviegoers pl-3 pt-3">
               <div></div>
               <div></div>
-              <h4>Moviegoers</h4>
+              <h4>{props.point >= 70 ? "Master" : "Moviegoers"}</h4>
               <p className="mt-4">
-                0 <span>points</span>
+                {props.point} <span>points</span>
               </p>
               <img src={Star} width="51" alt="Star" />
             </div>
-            <h5 className="mt-4 text-center">400 points become a master</h5>
+            <h5 className="mt-4 text-center">
+              {props.point < 70 ? `${70 - props.point} points become a master` : "You have become a master"}
+            </h5>
             <div className="progress">
               <div
                 className="progress-bar"
                 role="progressbar"
-                style={{ width: `0%` }}
+                style={{ width: `${props.point}%` }}
                 aria-valuenow="0"
                 aria-valuemin="0"
                 aria-valuemax="100"

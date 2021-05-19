@@ -115,7 +115,7 @@ nav.details-order a:hover {
   border-radius: 50%;
   opacity: 0;
   cursor: pointer;
-  z-index: 9999;
+  z-index: 999;
 }
 
 .profile h2 {

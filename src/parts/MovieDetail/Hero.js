@@ -92,7 +92,9 @@ function Hero() {
                   </Col>
                   <Col className="col-6 col-lg-12">
                     <h2>Casts</h2>
-                    <p>{`${data.cast.substring(0, 48)}...`}</p>
+                    {data.cast.length >= 48
+                      ? `${data.cast.substring(0, 48)}...`
+                      : data.cast}
                   </Col>
                 </Row>
               </Col>
