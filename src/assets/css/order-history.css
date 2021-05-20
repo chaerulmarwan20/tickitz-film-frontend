@@ -218,7 +218,9 @@
 }
 
 .order-history .detail-order .btn-ticket:hover {
-  opacity: 0.7;
+  background-color: #f7f7fc;
+  color: #00ba88;
+  border: 1px solid #00ba88;
 }
 
 .order-history .detail-order select {
@@ -419,6 +421,13 @@
     border: 0.5px solid transparent;
     color: #ffffff;
     box-shadow: inherit;
+    opacity: 0.7;
+  }
+
+  .order-history .detail-order .btn-ticket:hover {
+    background-color: #00ba88;
+    color: #f7f7fc;
+    border: 1px solid transparent;
     opacity: 0.7;
   }
 }

@@ -50,6 +50,7 @@ export default function Index() {
       dispatch(signUp(values))
         .then((res) => {
           formik.resetForm();
+          setStep("activate");
           Swal.fire({
             title: "Success!",
             text: res,

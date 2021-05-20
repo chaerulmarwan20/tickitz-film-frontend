@@ -77,14 +77,12 @@ $ npm start
 
 <p align="center">
   <span>
-    <img width="250" height="250" src="./src/assets/screenshots/Sign-In.png">   
-    <img width="250" height="250" src="./src/assets/screenshots/Homepage.png">   
-    <img width="250" height="250" src="./src/assets/screenshots/Movie-Detail.png">   
-    <img width="250" height="250" src="./src/assets/screenshots/Order.png">
-    <img width="250" height="250" src="./src/assets/screenshots/Payment.png">   
-    <img width="250" height="250" src="./src/assets/screenshots/Ticket.png">
-    <img width="250" height="250" src="./src/assets/screenshots/Profile.png">   
-    <img width="250" height="250" src="./src/assets/screenshots/Order-History.png">
+    <img width="400" height="400" src="./src/assets/screenshots/Sign-In.png">   
+    <img width="400" height="400" src="./src/assets/screenshots/Homes.png">   
+    <img width="400" height="400" src="./src/assets/screenshots/Details.png">   
+    <img width="400" height="400" src="./src/assets/screenshots/Seat.png">
+    <img width="400" height="400" src="./src/assets/screenshots/Payments.png">   
+    <img width="400" height="400" src="./src/assets/screenshots/Tickets.png">
   </span>
 </p>
 

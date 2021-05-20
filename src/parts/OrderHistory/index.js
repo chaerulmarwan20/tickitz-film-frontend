@@ -172,6 +172,7 @@ export default function Order() {
                               ? "btn-ticket"
                               : "btn-ticket-canceled"
                           }`}
+                          onClick={() => handleDetails(data.id)}
                         >
                           {`${
                             data.status === "SUCCESS"

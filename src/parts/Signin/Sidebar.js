@@ -52,7 +52,7 @@ export default function Sidebar() {
         .catch((err) => {
           Swal.fire({
             title: "Error!",
-            text: err,
+            text: err.message,
             icon: "error",
             confirmButtonText: "Ok",
             confirmButtonColor: "#5f2eea",
