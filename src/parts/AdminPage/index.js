@@ -44,13 +44,14 @@ export default function Index() {
   const [dataImage, setDataImage] = useState({
     image: {},
   });
+  const [showing, setShowing] = useState(false);
   const [time, setTime] = useState(0);
-  const [arrTime, setArrTime] = useState(0);
+  const [arrTime, setArrTime] = useState("12:00am");
   const [cinema, setCinema] = useState([]);
   const [date, setDate] = useState("");
   const [city, setCity] = useState(1);
   const [showTimes, setShowTimes] = useState([]);
-  const [premiere] = useState([]);
+  const [premiere, setPremiere] = useState([]);
 
   const handleFormChange = (event) => {
     const dataNew = { ...data };
@@ -75,12 +76,22 @@ export default function Index() {
         confirmButtonColor: "#5f2eea",
       });
     } else {
-      showTimes.push(arrTime);
-      setShowTimes(
-        showTimes.map((item, index) => {
-          return item;
-        })
-      );
+      if (showTimes.includes(arrTime) === true) {
+        Swal.fire({
+          title: "Error!",
+          text: "Time has been entered",
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      } else {
+        showTimes.push(arrTime);
+        setShowTimes(
+          showTimes.map((item, index) => {
+            return item;
+          })
+        );
+      }
     }
   };
 
@@ -209,55 +220,89 @@ export default function Index() {
     }
   };
 
+  const handleCheck = () => {
+    setShowing(!showing);
+  };
+
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("genre", data.genre);
-    formData.append("duration", `${data.hour} hours ${data.minute} minutes`);
-    formData.append("director", data.director);
-    formData.append("cast", data.cast);
-    formData.append("synopsis", data.synopsis);
-    formData.append("category", data.category);
-    formData.append("dateRealesed", data.dateRealesed);
-    formData.append("image", dataImage.image);
-    formData.append("dateSchedule", date);
-    formData.append("cinema", JSON.stringify(premiere));
-    formData.append("city", city);
-    formData.append("time", JSON.stringify(showTimes));
-    axiosApiInstance
-      .post(`${Url}/schedule`, formData)
-      .then((res) => {
-        Swal.fire({
-          title: "Success!",
-          text: res.data.message,
-          icon: "success",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        }).then(() => {
-          imageRef.current.value = "";
-          setImgUrl(Image);
-          setData({
-            title: "",
-            genre: "",
-            hour: "",
-            minute: "",
-            director: "",
-            cast: "",
-            synopsis: "",
-            dateRealesed: "",
+    if (data.hour < 0 || data.minute < 0) {
+      Swal.fire({
+        title: "Error!",
+        text: `Duration can't start with a minus`,
+        icon: "error",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#5f2eea",
+      });
+    } else if (data.hour < 1 && data.minute < 1) {
+      Swal.fire({
+        title: "Error!",
+        text: `Invalid duration`,
+        icon: "error",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#5f2eea",
+      });
+    } else {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("genre", data.genre);
+      formData.append("duration", `${data.hour} hours ${data.minute} minutes`);
+      formData.append("director", data.director);
+      formData.append("cast", data.cast);
+      formData.append("synopsis", data.synopsis);
+      formData.append("category", data.category);
+      formData.append("dateRealesed", data.dateRealesed);
+      formData.append("realesed", showing);
+      formData.append("image", dataImage.image);
+      formData.append("dateSchedule", date);
+      formData.append("cinema", JSON.stringify(premiere));
+      formData.append("city", city);
+      formData.append("time", JSON.stringify(showTimes));
+      axiosApiInstance
+        .post(`${Url}/schedule`, formData)
+        .then((res) => {
+          Swal.fire({
+            title: "Success!",
+            text: res.data.message,
+            icon: "success",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
+          }).then(() => {
+            imageRef.current.value = "";
+            setImgUrl(Image);
+            setData({
+              title: "",
+              category: "",
+              hour: "",
+              minute: "",
+              director: "",
+              cast: "",
+              genre: "",
+              synopsis: "",
+              dateRealesed: "",
+            });
+            setShowTimes([]);
+            setPremiere([]);
+            setCity(1);
+            setDate("");
+            setShowing(false);
+            const element = document.querySelectorAll(".image-cinemas .active");
+            element.forEach((item, index) => {
+              item.classList.remove("active");
+              item.classList.add("not-active");
+            });
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "Error!",
+            text: err.response.data.message,
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#5f2eea",
           });
         });
-      })
-      .catch((err) => {
-        Swal.fire({
-          title: "Error!",
-          text: err.response.data.message,
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: "#5f2eea",
-        });
-      });
+    }
   };
 
   useEffect(() => {
@@ -420,6 +465,25 @@ export default function Index() {
                         onChange={handleFormChange}
                       ></textarea>
                       <Row className="mt-3">
+                        <Col className="col-12 d-flex justify-content-start">
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              id="now-showing"
+                              checked={showing ? true : false}
+                              onChange={() => handleCheck()}
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="now-showing"
+                            >
+                              Make it now showing movie
+                            </label>
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row className="mt-2">
                         <Col className="col-12 d-flex justify-content-end align-items-center">
                           <Button
                             className="btn btn-add-movie"
@@ -446,7 +510,11 @@ export default function Index() {
                   >
                     {location.map((item, index) => {
                       return (
-                        <option value={item.id} key={index}>
+                        <option
+                          value={item.id}
+                          key={index}
+                          selected={city === item.id ? true : false}
+                        >
                           {item.name}
                         </option>
                       );
