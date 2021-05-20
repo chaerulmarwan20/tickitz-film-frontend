@@ -78,7 +78,7 @@ $ npm start
 <p align="center">
   <span>
     <img width="400" height="400" src="./src/assets/screenshots/Sign-In.png">   
-    <img width="400" height="400" src="./src/assets/screenshots/Homes.png">   
+    <img width="400" height="400" src="./src/assets/screenshots/Home.png">   
     <img width="400" height="400" src="./src/assets/screenshots/Details.png">   
     <img width="400" height="400" src="./src/assets/screenshots/Seat.png">
     <img width="400" height="400" src="./src/assets/screenshots/Payments.png">   
