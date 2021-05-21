@@ -1,0 +1,217 @@
+section.description-premiere {
+  margin-top: 125px;
+  margin-bottom: 80px;
+}
+
+section.description-premiere h1 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0.25px;
+  color: #000;
+}
+
+section.description-premiere .movie-description {
+  background-color: #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: 0px 8px 24px rgba(17, 17, 17, 0.08);
+}
+
+section.description-premiere .movie-description .card.image {
+  width: 249px;
+  height: 344px;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 0.5px solid #dedede;
+  transform: translateY(7px);
+}
+
+section.description-premiere .movie-description .card.image img {
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+section.description-premiere .movie-description .card.image .shadow {
+  position: absolute;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 0.75px;
+  color: #ffffff;
+  background-color: #5f2eea;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+section.description-premiere
+  .movie-description
+  .card.image
+  .file-input:hover
+  + .shadow {
+  opacity: 0.6;
+}
+
+section.description-premiere .movie-description .card.image .file-input {
+  width: 177px;
+  height: 275px;
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+  z-index: 999;
+}
+
+section.description-premiere .movie-description .btn-update-movie {
+  width: 249px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.75px;
+  color: #fcfdfe;
+  transition: 0.5s ease;
+  background-color: #5f2eea;
+}
+
+section.description-premiere .movie-description .btn-update-movie:hover {
+  border: 1px solid #5f2eea;
+  color: #5f2eea;
+  background-color: #fcfdfe;
+}
+
+section.description-premiere .movie-description label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #4e4b66;
+}
+
+section.description-premiere .movie-description label.hour {
+  white-space: nowrap;
+}
+
+section.description-premiere .movie-description input.form-control {
+  height: 64px;
+  background-color: #fcfdfe;
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.75px;
+  color: #4e4b66;
+  padding-left: 24px;
+}
+
+section.description-premiere .movie-description input.form-control.director {
+  width: 250px;
+}
+
+section.description-premiere
+  .movie-description
+  input.form-control::-webkit-input-placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.75px;
+  color: #4e4b66;
+}
+
+section.description-premiere
+  .movie-description
+  input.form-control[type="date"]::-webkit-calendar-picker-indicator {
+  background: url(../img/Forward.png) no-repeat;
+  background-size: 18px;
+  display: block;
+  background-position-y: center;
+}
+
+section.description-premiere .form-group.category {
+  margin-top: 34px;
+}
+
+section.description-premiere .form-row {
+  margin-top: 34px;
+}
+
+section.description-premiere .form-group.casts {
+  margin-top: 14px;
+}
+
+section.description-premiere .form-group.director {
+  margin-top: 36px;
+}
+
+section.description-premiere .movie-description textarea.form-control {
+  height: 110px;
+  background-color: #fcfdfe;
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 0.75px;
+  color: #4e4b66;
+  padding-left: 24px;
+  padding-top: 15px;
+  padding-bottom: 22px;
+}
+
+section.description-premiere
+  .movie-description
+  textarea.form-control::-webkit-input-placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 0.75px;
+  color: #4e4b66;
+}
+
+@media screen and (max-width: 1119px) {
+  section.description-premiere .movie-description input.form-control.director {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  section.description-premiere {
+    margin-top: 110px;
+    margin-bottom: 56px;
+  }
+
+  section.description-premiere h1 {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.75px;
+  }
+
+  section.description-premiere .movie-description .btn-update-movie:hover {
+    border: 1px solid transparent;
+    color: #fcfdfe;
+    background-color: #5f2eea;
+    opacity: 0.6;
+  }
+
+  section.description-premiere .form-group.category,
+  section.description-premiere .form-row,
+  section.description-premiere .form-group.casts {
+    margin-top: 0px;
+  }
+
+  section.description-premiere .form-group.director {
+    margin-top: 30px;
+  }
+}

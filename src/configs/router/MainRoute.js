@@ -18,6 +18,7 @@ import OrderHistory from "../../pages/OrderHistory";
 import TicketResult from "../../pages/TicketResult";
 import AdminPage from "../../pages/AdminPage";
 import Cinemas from "../../pages/Cinemas";
+import EditMovie from "../../pages/EditMovie";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <PrivateRoute path="/order-history" component={OrderHistory} />
         <PrivateRoute path="/ticket-result" component={TicketResult} />
         <PrivateRoute path="/admin-page" component={AdminPage} />
+        <PrivateRoute path="/edit-movie/:id" component={EditMovie} />
       </Switch>
     </Router>
   );

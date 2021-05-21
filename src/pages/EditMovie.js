@@ -6,13 +6,13 @@ import Swal from "sweetalert2";
 
 import { getUser } from "../configs/redux/actions/user";
 
-import "../assets/css/admin-page.css";
+import "../assets/css/edit-movie.css";
 
 import Navbar from "../components/Navbar";
-import Main from "../parts/AdminPage";
+import Main from "../parts/EditMovie";
 import Footer from "../components/Footer";
 
-export default function AdminPage() {
+export default function EditMovie() {
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ export default function AdminPage() {
       <Fragment>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Tickitz Film - Admin Page</title>
+          <title>Tickitz Film - Edit Movie</title>
         </Helmet>
         <Navbar></Navbar>
         <Main></Main>

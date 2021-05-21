@@ -68,26 +68,38 @@ section.description-premiere .movie-description .card.image .file-input {
   z-index: 999;
 }
 
-section.description-premiere .movie-description .btn-add,
 section.description-premiere .movie-description .btn-add-movie {
   width: 249px;
   height: 40px;
-  border-radius: 2px;
-  border: 1px solid #5f2eea;
+  border-radius: 4px;
+  border: 1px solid transparent;
   box-sizing: border-box;
   font-weight: 700;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.75px;
-  color: #5f2eea;
+  color: #fcfdfe;
   transition: 0.5s ease;
+  background-color: #5f2eea;
 }
 
-section.description-premiere .movie-description .btn-add:hover,
+.modal.time .form-control {
+  height: 48px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  line-height: 26px;
+  letter-spacing: 0.75px;
+  color: #a0a3bd;
+  font-weight: 600;
+  font-size: 14px;
+}
+
 section.description-premiere .movie-description .btn-add-movie:hover {
-  border: 1px solid transparent;
-  color: white;
-  background-color: #5f2eea;
+  border: 1px solid #5f2eea;
+  color: #5f2eea;
+  background-color: #fcfdfe;
 }
 
 section.description-premiere .movie-description label {
@@ -282,6 +294,7 @@ section.description-premiere .showtimes span {
   letter-spacing: 0.75px;
   color: #4e4b66;
   margin-right: 15px;
+  margin-top: 10px;
 }
 
 section.description-premiere .based {
@@ -428,6 +441,12 @@ section.description-premiere .view-more a:hover {
   }
 }
 
+@media screen and (max-width: 1119px) {
+  section.description-premiere .movie-description input.form-control.director {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 991px) {
   section.description-premiere {
     margin-top: 110px;
@@ -468,11 +487,20 @@ section.description-premiere .view-more a:hover {
     white-space: nowrap;
   }
 
-  section.description-premiere .movie-description .btn-add:hover,
   section.description-premiere .movie-description .btn-add-movie:hover {
-    border: 1px solid #5f2eea;
-    color: #5f2eea;
-    background-color: #fff;
+    border: 1px solid transparent;
+    color: #fcfdfe;
+    background-color: #5f2eea;
     opacity: 0.6;
+  }
+
+  section.description-premiere .form-group.category,
+  section.description-premiere .form-row,
+  section.description-premiere .form-group.casts {
+    margin-top: 0px;
+  }
+
+  section.description-premiere .form-group.director {
+    margin-top: 30px;
   }
 }

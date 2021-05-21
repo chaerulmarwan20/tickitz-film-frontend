@@ -102,6 +102,7 @@ export const getUser = () => (dispatch) => {
           payload: res.data.data[0],
           role: res.data.data[0].role,
         });
+        resolve(res.data.data[0]);
       })
       .catch((err) => {
         reject(new Error(err.response.data.message));

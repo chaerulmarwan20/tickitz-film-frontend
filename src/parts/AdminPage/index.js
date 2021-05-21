@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import TimePicker from "./ReactBootstrapTimePicker";
+import { animateScroll as scroll } from "react-scroll";
 import Swal from "sweetalert2";
+import TimePicker from "./ReactBootstrapTimePicker";
 
 import { getLocation } from "../../configs/redux/actions/location";
 import axiosApiInstance from "../../helpers/axios";
@@ -29,6 +30,7 @@ export default function Index() {
 
   const { location } = useSelector((state) => state.location);
 
+  const [based, setBased] = useState(1);
   const [imgUrl, setImgUrl] = useState(Image);
   const [data, setData] = useState({
     title: "",
@@ -52,6 +54,7 @@ export default function Index() {
   const [city, setCity] = useState(1);
   const [showTimes, setShowTimes] = useState([]);
   const [premiere, setPremiere] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleFormChange = (event) => {
     const dataNew = { ...data };
@@ -224,85 +227,73 @@ export default function Index() {
     setShowing(!showing);
   };
 
+  const handleClickBased = (params) => {
+    setBased(params);
+  };
+
   const handleSubmit = (event) => {
-    if (data.hour < 0 || data.minute < 0) {
-      Swal.fire({
-        title: "Error!",
-        text: `Duration can't start with a minus`,
-        icon: "error",
-        confirmButtonText: "Ok",
-        confirmButtonColor: "#5f2eea",
-      });
-    } else if (data.hour < 1 && data.minute < 1) {
-      Swal.fire({
-        title: "Error!",
-        text: `Invalid duration`,
-        icon: "error",
-        confirmButtonText: "Ok",
-        confirmButtonColor: "#5f2eea",
-      });
-    } else {
-      event.preventDefault();
-      const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("genre", data.genre);
-      formData.append("duration", `${data.hour} hours ${data.minute} minutes`);
-      formData.append("director", data.director);
-      formData.append("cast", data.cast);
-      formData.append("synopsis", data.synopsis);
-      formData.append("category", data.category);
-      formData.append("dateRealesed", data.dateRealesed);
-      formData.append("realesed", showing);
-      formData.append("image", dataImage.image);
-      formData.append("dateSchedule", date);
-      formData.append("cinema", JSON.stringify(premiere));
-      formData.append("city", city);
-      formData.append("time", JSON.stringify(showTimes));
-      axiosApiInstance
-        .post(`${Url}/schedule`, formData)
-        .then((res) => {
-          Swal.fire({
-            title: "Success!",
-            text: res.data.message,
-            icon: "success",
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#5f2eea",
-          }).then(() => {
-            imageRef.current.value = "";
-            setImgUrl(Image);
-            setData({
-              title: "",
-              category: "",
-              hour: "",
-              minute: "",
-              director: "",
-              cast: "",
-              genre: "",
-              synopsis: "",
-              dateRealesed: "",
-            });
-            setShowTimes([]);
-            setPremiere([]);
-            setCity(1);
-            setDate("");
-            setShowing(false);
-            const element = document.querySelectorAll(".image-cinemas .active");
-            element.forEach((item, index) => {
-              item.classList.remove("active");
-              item.classList.add("not-active");
-            });
+    event.preventDefault();
+    const formData = new FormData();
+    setLoading(true);
+    formData.append("title", data.title);
+    formData.append("genre", data.genre);
+    formData.append("duration", `${data.hour} hours ${data.minute} minutes`);
+    formData.append("director", data.director);
+    formData.append("cast", data.cast);
+    formData.append("synopsis", data.synopsis);
+    formData.append("category", data.category);
+    formData.append("dateRealesed", data.dateRealesed);
+    formData.append("realesed", showing);
+    formData.append("image", dataImage.image);
+    formData.append("dateSchedule", date);
+    formData.append("cinema", JSON.stringify(premiere));
+    formData.append("city", city);
+    formData.append("time", JSON.stringify(showTimes));
+    axiosApiInstance
+      .post(`${Url}/schedule`, formData)
+      .then((res) => {
+        setLoading(false);
+        Swal.fire({
+          title: "Success!",
+          text: res.data.message,
+          icon: "success",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        }).then(() => {
+          imageRef.current.value = "";
+          setImgUrl(Image);
+          setData({
+            title: "",
+            category: "",
+            hour: "",
+            minute: "",
+            director: "",
+            cast: "",
+            genre: "",
+            synopsis: "",
+            dateRealesed: "",
           });
-        })
-        .catch((err) => {
-          Swal.fire({
-            title: "Error!",
-            text: err.response.data.message,
-            icon: "error",
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#5f2eea",
+          setShowTimes([]);
+          setPremiere([]);
+          setCity(1);
+          setDate("");
+          setShowing(false);
+          const element = document.querySelectorAll(".image-cinemas .active");
+          element.forEach((item, index) => {
+            item.classList.remove("active");
+            item.classList.add("not-active");
           });
         });
-    }
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.response.data.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
+        });
+      });
   };
 
   useEffect(() => {
@@ -336,6 +327,10 @@ export default function Index() {
       });
   }, [Url]);
 
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
+
   return (
     <>
       <Section className="description-premiere">
@@ -343,10 +338,10 @@ export default function Index() {
           <Row className="justify-content-center justify-content-xl-start">
             <Col className="col-xl-8 col-lg-10">
               <h1>Movie Description</h1>
-              <div className="movie-description d-flex justify-content-center pt-5 pb-5 pb-lg-4 px-4 mt-4">
+              <div className="movie-description d-flex justify-content-center py-4 px-4 mt-4">
                 <Row>
                   <Col className="col-12 col-lg-5">
-                    <Card className="image d-flex justify-content-center align-items-center">
+                    <Card className="image d-flex justify-content-center align-items-center mx-auto mx-lg-0">
                       <img
                         src={imgUrl}
                         alt="ImageDescription"
@@ -362,10 +357,7 @@ export default function Index() {
                       />
                       <div className="shadow">Upload</div>
                     </Card>
-                    <Button className="btn btn-add d-lg-none mt-5">
-                      Add description
-                    </Button>
-                    <div className="form-group director d-none d-lg-block">
+                    <div className="form-group director">
                       <Input
                         label="Director"
                         type="text"
@@ -377,7 +369,7 @@ export default function Index() {
                       ></Input>
                     </div>
                   </Col>
-                  <Col className="col-7 d-none d-lg-block pl-0">
+                  <Col className="col-12 col-lg-7 pl-lg-0">
                     <div className="form-group">
                       <Input
                         label="Movie Name"
@@ -417,6 +409,7 @@ export default function Index() {
                           classLabel="hour"
                           value={data.hour}
                           onChange={handleFormChange}
+                          isMin
                         ></Input>
                       </div>
                       <div className="form-group col-3">
@@ -427,6 +420,7 @@ export default function Index() {
                           placeholder="min"
                           value={data.minute}
                           onChange={handleFormChange}
+                          isMin
                         ></Input>
                       </div>
                     </div>
@@ -441,7 +435,7 @@ export default function Index() {
                       ></Input>
                     </div>
                   </Col>
-                  <Col className="col-12 d-none d-lg-block mt-2">
+                  <Col className="col-12 mt-0 mt-lg-2">
                     <div className="form-group">
                       <Input
                         label="Genre"
@@ -453,7 +447,7 @@ export default function Index() {
                       ></Input>
                     </div>
                   </Col>
-                  <Col className="col-12 d-none d-lg-block mt-2">
+                  <Col className="col-12 mt-0 mt-lg-2">
                     <div className="form-group">
                       <label htmlFor="synopsis">Synopsis</label>
                       <textarea
@@ -483,13 +477,13 @@ export default function Index() {
                           </div>
                         </Col>
                       </Row>
-                      <Row className="mt-2">
+                      <Row className="mt-4 mt-md-3">
                         <Col className="col-12 d-flex justify-content-end align-items-center">
                           <Button
                             className="btn btn-add-movie"
                             onClick={handleSubmit}
                           >
-                            Add movie
+                            {loading ? "Please wait..." : "Add movie"}
                           </Button>
                         </Col>
                       </Row>
@@ -500,7 +494,7 @@ export default function Index() {
             </Col>
             <Col className="col-xl-4 col-lg-10 mt-5 mt-xl-0 d-flex d-xl-block flex-column">
               <h1>Premiere Location</h1>
-              <div className="location py-5 px-4 mt-4">
+              <div className="location py-4 px-4 mt-4">
                 <div className="d-flex justify-content-center justify-content-xl-start">
                   <select
                     className="custom-select"
@@ -548,7 +542,7 @@ export default function Index() {
                 </div>
               </div>
               <h1 className="mt-5 mt-xl-4">Showtimes</h1>
-              <div className="showtimes py-5 px-4 mt-4">
+              <div className="showtimes py-4 px-4 mt-4">
                 <div className="d-flex justify-content-center justify-content-xl-start">
                   <Input
                     type="date"
@@ -568,7 +562,7 @@ export default function Index() {
                         <img src={Plus} alt="Plus" width="30" />
                       </Button>
                     </div>
-                    <div className="d-flex flex-wrap justify-content-center mt-4">
+                    <div className="d-flex flex-wrap justify-content-center mt-2">
                       {showTimes.length === 0 ? (
                         <span>No time choosen</span>
                       ) : (
@@ -586,10 +580,18 @@ export default function Index() {
             <Col className="col-lg-10 col-xl-12">
               <h1>Sales Charts</h1>
               <div className="based d-flex py-3 px-4 mt-4">
-                <Link className="active mt-1" to="#">
+                <Link
+                  className={`mt-1 ${based === 1 && "active"}`}
+                  to="#"
+                  onClick={() => handleClickBased(1)}
+                >
                   Based on Movies
                 </Link>
-                <Link className="mt-1 ml-5" to="#">
+                <Link
+                  className={`mt-1 ml-5 ${based === 2 && "active"}`}
+                  to="#"
+                  onClick={() => handleClickBased(2)}
+                >
                   Based on Location
                 </Link>
               </div>
@@ -612,7 +614,7 @@ export default function Index() {
         </Container>
       </Section>
       <div
-        className="modal fade"
+        className="modal time fade"
         id="timeModal"
         aria-labelledby="timeModalLabel"
         aria-hidden="true"

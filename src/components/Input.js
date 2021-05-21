@@ -48,6 +48,7 @@ class Input extends Component {
             onChange={this.props.onChange}
             autoComplete={this.props.autoComplete && "off"}
             disabled={this.props.disabled ? true : false}
+            min={this.props.isMin && 0}
           />
         </Fragment>
       );

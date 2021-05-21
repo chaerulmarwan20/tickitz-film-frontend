@@ -59,6 +59,48 @@ hr {
   border: 0.5px solid #d6d8e7;
 }
 
+.synopsis .btn-update {
+  width: 360px;
+  height: 56px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  background-color: #5f2eea;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.75px;
+  color: #f7f7fc;
+  transition: 0.5s ease;
+}
+
+.synopsis .btn-update:hover {
+  border: 1px solid #5f2eea;
+  background-color: #f7f7fc;
+  color: #5f2eea;
+}
+
+.synopsis .btn-delete {
+  width: 360px;
+  height: 56px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  background-color: #ea2e57;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.75px;
+  color: #f7f7fc;
+  transition: 0.5s ease;
+}
+
+.synopsis .btn-delete:hover {
+  border: 1px solid #ea2e57;
+  background-color: #f7f7fc;
+  color: #ea2e57;
+}
+
 /* Synopsis */
 .synopsis {
   margin-bottom: 100px;
@@ -391,6 +433,19 @@ span.add-cart:hover {
     color: #ffffff;
     box-shadow: inherit;
     opacity: 0.7;
+  }
+
+  .synopsis .btn-update:hover {
+    border: 1px solid transparent;
+    background-color: #5f2eea;
+    color: #f7f7fc;
+    opacity: 0.6;
+  }
+  .synopsis .btn-delete:hover {
+    border: 1px solid transparent;
+    background-color: #ea2e57;
+    color: #f7f7fc;
+    opacity: 0.6;
   }
 }
 

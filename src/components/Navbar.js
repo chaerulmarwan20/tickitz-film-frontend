@@ -201,7 +201,7 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav d-flex mr-auto">
               <form
-                className={`d-block d-lg-none form-inline mb-4 mt-3 form-search ${
+                className={`d-block d-lg-none form-inline mb-4 mt-sm-4 form-search ${
                   props.isPayment ? "payment" : ""
                 } ${props.isProfile ? "profile" : ""}`}
               >
