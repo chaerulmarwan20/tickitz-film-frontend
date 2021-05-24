@@ -11,7 +11,8 @@
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Screenshots](#screenshots)
-- [Related Project](#related-project)
+- [Link](#link)
+- [Author](#author)
 
 ## Introduction
 
@@ -85,7 +86,11 @@ $ npm start
   </span>
 </p>
 
-## Related Project
+## Link
 
 - :white_check_mark: [`Backend Tickitz`](https://github.com/chaerulmarwan20/tickitz-film-api)
-- :rocket: [`Production`](https://booking-tickitz-film.netlify.app/)
+- :rocket: [`Publication`](https://booking-tickitz-film.netlify.app/)
+
+## Author
+
+- [Chaerul Marwan](https://github.com/chaerulmarwan20)
