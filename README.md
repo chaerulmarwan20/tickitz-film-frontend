@@ -49,7 +49,7 @@ The Tickitz application is a web application created using node.js and its frame
 
 ## Installation
 
-1. Open your terminal or command prompt. Then, clone the repo.
+1. Clone the repository.
 
 ```
 $ git clone https://github.com/chaerulmarwan20/tickitz-film-frontend.git
@@ -59,16 +59,21 @@ $ git clone https://github.com/chaerulmarwan20/tickitz-film-frontend.git
 
 ```
 $ cd tickitz-film-frontend
+```
+
+3. Install package.
+
+```
 $ npm install
 ```
 
-3. Create environment variable.
+4. Create environment variable.
 
 ```
 $ cp .env.example .env
 ```
 
-4. Run this application.
+5. Run this application.
 
 ```
 $ npm start
