@@ -545,6 +545,6 @@
 @media screen and (max-width: 375px) {
   .container-grid,
   .container-seat {
-    transform: translateX(7px);
+    transform: translateX(6px);
   }
 }
