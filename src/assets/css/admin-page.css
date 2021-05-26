@@ -68,7 +68,8 @@ section.description-premiere .movie-description .card.image .file-input {
   z-index: 999;
 }
 
-section.description-premiere .movie-description .btn-add-movie {
+section.description-premiere .movie-description .btn-add-movie,
+section.description-premiere .showtimes .btn-add-movie {
   width: 249px;
   height: 40px;
   border-radius: 4px;
@@ -96,7 +97,8 @@ section.description-premiere .movie-description .btn-add-movie {
   font-size: 14px;
 }
 
-section.description-premiere .movie-description .btn-add-movie:hover {
+section.description-premiere .movie-description .btn-add-movie:hover,
+section.description-premiere .showtimes .btn-add-movie:hover {
   border: 1px solid #5f2eea;
   color: #5f2eea;
   background-color: #fcfdfe;
@@ -487,7 +489,8 @@ section.description-premiere .view-more a:hover {
     white-space: nowrap;
   }
 
-  section.description-premiere .movie-description .btn-add-movie:hover {
+  section.description-premiere .movie-description .btn-add-movie:hover,
+  section.description-premiere .showtimes .btn-add-movie:hover {
     border: 1px solid transparent;
     color: #fcfdfe;
     background-color: #5f2eea;

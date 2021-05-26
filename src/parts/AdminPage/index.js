@@ -293,6 +293,7 @@ export default function Index() {
           confirmButtonText: "Ok",
           confirmButtonColor: "#5f2eea",
         });
+        setLoading(false);
       });
   };
 
@@ -477,7 +478,7 @@ export default function Index() {
                           </div>
                         </Col>
                       </Row>
-                      <Row className="mt-4 mt-md-3">
+                      <Row className="mt-4 mt-md-3 d-none d-lg-flex">
                         <Col className="col-12 d-flex justify-content-end align-items-center">
                           <Button
                             className="btn btn-add-movie"
@@ -552,7 +553,7 @@ export default function Index() {
                   ></Input>
                 </div>
                 <Row className="justify-content-center mt-4">
-                  <Col className="col-12 mt-2 mt-xl-1">
+                  <Col className="col-12">
                     <div className="d-flex justify-content-center justify-content-xl-between align-items-center">
                       <Button
                         className="btn btn-plus d-flex justify-content-center align-items-center"
@@ -571,6 +572,16 @@ export default function Index() {
                         })
                       )}
                     </div>
+                  </Col>
+                </Row>
+                <Row className="mt-4 d-lg-none">
+                  <Col className="col-12 d-flex justify-content-center align-items-center">
+                    <Button
+                      className="btn btn-add-movie"
+                      onClick={handleSubmit}
+                    >
+                      {loading ? "Please wait..." : "Add movie"}
+                    </Button>
                   </Col>
                 </Row>
               </div>
