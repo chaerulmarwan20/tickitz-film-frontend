@@ -33,7 +33,7 @@ export default function Cinema() {
   const [paginate, setPaginate] = useState(1);
   const [idSchedule, setIdSchedule] = useState(null);
   const [city, setCity] = useState(1);
-  const [date, setDate] = useState("2021-04-02");
+  const [date, setDate] = useState("2021-06-01");
   const [time, setTime] = useState("");
   const [css, setCss] = useState({
     time: null,

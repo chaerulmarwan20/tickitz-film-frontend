@@ -16,7 +16,7 @@ export default function UpcomingMovies() {
     {
       index: "01",
       name: "January",
-      active: true,
+      active: false,
     },
     {
       index: "02",
@@ -46,7 +46,7 @@ export default function UpcomingMovies() {
     {
       index: "07",
       name: "July",
-      active: false,
+      active: true,
     },
     {
       index: "08",
@@ -74,7 +74,7 @@ export default function UpcomingMovies() {
       active: false,
     },
   ]);
-  const [date, setDate] = useState("01");
+  const [date, setDate] = useState("07");
   const [empty, setEmpty] = useState(false);
 
   const dispatch = useDispatch();
