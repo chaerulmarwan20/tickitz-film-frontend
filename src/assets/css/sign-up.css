@@ -291,7 +291,7 @@ main aside.sign-up .btn-facebook {
   font-size: 18px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: 0.5 ease;
+  transition: 0.5s ease;
 }
 
 main aside.sign-up .btn-google:hover,

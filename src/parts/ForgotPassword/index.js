@@ -112,7 +112,10 @@ export default function Index() {
             setStep("done");
             Swal.fire({
               title: "Success!",
-              text: res,
+              text:
+                res === "Password has been changed! Please login."
+                  ? "Reset password success. Please login."
+                  : res,
               icon: "success",
               confirmButtonText: "Ok",
               confirmButtonColor: "#5f2eea",
@@ -130,7 +133,7 @@ export default function Index() {
       } else {
         Swal.fire({
           title: "Error!",
-          text: "Something wrong",
+          text: "Something wrong!",
           icon: "error",
           confirmButtonText: "Ok",
           confirmButtonColor: "#5f2eea",

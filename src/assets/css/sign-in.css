@@ -225,6 +225,7 @@ main aside.sign-in .btn-facebook {
   font-size: 18px;
   border: 1px solid transparent;
   cursor: pointer;
+  transition: 0.5s ease;
 }
 
 main aside.sign-in .btn-google {
@@ -255,6 +256,11 @@ main aside.sign-in .btn-facebook::before {
   height: 24px;
   float: left;
   margin-left: 24px;
+}
+
+main aside.sign-in .btn-google:hover,
+main aside.sign-in .btn-facebook:hover {
+  opacity: 0.6;
 }
 
 /* Responsive Breakpoints */
