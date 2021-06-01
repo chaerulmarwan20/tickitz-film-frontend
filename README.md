@@ -44,7 +44,7 @@ The Tickitz application is a web application created using node.js and its frame
 
 ## Prerequisites
 
-- [NodeJs](https://nodejs.org/en/download/)
+- [NodeJs](https://nodejs.org/)
 - [Backend Tickitz](https://github.com/chaerulmarwan20/tickitz-film-api)
 
 ## Installation
