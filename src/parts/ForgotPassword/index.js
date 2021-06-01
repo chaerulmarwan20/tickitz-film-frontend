@@ -52,6 +52,7 @@ export default function Index() {
     if (step === "fill") {
       dispatch(confirm(params))
         .then((res) => {
+          localStorage.setItem("email", params.email);
           formik.resetForm();
           setStep("activate");
           Swal.fire({
@@ -72,26 +73,37 @@ export default function Index() {
           });
         });
     } else if (step === "activate") {
-      dispatch(activate(params))
-        .then((res) => {
-          formik.resetForm();
-          Swal.fire({
-            title: "Success!",
-            text: res,
-            icon: "success",
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#5f2eea",
-          });
-        })
-        .catch((err) => {
-          Swal.fire({
-            title: "Error!",
-            text: err.message,
-            icon: "error",
-            confirmButtonText: "Ok",
-            confirmButtonColor: "#5f2eea",
-          });
+      if (params.email !== localStorage.getItem("email")) {
+        Swal.fire({
+          title: "Error!",
+          text: "Email do not match!",
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#5f2eea",
         });
+      } else {
+        dispatch(activate(params))
+          .then((res) => {
+            localStorage.removeItem("email");
+            formik.resetForm();
+            Swal.fire({
+              title: "Success!",
+              text: res,
+              icon: "success",
+              confirmButtonText: "Ok",
+              confirmButtonColor: "#5f2eea",
+            });
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Error!",
+              text: err.message,
+              icon: "error",
+              confirmButtonText: "Ok",
+              confirmButtonColor: "#5f2eea",
+            });
+          });
+      }
     } else if (step === "reset") {
       if (email !== null && token !== null) {
         dispatch(reset(email, token, params))
@@ -203,6 +215,7 @@ export default function Index() {
           alt="Tickitz"
           style={{ cursor: "pointer" }}
           onClick={() => handleClickLogo()}
+          className="logo"
         />
         <h1 className="d-none d-lg-block">
           {step === "fill"
@@ -216,7 +229,7 @@ export default function Index() {
         <h1 className="d-lg-none">Forgot password</h1>
         <p>
           {step === "fill"
-            ? "we'll send a link to your email shortly"
+            ? "confirm your email"
             : step === "activate"
             ? "we'll send a link to your email shortly"
             : step === "reset"
@@ -230,7 +243,13 @@ export default function Index() {
                 label="Email"
                 type="text"
                 name="email"
-                placeholder="Write your email"
+                placeholder={`${
+                  step === "fill"
+                    ? "Write your email"
+                    : step === "activate"
+                    ? "Write your email again"
+                    : ""
+                }`}
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 className={`${
