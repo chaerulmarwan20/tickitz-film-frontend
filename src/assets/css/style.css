@@ -395,6 +395,11 @@ section.showing-movie .card img {
   height: 244px;
   border-radius: 6px;
   cursor: pointer;
+  transition: 0.5s ease;
+}
+
+section.showing-movie .card img:hover {
+  opacity: 0.6;
 }
 
 /* Upcoming Movies */
@@ -453,7 +458,8 @@ section.upcoming-movies .container-upcoming-movie {
   overflow: visible;
 }
 
-section.upcoming-movies .card-upcoming-movie {
+section.upcoming-movies .card-upcoming-movie,
+section.showing-movie .card-showing-movie {
   width: 223px;
   height: 452px;
   border-radius: 8px;
@@ -463,7 +469,8 @@ section.upcoming-movies .card-upcoming-movie {
   align-items: center;
 }
 
-section.upcoming-movies .container-upcoming-movie .card {
+section.upcoming-movies .container-upcoming-movie .card,
+section.showing-movie .now-showing-movie .card-hover {
   display: inline-block;
   width: 223px;
   height: 452px;
@@ -474,13 +481,15 @@ section.upcoming-movies .container-upcoming-movie .card {
   margin-right: 16px;
 }
 
-section.upcoming-movies .container-upcoming-movie .card img {
+section.upcoming-movies .container-upcoming-movie .card img,
+section.showing-movie .now-showing-movie .card-hover img {
   width: 159px;
   height: 244px;
   border-radius: 6px;
 }
 
-section.upcoming-movies .container-upcoming-movie .card p {
+section.upcoming-movies .container-upcoming-movie .card p,
+section.showing-movie .now-showing-movie .card-hover p {
   margin-top: 24px;
   font-weight: 700;
   font-size: 18px;
@@ -490,7 +499,8 @@ section.upcoming-movies .container-upcoming-movie .card p {
   white-space: normal;
 }
 
-section.upcoming-movies .container-upcoming-movie .card span {
+section.upcoming-movies .container-upcoming-movie .card span,
+section.showing-movie .now-showing-movie .card-hover span {
   margin-top: -10px;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -500,7 +510,8 @@ section.upcoming-movies .container-upcoming-movie .card span {
   text-align: center;
 }
 
-section.upcoming-movies .container-upcoming-movie .card .btn-details {
+section.upcoming-movies .container-upcoming-movie .card .btn-details,
+section.showing-movie .now-showing-movie .card-hover .btn-details {
   width: 159px;
   height: 33px;
   border-radius: 4px;
@@ -516,7 +527,8 @@ section.upcoming-movies .container-upcoming-movie .card .btn-details {
   margin-top: 40px;
 }
 
-section.upcoming-movies .container-upcoming-movie .card .btn-details:hover {
+section.upcoming-movies .container-upcoming-movie .card .btn-details:hover,
+section.showing-movie .now-showing-movie .card-hover .btn-details:hover {
   color: #fff;
   background-color: #5f2eea;
   border: 1px solid transparent;
@@ -850,7 +862,8 @@ footer nav.follow-us span:hover {
     opacity: 0.7;
   }
 
-  section.upcoming-movies .container-upcoming-movie .card .btn-details:hover {
+  section.upcoming-movies .container-upcoming-movie .card .btn-details:hover,
+  section.showing-movie .now-showing-movie .card-hover .btn-details:hover {
     color: #5f2eea;
     background-color: #fff;
     border: 1px solid #5f2eea;
@@ -912,17 +925,21 @@ footer nav.follow-us span:hover {
   }
 
   section.upcoming-movies .container-upcoming-movie .card,
-  section.upcoming-movies .card-upcoming-movie {
+  section.upcoming-movies .card-upcoming-movie,
+  section.showing-movie .now-showing-movie .card-hover,
+  section.showing-movie .card-showing-movie {
     width: 175px;
     height: 330px;
   }
 
-  section.upcoming-movies .container-upcoming-movie .card img {
+  section.upcoming-movies .container-upcoming-movie .card img,
+  section.showing-movie .now-showing-movie .card-hover img {
     width: 130px;
     height: 185px;
   }
 
-  section.upcoming-movies .container-upcoming-movie .card p {
+  section.upcoming-movies .container-upcoming-movie .card p,
+  section.showing-movie .now-showing-movie .card-hover p {
     margin-top: 12px;
     font-weight: 600;
     font-size: 14px;
@@ -935,6 +952,11 @@ footer nav.follow-us span:hover {
     .container-upcoming-movie
     .card
     .card-upcoming-movie
+    span,
+  section.showing-movie
+    .now-showing-movie
+    .card-hover
+    .card-showing-movie
     span {
     font-family: "Mulish", sans-serif;
     font-weight: 300;
@@ -944,7 +966,8 @@ footer nav.follow-us span:hover {
     white-space: normal;
   }
 
-  section.upcoming-movies .container-upcoming-movie .card .btn-details {
+  section.upcoming-movies .container-upcoming-movie .card .btn-details,
+  section.showing-movie .now-showing-movie .card-hover .btn-details {
     width: 120px;
     height: 25px;
     border: 0.5px solid #5f2eea;
@@ -955,7 +978,8 @@ footer nav.follow-us span:hover {
     letter-spacing: 0.25px;
   }
 
-  section.upcoming-movies .container-upcoming-movie .card .btn-details:hover {
+  section.upcoming-movies .container-upcoming-movie .card .btn-details:hover,
+  section.showing-movie .now-showing-movie .card-hover .btn-details:hover {
     color: #5f2eea;
     background-color: #fff;
     border: 0.5px solid #5f2eea;

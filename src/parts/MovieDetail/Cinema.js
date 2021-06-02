@@ -25,6 +25,17 @@ export default function Cinema() {
   const dispatch = useDispatch();
   const { location } = useSelector((state) => state.location);
 
+  const initialDate = new Date();
+  const today =
+    initialDate.getFullYear() +
+    "-" +
+    (initialDate.getMonth() + 1 < 10
+      ? `${0}${initialDate.getMonth() + 1}`
+      : initialDate.getMonth() + 1) +
+    "-" +
+    (initialDate.getDate() < 10
+      ? `${0}${initialDate.getDate()}`
+      : initialDate.getDate());
   const [schedule, setSchedule] = useState([]);
   const [empty, setEmpty] = useState(false);
   const [page, setPage] = useState(1);
@@ -33,7 +44,17 @@ export default function Cinema() {
   const [paginate, setPaginate] = useState(1);
   const [idSchedule, setIdSchedule] = useState(null);
   const [city, setCity] = useState(1);
-  const [date, setDate] = useState("2021-06-01");
+  const [date, setDate] = useState(
+    initialDate.getFullYear() +
+      "-" +
+      (initialDate.getMonth() + 1 < 10
+        ? `${0}${initialDate.getMonth() + 1}`
+        : initialDate.getMonth() + 1) +
+      "-" +
+      (initialDate.getDate() < 10
+        ? `${0}${initialDate.getDate()}`
+        : initialDate.getDate())
+  );
   const [time, setTime] = useState("");
   const [css, setCss] = useState({
     time: null,
@@ -49,6 +70,7 @@ export default function Cinema() {
   };
 
   const handleDateChange = (event) => {
+    setTime("");
     setDate(event.target.value);
   };
 
@@ -56,7 +78,15 @@ export default function Cinema() {
     if (schedule !== idSchedule) {
       Swal.fire({
         title: "Error!",
-        text: "Invalid time!",
+        text: "Invalid showtimes!",
+        icon: "error",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#5f2eea",
+      });
+    } else if (date < today) {
+      Swal.fire({
+        title: "Error!",
+        text: "Showtimes has passed!",
         icon: "error",
         confirmButtonText: "Ok",
         confirmButtonColor: "#5f2eea",
