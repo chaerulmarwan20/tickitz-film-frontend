@@ -40,6 +40,11 @@ section.all-movies .container-all-movie .card {
   border: 0;
   margin-right: 16px;
   cursor: pointer;
+  transition: 0.5s ease;
+}
+
+section.all-movies .container-all-movie .card:hover {
+  opacity: 0.7;
 }
 
 section.all-movies .container-all-movie .card img {
