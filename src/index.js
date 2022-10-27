@@ -1,11 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.Fragment>
-    <App />
+    <FpjsProvider
+      loadOptions={{
+        apiKey: "6GBXCYGxWqE367js5Fj5",
+      }}
+    >
+      <App />
+    </FpjsProvider>
   </React.Fragment>,
   document.getElementById("root")
 );

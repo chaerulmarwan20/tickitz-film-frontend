@@ -1,17 +1,21 @@
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { store, persistor } from "./configs/redux-persist/store";
-
-import Route from "./configs/router/MainRoute";
+import React, { useEffect } from "react";
+import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
 
 function App() {
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Route />
-      </PersistGate>
-    </Provider>
-  );
+  const { isLoading, error, data } = useVisitorData();
+
+  useEffect(() => {
+    if (data) console.info(data);
+  }, [data]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  } else if (error) {
+    return <div>An error occurred: {error.message}</div>;
+  } else if (data) {
+    return <div>Welcome {data ? `deviceId ${data.visitorId}` : ""}!</div>;
+  }
+  return null;
 }
 
 export default App;
