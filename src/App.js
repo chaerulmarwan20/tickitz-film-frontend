@@ -11,7 +11,7 @@ function App() {
   if (isLoading) {
     return <div>Loading...</div>;
   } else if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>{error.message}</div>;
   } else if (data) {
     return <div>Device Id: {data ? data.visitorId : ""}</div>;
   }
