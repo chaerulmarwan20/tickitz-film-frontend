@@ -1,21 +1,16 @@
-import React, { useEffect } from "react";
-import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import DeviceId from "./pages/DeviceId";
+import DeviceId2 from "./pages/DeviceId2";
 
 function App() {
-  const { isLoading, error, data } = useVisitorData();
-
-  useEffect(() => {
-    if (data) console.info(data);
-  }, [data]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  } else if (error) {
-    return <div>{error.message}</div>;
-  } else if (data) {
-    return <div>Device Id: {data ? data.visitorId : ""}</div>;
-  }
-  return null;
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={DeviceId} />
+        <Route path="/device-id" component={DeviceId2} />
+      </Switch>
+    </Router>
+  );
 }
-
 export default App;
