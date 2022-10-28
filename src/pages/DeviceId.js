@@ -13,7 +13,7 @@ const DeviceId = () => {
       extendedResult: true,
     });
     if (result) {
-      console.info(result);
+      console.info("fingerprintjs", result);
       setData(result);
     }
   };

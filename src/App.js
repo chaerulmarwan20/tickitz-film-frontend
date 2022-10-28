@@ -8,7 +8,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={DeviceId} />
-        <Route path="/device-id" component={DeviceId2} />
+        <Route path="/navigator" component={DeviceId2} />
       </Switch>
     </Router>
   );

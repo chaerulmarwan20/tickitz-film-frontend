@@ -1,30 +1,52 @@
-import React, { useState } from "react";
-import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
+import React, { useState, useEffect } from "react";
+import FingerprintJS from "@fingerprintjs/fingerprintjs-pro";
 
 const DeviceId2 = () => {
   const [data, setData] = useState(false);
-  const { isLoading, error, getData } = useVisitorData(
-    { tag: "device-id" },
-    { immediate: false }
-  );
+  const fpPromise = FingerprintJS.load({
+    apiKey: "6GBXCYGxWqE367js5Fj5",
+  });
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    getData().then((data) => {
-      if (data) setData(data);
+  const getDeviceId = async () => {
+    const fp = await fpPromise;
+    const result = await fp.get({
+      extendedResult: true,
     });
+    if (result) {
+      console.info("fingerprintjs", result);
+      setData(result);
+    }
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  else if (error) return <div>{error.message}</div>;
-  return (
-    <div>
-      <button type="button" onClick={handleClick}>
-        Get Device Id
-      </button>
-      {data && <div>Device Id: {data.visitorId}</div>}
-    </div>
-  );
+  const getCoordinate = new Promise((resolve) => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve(position.coords);
+      },
+      (error) => {
+        resolve({
+          latitude: 0,
+          longitude: 0,
+        });
+      }
+    );
+  });
+
+  useEffect(() => {
+    getDeviceId();
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    getCoordinate.then((result) => {
+      console.info("navigator latitude", result.latitude);
+      console.info("navigator longitude", result.longitude);
+    });
+    // eslint-disable-next-line
+  }, []);
+
+  if (!data) return <div>Loading...</div>;
+  return <div>Device Id: {data.visitorId}</div>;
 };
 
 export default DeviceId2;
